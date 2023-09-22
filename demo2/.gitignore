@@ -11,6 +11,8 @@ target/
 *.iws
 *.iml
 *.ipr
+src/main/java/com.example.demo2/HelloController.java
+
 
 ### Eclipse ###
 .apt_generated
