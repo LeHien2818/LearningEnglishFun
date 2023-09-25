@@ -1,0 +1,12 @@
+
+
+.classBtn {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-radius: 15;
+}
+.classBtn:hover {
+    -fx-border-color: #fff;
+    -fx-opacity: 0.6;
+    -fx-cursor: hand;
+}
