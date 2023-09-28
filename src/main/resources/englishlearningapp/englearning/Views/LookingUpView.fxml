@@ -9,7 +9,8 @@
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
          <image>
             <Image url="@../src/image/Background.png" />
-         </image></ImageView>
+         </image>
+      </ImageView>
       <Pane prefHeight="106.0" prefWidth="900.0">
          <children>
             <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true">
