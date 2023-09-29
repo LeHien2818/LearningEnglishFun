@@ -8,7 +8,6 @@ import java.io.IOException;
 public class DefaultViewController {
     public DefaultViewController() throws IOException {
     }
-
     @FXML
     public void clickSearch (ActionEvent event) throws IOException {
         SceneController.switchScene(event, SceneController.searchRoot);

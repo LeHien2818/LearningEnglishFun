@@ -7,7 +7,6 @@ public class GameViewController {
     public GameViewController() throws IOException {
     }
 
-  //  @FXML
     public void clickSearch (ActionEvent event) throws IOException {
         SceneController.switchScene(event, SceneController.searchRoot);
     }
