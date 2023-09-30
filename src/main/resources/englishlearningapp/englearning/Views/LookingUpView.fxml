@@ -25,7 +25,7 @@
       </Pane>
       <Pane layoutY="120.0" prefHeight="439.0" prefWidth="183.0">
          <children>
-            <TextField layoutX="46.0" layoutY="2.0" prefHeight="25.0" prefWidth="130.0" promptText="Word" />
+            <TextField fx:id="textInput" layoutX="46.0" layoutY="2.0" onKeyReleased="#inputWordHanddle" prefHeight="25.0" prefWidth="130.0" promptText="Word" />
          </children>
       </Pane>
    </children>
