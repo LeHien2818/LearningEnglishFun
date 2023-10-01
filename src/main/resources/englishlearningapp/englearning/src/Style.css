@@ -15,6 +15,13 @@
     -fx-border-color: black;
     -fx-border-radius: 15;
 }
+.wordListView {
+    -fx-translate-x: 45;
+    -fx-translate-y: 150;
+    -fx-pref-height: 450;
+    -fx-pref-width: 150;
+
+}
 /*
 .classBtn{
   -fx-background:#1AAB8A;
