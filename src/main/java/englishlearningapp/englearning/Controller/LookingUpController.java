@@ -28,7 +28,7 @@ public class LookingUpController {
         SceneController.switchScene(event, SceneController.translateRoot);
     }
 
-    public void inputWordHanddle () throws SQLException {
+    public void inputWordHanddle (KeyEvent e) throws SQLException {
         dictionary.getWords();
         ObservableList<String> wordNames = FXCollections.observableArrayList();
         for (int i = 0; i < dictionary.size(); i++){
@@ -46,7 +46,7 @@ public class LookingUpController {
             }
             resultListView.getStyleClass().add("wordListView");
             resultListView.setItems(filteredList);
-            SceneController.updateScene(event,"add",resultListView);
         });
+        SceneController.updateScene(e,"add",resultListView);
     }
 }
