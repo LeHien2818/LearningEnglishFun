@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.TreeMap;
 
 public class JDBC_RetrieveData extends JDBC_Connect{
@@ -78,7 +77,7 @@ public class JDBC_RetrieveData extends JDBC_Connect{
         JDBC_RetrieveData.definitons = definitons;
     }
 
-    public static void main (String[] args) throws SQLException {
+    /*public static void main (String[] args) throws SQLException {
         int i = 0;
         retrieveWordData();
         retrievePronunciation();
@@ -88,5 +87,5 @@ public class JDBC_RetrieveData extends JDBC_Connect{
             i++;
             if(i >= 5) break;
         }
-    }
+    }*/
 }

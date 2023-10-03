@@ -22,6 +22,9 @@
     -fx-pref-width: 150;
 
 }
+.wordListView:hover {
+    -fx-cursor: hand;
+}
 /*
 .classBtn{
   -fx-background:#1AAB8A;
