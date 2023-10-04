@@ -20,7 +20,6 @@ public class LookingUpController {
     private TextField textInput;
     @FXML
     private TextArea definitionArea;
-    private ListView<String> resultListView = new ListView<>();
 
     private Dictionary dictionary = new Dictionary();
     public LookingUpController() throws IOException {
@@ -35,11 +34,20 @@ public class LookingUpController {
 
     public void inputWordHanddle (KeyEvent e) throws SQLException {
         dictionary.getWords();
+        ListView<String> resultListView = new ListView<>();
+        String initializtion = textInput.getText().toLowerCase().trim();
         // Render prefixes.
         ObservableList<String> wordNames = FXCollections.observableArrayList();
+        ObservableList<String> initialList = FXCollections.observableArrayList();
         for (int i = 0; i < dictionary.size(); i++){
             wordNames.add(dictionary.get(i).getName());
         }
+        for(String wordName : wordNames) {
+            if(wordName.toLowerCase().startsWith(initializtion)){
+                initialList.add(wordName);
+            }
+        }
+        resultListView.setItems(initialList);
         textInput.setOnKeyReleased((KeyEvent event) -> {
             String queryString = textInput.getText().toLowerCase().trim();
             ObservableList<String> filteredList = FXCollections.observableArrayList();
@@ -49,7 +57,6 @@ public class LookingUpController {
                     filteredList.add(wordName);
                 }
             }
-            resultListView.getStyleClass().add("wordListView");
             resultListView.setItems(filteredList);
         });
         resultListView.getStyleClass().add("wordListView");

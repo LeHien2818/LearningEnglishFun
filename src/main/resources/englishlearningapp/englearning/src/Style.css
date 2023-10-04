@@ -25,6 +25,12 @@
 .wordListView:hover {
     -fx-cursor: hand;
 }
+.hidden {
+    visibility: hidden;
+}
+.display {
+    visibility: hidden;
+}
 /*
 .classBtn{
   -fx-background:#1AAB8A;
