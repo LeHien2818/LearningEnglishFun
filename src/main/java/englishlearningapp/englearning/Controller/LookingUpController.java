@@ -1,7 +1,6 @@
 package englishlearningapp.englearning.Controller;
 
 import englishlearningapp.englearning.DictionaryPackage.Dictionary;
-import englishlearningapp.englearning.DictionaryPackage.Word;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class LookingUpController {
     @FXML
@@ -52,6 +52,7 @@ public class LookingUpController {
             resultListView.getStyleClass().add("wordListView");
             resultListView.setItems(filteredList);
         });
+        resultListView.getStyleClass().add("wordListView");
         SceneController.updateScene(e,"add",resultListView);
         // Render definition and pronunciation of items.
         resultListView.setOnMouseClicked((MouseEvent event) -> {
