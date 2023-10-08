@@ -3,13 +3,10 @@ package englishlearningapp.englearning.DictionaryPackage;
 import englishlearningapp.englearning.JDBCConnection.JDBC_RetrieveData;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Dictionary extends ArrayList<Word> {
-    public void getWords() throws SQLException {
+    public Dictionary() throws SQLException {
         JDBC_RetrieveData.retrieveWordData();
         JDBC_RetrieveData.retrievePronunciation();
         JDBC_RetrieveData.retrieveDefinition();

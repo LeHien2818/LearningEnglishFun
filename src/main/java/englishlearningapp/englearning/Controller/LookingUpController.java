@@ -22,7 +22,7 @@ public class LookingUpController {
     private TextArea definitionArea;
 
     private Dictionary dictionary = new Dictionary();
-    public LookingUpController() throws IOException {
+    public LookingUpController() throws IOException, SQLException {
     }
 
     public void clickGame (ActionEvent event) throws IOException {
@@ -33,7 +33,7 @@ public class LookingUpController {
     }
 
     public void inputWordHanddle (KeyEvent e) throws SQLException {
-        dictionary.getWords();
+        //dictionary.getWords();
         ListView<String> resultListView = new ListView<>();
         String initializtion = textInput.getText().toLowerCase().trim();
         // Render prefixes.

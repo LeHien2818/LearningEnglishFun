@@ -1,5 +1,3 @@
-
-
 .classBtn {
     -fx-background-color: transparent;
     -fx-border-color: black;
@@ -41,7 +39,6 @@
   -fx-font-size:1.6em;
   -fx-padding:0 2em;
   -fx-cursor:hand;
-  -fx-transition:800ms ease all;
   -fx-outline:none;
 }
 .classBtn:hover{
@@ -56,7 +53,6 @@
   -fx-height:2px;
   -fx-width:0;
   -fx-background: #1AAB8A;
-  -fx-transition:400ms ease all;
 }
 .classBtn:after{
   -fx-right:inherit;
@@ -66,5 +62,4 @@
 }
 .classBtn:hover:before,.classBtn:hover:after{
   -fx-width:100%;
-  -fx-transition:800ms ease all;
 }*/
