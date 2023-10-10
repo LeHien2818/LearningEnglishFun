@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 public class JDBC_RetrieveData extends JDBC_Connect{
-    private static TreeMap<Integer, String> dataWords = new TreeMap<>();
+    private static TreeMap<String, Integer> dataWords = new TreeMap<>();
     private static HashMap<Integer, String> pronuntiations = new HashMap<>();
     private static HashMap<Integer, String> definitons = new HashMap<>();
     public static void retrieveWordData() throws SQLException {
@@ -18,8 +18,8 @@ public class JDBC_RetrieveData extends JDBC_Connect{
         ResultSet resultSetName = statement.executeQuery(queryName);
         while (resultSetName.next()) {
             int rowNum = resultSetName.getRow();
-            String wordName = resultSetName.getString("word");
-            dataWords.put(rowNum, wordName);
+            String wordName = resultSetName.getString("word").toLowerCase();
+            dataWords.put(wordName, rowNum);
         }
         resultSetName.close();
         statement.close();
@@ -53,11 +53,11 @@ public class JDBC_RetrieveData extends JDBC_Connect{
         statement.close();
         connection.close();
     }
-    public static TreeMap<Integer, String> getDataWords() {
+    public static TreeMap<String, Integer> getDataWords() {
         return dataWords;
     }
 
-    public void setDataWords(TreeMap<Integer, String> dataWords) {
+    public void setDataWords(TreeMap<String , Integer> dataWords) {
         this.dataWords = dataWords;
     }
 

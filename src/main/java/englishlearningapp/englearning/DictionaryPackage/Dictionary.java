@@ -10,16 +10,16 @@ public class Dictionary extends ArrayList<Word> {
         JDBC_RetrieveData.retrieveWordData();
         JDBC_RetrieveData.retrievePronunciation();
         JDBC_RetrieveData.retrieveDefinition();
-        TreeMap<Integer,String> inputWords = JDBC_RetrieveData.getDataWords();
+        TreeMap<String,Integer> inputWords = JDBC_RetrieveData.getDataWords();
         HashMap<Integer, String> inputPronuns = JDBC_RetrieveData.getPronuntiations();
         HashMap<Integer,String> inputDefs = JDBC_RetrieveData.getDefinitons();
 
-        for (Map.Entry<Integer,String> entry : inputWords.entrySet()) {
+        for (Map.Entry<String,Integer> entry : inputWords.entrySet()) {
             Word word = new Word();
-            word.setId(entry.getKey());
-            word.setName(entry.getValue());
-            word.setPronunciation(inputPronuns.get(entry.getKey()));
-            word.setDefinition(inputDefs.get(entry.getKey()));
+            word.setId(entry.getValue());
+            word.setName(entry.getKey());
+            word.setPronunciation(inputPronuns.get(entry.getValue()));
+            word.setDefinition(inputDefs.get(entry.getValue()));
             this.add(word);
         }
     }
