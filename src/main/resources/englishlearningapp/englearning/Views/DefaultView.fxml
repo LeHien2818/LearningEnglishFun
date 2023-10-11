@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.DefaultViewController">
    <children>
@@ -12,26 +11,17 @@
             <Image url="@../src/image/Background.png" />
          </image>
       </ImageView>
-      <HBox layoutX="142.0" layoutY="14.0" prefHeight="107.0" prefWidth="737.0">
+      <Pane prefHeight="106.0" prefWidth="900.0">
          <children>
-            <Button id="btn1" mnemonicParsing="false" prefHeight="138.0" prefWidth="239.0" styleClass="classBtn" text="Tra từ">
-               <font>
-                  <Font size="31.0" />
-               </font></Button>
-            <Button mnemonicParsing="false" prefHeight="116.0" prefWidth="245.0" styleClass="classBtn" text="Game">
-               <font>
-                  <Font size="31.0" />
-               </font></Button>
-            <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="277.0" styleClass="classBtn" text="Dịch văn bản">
-               <font>
-                  <Font size="31.0" />
-               </font></Button>
+            <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../src/image/trans-icon.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="182.0" layoutY="32.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Search" />
+            <Button layoutX="443.0" layoutY="32.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Game" />
+            <Button layoutX="704.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Translate" />
          </children>
-      </HBox>
-      <ImageView fitHeight="116.0" fitWidth="124.0" layoutX="6.0" layoutY="7.0" pickOnBounds="true">
-         <image>
-            <Image url="@../src/image/trans-icon.png" />
-         </image>
-      </ImageView>
+      </Pane>
    </children>
 </AnchorPane>

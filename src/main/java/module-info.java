@@ -4,6 +4,8 @@ module englishlearningapp.englearning {
 
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires java.sql;
+    requires mysql.connector.java;
 
     opens englishlearningapp.englearning to javafx.fxml;
     exports englishlearningapp.englearning;

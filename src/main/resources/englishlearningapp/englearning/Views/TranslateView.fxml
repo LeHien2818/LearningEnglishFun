@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.TranslateViewController">
+    <children>
+        <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
+            <image>
+                <Image url="@../src/image/Background.png" />
+            </image>
+        </ImageView>
+        <Pane prefHeight="106.0" prefWidth="900.0">
+            <children>
+                <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true">
+                    <image>
+                        <Image url="@../src/image/trans-icon.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="182.0" layoutY="32.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Search" />
+                <Button layoutX="443.0" layoutY="32.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Game" />
+                <Button layoutX="704.0" layoutY="33.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Translate" />
+            </children>
+        </Pane>
+      <Pane layoutX="151.0" layoutY="143.0" prefHeight="416.0" prefWidth="718.0">
+         <children>
+            <Button layoutX="108.0" layoutY="325.0" mnemonicParsing="false" onAction="#switchLanguage" prefHeight="50.0" prefWidth="187.0" text="Switch Language" />
+            <TextArea fx:id="inputText" layoutX="14.0" layoutY="59.0" prefHeight="245.0" prefWidth="345.0" />
+            <TextArea fx:id="outputText" editable="false" layoutX="362.0" layoutY="59.0" prefHeight="245.0" prefWidth="333.0" />
+            <Button layoutX="415.0" layoutY="325.0" mnemonicParsing="false" onAction="#onTranslate" prefHeight="50.0" prefWidth="187.0" text="Translate" />
+            <TextArea fx:id="inputLang" editable="false" layoutX="14.0" layoutY="11.0" prefHeight="43.0" prefWidth="175.0" />
+            <TextArea fx:id="outputLang" editable="false" layoutX="362.0" layoutY="14.0" prefHeight="43.0" prefWidth="175.0" />
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>
