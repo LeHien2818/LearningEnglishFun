@@ -90,4 +90,11 @@ public class GameViewController {
     public void clickGrammar(ActionEvent event) throws IOException {
         SceneController.switchScene(event, SceneController.grammarRoot);
     }
+
+    public void clickExit(ActionEvent event) throws IOException {
+        this.setScore(0);
+        this.setQuesNumber(0);
+        this.setTextScore(this.toString(this.getScore()));
+        SceneController.switchScene(event, SceneController.exitRoot);
+    }
 }

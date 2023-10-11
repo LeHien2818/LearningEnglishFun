@@ -32,11 +32,11 @@ public class VocabViewController extends GameViewController {
             this.setRandom(10);
             int index = this.getRandom();
             this.questionVocab.setText(questionAnswer.getQuestion(index));
-            this.setRandom(2);
+            this.setRandom(100);
             int countAnswer = this.getRandom();
             String correctAnswer = questionAnswer.getAnswer(index);
             String selectedAnswer = "";
-            if (countAnswer == 1) {
+            if (countAnswer %2 == 1) {
                 this.answerA.setText(correctAnswer);
                 this.answerB.setText(questionAnswer.getrandomAnswer());
             } else {
@@ -66,10 +66,5 @@ public class VocabViewController extends GameViewController {
 
     }
 
-    public void clickExit(ActionEvent event) throws IOException {
-        this.setScore(0);
-        this.setQuesNumber(0);
-        this.setTextScore(this.toString(this.getScore()));
-        SceneController.switchScene(event, SceneController.exitRoot);
-    }
+
 }

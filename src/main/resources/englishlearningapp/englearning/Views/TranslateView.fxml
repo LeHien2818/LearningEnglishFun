@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.TranslateViewController">
     <children>
-        <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
+        <ImageView fitHeight="600.0" fitWidth="1015.0" pickOnBounds="true">
             <image>
                 <Image url="@../src/image/Background.png" />
             </image>
