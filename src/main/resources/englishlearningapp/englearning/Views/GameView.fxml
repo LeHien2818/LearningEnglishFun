@@ -4,24 +4,35 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.GameViewController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="englishlearningapp.englearning.Controller.GameViewController">
     <children>
-        <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
+        <ImageView fitHeight="600.0" fitWidth="1015.0" pickOnBounds="true">
             <image>
-                <Image url="@../src/image/Background.png" />
+                <Image url="@../src/image/Background.png"/>
             </image>
         </ImageView>
         <Pane prefHeight="106.0" prefWidth="900.0">
             <children>
                 <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true">
                     <image>
-                        <Image url="@../src/image/trans-icon.png" />
+                        <Image url="@../src/image/trans-icon.png"/>
                     </image>
                 </ImageView>
-                <Button layoutX="182.0" layoutY="32.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Search" />
-                <Button layoutX="443.0" layoutY="32.0" mnemonicParsing="false"  prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Game" />
-                <Button layoutX="704.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Translate" />
+                <Button layoutX="182.0" layoutY="32.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="43.0"
+                        prefWidth="146.0" styleClass="classBtn" text="Search"/>
+                <Button layoutX="707.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickTranslate"
+                        prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Translate"/>
+                <Button layoutX="450.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="43.0"
+                        prefWidth="146.0" styleClass="classBtn" text="Game"/>
             </children>
         </Pane>
+        <Button layoutX="467.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickGrammar" prefHeight="53.0"
+                prefWidth="117.0" text="Grammar" styleClass="classBtn"/>
+        <Button layoutX="467.0" layoutY="168.0" mnemonicParsing="false" onAction="#clickVocab" prefHeight="53.0"
+                prefWidth="117.0" text="Vocabulary" styleClass="classBtn"/>
+        <Button layoutX="467.0" layoutY="324.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="53.0"
+                prefWidth="117.0" text="Connect words" styleClass="classBtn"/>
     </children>
 </AnchorPane>
