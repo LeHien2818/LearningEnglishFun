@@ -45,7 +45,43 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
+    protected static AnchorPane vocabRoot;
 
+    static {
+        try {
+            vocabRoot = FXMLLoader.load(App.class.getResource("Views/VocabView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    protected static AnchorPane grammarRoot;
+
+    static {
+        try {
+            grammarRoot = FXMLLoader.load(App.class.getResource("Views/GrammarView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    protected static AnchorPane connectRoot;
+
+    static {
+        try {
+            connectRoot = FXMLLoader.load(App.class.getResource("Views/VocabView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected static AnchorPane exitRoot;
+
+    static {
+        try {
+            exitRoot = FXMLLoader.load(App.class.getResource("Views/GameView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public SceneController() throws IOException {
     }
 
