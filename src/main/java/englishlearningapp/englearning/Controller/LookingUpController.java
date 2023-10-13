@@ -1,6 +1,9 @@
 package englishlearningapp.englearning.Controller;
 
+import com.mysql.cj.conf.StringProperty;
+import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.DictionaryPackage.Dictionary;
+import englishlearningapp.englearning.TextToSpeech.TTS;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,9 +11,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -21,7 +29,7 @@ public class LookingUpController {
     @FXML
     private TextArea definitionArea;
 
-    private Dictionary dictionary = new Dictionary();
+    private final Dictionary dictionary = new Dictionary();
     public LookingUpController() throws IOException, SQLException {
     }
 
@@ -33,7 +41,6 @@ public class LookingUpController {
     }
 
     public void inputWordHanddle (KeyEvent e) throws SQLException {
-        //dictionary.getWords();
         ListView<String> resultListView = new ListView<>();
         String initializtion = textInput.getText().toLowerCase().trim();
         // Render prefixes.
@@ -63,16 +70,57 @@ public class LookingUpController {
         SceneController.updateScene(e,"add",resultListView);
         // Render definition and pronunciation of items.
         resultListView.setOnMouseClicked((MouseEvent event) -> {
+            String wordSelected = "";
+            Image img = null;
+            try {
+                img = new Image((App.class.getResource("src/image/speaker.png")).openStream());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            ImageView speakerIcon = new ImageView();
+            speakerIcon.setImage(img);
+            speakerIcon.getStyleClass().add("speaker");
+            speakerIcon.setFitHeight(26);
+            speakerIcon.setFitWidth(29);
+            Pane speakerContainer = new Pane();
+            speakerContainer.setPrefWidth(26);
+            speakerContainer.setPrefHeight(29);
+            speakerContainer.setLayoutX(773);
+            speakerContainer.setLayoutY(534);
+            speakerContainer.getStyleClass().add("speaker-container");
             if(event.getClickCount() == 1) {
-                String wordSelected = resultListView.getSelectionModel().getSelectedItem();
+                SceneController.updateScene(e, "add", speakerIcon);
+                SceneController.updateScene(e, "add", speakerContainer);
+                wordSelected = resultListView.getSelectionModel().getSelectedItem();
+                //set Definition area.
                 for(int i = 0; i < dictionary.size(); i++){
                     if(dictionary.get(i).getName().equals(wordSelected)) {
                         definitionArea.setText(dictionary.get(i).getPronunciation() + "\n" + dictionary.get(i).getDefinition() + "\n");
                         break;
                     }
                 }
+                //set speaker.
+            }
+            try {
+                TTS.initApiVoice(wordSelected);
+                speakerContainer.setOnMouseClicked((MouseEvent mevent) -> {
+                    if (mevent.getClickCount() == 1) {
+                        try {
+                            TTS.playSpeaker();
+                        } catch (UnsupportedAudioFileException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        } catch (LineUnavailableException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
             }
         });
+
     }
 
 }

@@ -26,3 +26,12 @@
 .textBox .content{
     -fx-cursor: hand;
 }
+.speaker {
+    -fx-translate-x: 773;
+    -fx-translate-y: 534;
+    -fx-cursor: hand;
+}
+
+.speaker-container {
+    -fx-cursor: hand;
+}
