@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBC_Connect {
-    public static Connection getJDBCConnection ()  throws SQLException {
+    protected static Connection getJDBCConnection ()  throws SQLException {
         final String url = "jdbc:mysql://localhost:3306/dictionary";
         final String user = "root";
         final String password = "";
