@@ -25,6 +25,7 @@
 }
 .textBox .content{
     -fx-cursor: hand;
+    -fx-background-color: transparent;
 }
 .speaker {
     -fx-translate-x: 773;
@@ -34,4 +35,22 @@
 
 .speaker-container {
     -fx-cursor: hand;
+}
+.textBox {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-radius: 15;
+}
+
+.textBox .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.textBox .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.textBox .scroll-pane .content{
+    -fx-background-color: transparent;
 }
