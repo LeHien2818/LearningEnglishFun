@@ -6,13 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import kotlin.jvm.internal.PropertyReference0Impl;
 
 import java.sql.SQLException;
 
 public class App extends Application {
+    private static Dictionary dictionary;
+    public static Dictionary getDictionary(){return dictionary;}
     @Override
-    public void init() {
-
+    public void init() throws SQLException {
+        dictionary = new Dictionary();
     }
     @Override
     public void start(Stage stage) throws Exception {

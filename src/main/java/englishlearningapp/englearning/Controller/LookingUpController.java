@@ -1,9 +1,8 @@
 package englishlearningapp.englearning.Controller;
 
-import com.mysql.cj.conf.StringProperty;
 import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.DictionaryPackage.Dictionary;
-import englishlearningapp.englearning.TextToSpeech.TTS;
+import englishlearningapp.englearning.TextToSpeech.TexttoSpeechTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,12 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LookingUpController {
     @FXML
@@ -29,7 +24,7 @@ public class LookingUpController {
     @FXML
     private TextArea definitionArea;
 
-    private final Dictionary dictionary = new Dictionary();
+    private final Dictionary dictionary = App.getDictionary();
     public LookingUpController() throws IOException, SQLException {
     }
 
@@ -70,7 +65,7 @@ public class LookingUpController {
         SceneController.updateScene(e,"add",resultListView);
         // Render definition and pronunciation of items.
         resultListView.setOnMouseClicked((MouseEvent event) -> {
-            String wordSelected = "";
+            String wordSelected;
             Image img = null;
             try {
                 img = new Image((App.class.getResource("src/image/speaker.png")).openStream());
@@ -100,20 +95,24 @@ public class LookingUpController {
                     }
                 }
                 //set speaker.
+            } else {
+                wordSelected = "";
             }
             try {
-                TTS.initApiVoice(wordSelected);
                 speakerContainer.setOnMouseClicked((MouseEvent mevent) -> {
                     if (mevent.getClickCount() == 1) {
-                        try {
-                            TTS.playSpeaker();
-                        } catch (UnsupportedAudioFileException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        } catch (LineUnavailableException ex) {
-                            throw new RuntimeException(ex);
-                        }
+                        TexttoSpeechTask task = new TexttoSpeechTask(wordSelected);
+                        Thread th = new Thread(task);
+                        th.setDaemon(true);
+                        speakerIcon.setDisable(true);
+                        /*task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                            @Override
+                            public void handle(WorkerStateEvent workerStateEvent) {
+                                speakerIcon.setDisable(false);
+                            }
+                        });*/
+                        th.start();
+
                     }
                 });
             } catch (Exception ex) {

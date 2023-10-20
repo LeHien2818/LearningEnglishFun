@@ -28,7 +28,7 @@ public class TranslateViewController{
         SceneController.switchScene(event, SceneController.searchRoot);
     }
 
-    public void onTranslate() throws IOException {
+    public void onTranslate() throws Exception {
         String translation = inputText.getText();
         String res = "";
         if(inputLang.getText().equals("")) {
