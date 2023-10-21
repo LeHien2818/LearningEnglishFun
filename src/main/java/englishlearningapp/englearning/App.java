@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class App extends Application {
     private static Dictionary dictionary;
     public static Dictionary getDictionary(){return dictionary;}
+
     @Override
     public void init() throws SQLException {
         dictionary = new Dictionary();

@@ -2,6 +2,7 @@ package englishlearningapp.englearning.Controller;
 
 import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.DictionaryPackage.Dictionary;
+import englishlearningapp.englearning.DictionaryPackage.Word;
 import englishlearningapp.englearning.TextToSpeech.TexttoSpeechTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,8 +24,8 @@ public class LookingUpController {
     private TextField textInput;
     @FXML
     private TextArea definitionArea;
+    private String wordSelected;
 
-    private final Dictionary dictionary = App.getDictionary();
     public LookingUpController() throws IOException, SQLException {
     }
 
@@ -34,38 +35,34 @@ public class LookingUpController {
     public void clickTranslate (ActionEvent event) throws IOException {
         SceneController.switchScene(event, SceneController.translateRoot);
     }
-
+    public void onAddBtn(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.addViewRoot);
+    }
+    public void onDelete(ActionEvent event) {
+        Word finder = new Word();
+        finder.setName(wordSelected);
+        App.getDictionary().remove(App.getDictionary().findWord(finder));
+    }
     public void inputWordHanddle (KeyEvent e) throws SQLException {
         ListView<String> resultListView = new ListView<>();
-        String initializtion = textInput.getText().toLowerCase().trim();
         // Render prefixes.
         ObservableList<String> wordNames = FXCollections.observableArrayList();
-        ObservableList<String> initialList = FXCollections.observableArrayList();
-        for (int i = 0; i < dictionary.size(); i++){
-            wordNames.add(dictionary.get(i).getName());
+        for (int i = 0; i < App.getDictionary().size(); i++){
+            wordNames.add(App.getDictionary().get(i).getName());
         }
-        for(String wordName : wordNames) {
-            if(wordName.toLowerCase().startsWith(initializtion)){
-                initialList.add(wordName);
-            }
-        }
-        resultListView.setItems(initialList);
-        textInput.setOnKeyReleased((KeyEvent event) -> {
-            String queryString = textInput.getText().toLowerCase().trim();
-            ObservableList<String> filteredList = FXCollections.observableArrayList();
+        String queryString = textInput.getText().toLowerCase().trim();
+        ObservableList<String> filteredList = FXCollections.observableArrayList();
 
-            for(String wordName : wordNames) {
-                if(wordName.toLowerCase().startsWith(queryString)){
-                    filteredList.add(wordName);
-                }
+        for(String wordName : wordNames) {
+            if(wordName.toLowerCase().startsWith(queryString)){
+                filteredList.add(wordName);
             }
-            resultListView.setItems(filteredList);
-        });
+        }
+        resultListView.setItems(filteredList);
         resultListView.getStyleClass().add("wordListView");
         SceneController.updateScene(e,"add",resultListView);
         // Render definition and pronunciation of items.
         resultListView.setOnMouseClicked((MouseEvent event) -> {
-            String wordSelected;
             Image img = null;
             try {
                 img = new Image((App.class.getResource("src/image/speaker.png")).openStream());
@@ -88,9 +85,9 @@ public class LookingUpController {
                 SceneController.updateScene(e, "add", speakerContainer);
                 wordSelected = resultListView.getSelectionModel().getSelectedItem();
                 //set Definition area.
-                for(int i = 0; i < dictionary.size(); i++){
-                    if(dictionary.get(i).getName().equals(wordSelected)) {
-                        definitionArea.setText(dictionary.get(i).getPronunciation() + "\n" + dictionary.get(i).getDefinition() + "\n");
+                for(int i = 0; i < App.getDictionary().size(); i++){
+                    if(App.getDictionary().get(i).getName().equals(wordSelected)) {
+                        definitionArea.setText(App.getDictionary().get(i).getPronunciation() + "\n" + App.getDictionary().get(i).getDefinition() + "\n");
                         break;
                     }
                 }

@@ -1,9 +1,14 @@
 package englishlearningapp.englearning.DictionaryPackage;
 
 import englishlearningapp.englearning.JDBCConnection.JDBC_RetrieveData;
-
 import java.sql.SQLException;
 import java.util.*;
+class WordComparator implements Comparator<Word> {
+    @Override
+    public int compare(Word o1, Word o2) {
+        return o1.getName().compareTo(o2.getName());
+    }
+}
 
 public class Dictionary extends ArrayList<Word> {
     public Dictionary() throws SQLException {
@@ -22,6 +27,25 @@ public class Dictionary extends ArrayList<Word> {
             word.setDefinition(inputDefs.get(entry.getValue()));
             this.add(word);
         }
+    }
+
+    public void sort() {
+        this.sort(new WordComparator());
+    }
+
+    public int findWord(Word word) {
+        String nameToFind = word.getName();
+        int left = 0;
+        int right = this.size() - 1;
+        while(left < right) {
+            int distance = (right - left) / 2;
+            if(distance < 1) distance++;
+            int mid = left + distance ;
+            if(this.get(mid).getName().equals(nameToFind)) return mid;
+            else if(this.get(mid).getName().compareTo(nameToFind) < 0) left = mid + 1;
+            else right = mid - 1;
+        }
+        return left;
     }
 
 }

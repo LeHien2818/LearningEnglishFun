@@ -82,6 +82,15 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
+
+    protected static AnchorPane addViewRoot;
+    static {
+        try {
+            addViewRoot = FXMLLoader.load(App.class.getResource("Views/AddwordView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public SceneController() throws IOException {
     }
 
