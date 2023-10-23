@@ -1,10 +1,10 @@
 .classBtn {
     -fx-background-color: transparent;
-    -fx-border-color: black;
-    -fx-border-radius: 15;
+    /*-fx-border-color: black;*/
 }
 .classBtn:hover {
     -fx-border-color: #fff;
+    -fx-border-radius: 15;
     -fx-opacity: 0.6;
     -fx-cursor: hand;
 }
@@ -40,6 +40,9 @@
     -fx-background-color: transparent;
     -fx-border-color: black;
     -fx-border-radius: 15;
+}
+.textBox:hover {
+    -fx-border-color: #fff;
 }
 
 .textBox .scroll-pane {

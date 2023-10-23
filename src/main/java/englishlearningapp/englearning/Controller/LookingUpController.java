@@ -8,6 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -15,7 +19,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -24,24 +31,55 @@ public class LookingUpController {
     private TextField textInput;
     @FXML
     private TextArea definitionArea;
-    private String wordSelected;
+    private String queryString = "";
+    private String wordSelected = "-1";
+    public String getWordSelected() {
+        return wordSelected;
+    }
+    public void setTextInput(String input){ textInput.setText(input);}
+
+    public void setDefinitionArea(String newdef) {
+        definitionArea.setText(newdef);
+    }
 
     public LookingUpController() throws IOException, SQLException {
     }
 
     public void clickGame (ActionEvent event) throws IOException {
+        wordSelected = "";
+        queryString = "";
         SceneController.switchScene(event, SceneController.gameRoot);
     }
     public void clickTranslate (ActionEvent event) throws IOException {
+        wordSelected = "";
+        queryString = "";
         SceneController.switchScene(event, SceneController.translateRoot);
     }
     public void onAddBtn(ActionEvent event) throws IOException {
         SceneController.switchScene(event, SceneController.addViewRoot);
     }
     public void onDelete(ActionEvent event) {
+        if(wordSelected.equals("-1")) return;
         Word finder = new Word();
         finder.setName(wordSelected);
         App.getDictionary().remove(App.getDictionary().findWord(finder));
+        definitionArea.setText("");
+        wordSelected = "";
+    }
+    public void onCustom(ActionEvent event) throws IOException {
+        if(wordSelected.equals("-1")) return;
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(App.class.getResource("Views/ModifyWordView.fxml"));
+        AnchorPane modifyRoot = loader.load();
+        ModifyController controller = loader.getController();
+        controller.setNameArea(wordSelected);
+        Word find = new Word();
+        find.setName(wordSelected);
+        int idSelected = App.getDictionary().findWord(find);
+        controller.setPronunciationArea(App.getDictionary().get(idSelected).getPronunciation());
+        controller.setDefinitionArea(App.getDictionary().get(idSelected).getDefinition());
+        SceneController.switchScene(event, modifyRoot);
+
     }
     public void inputWordHanddle (KeyEvent e) throws SQLException {
         ListView<String> resultListView = new ListView<>();
@@ -50,7 +88,7 @@ public class LookingUpController {
         for (int i = 0; i < App.getDictionary().size(); i++){
             wordNames.add(App.getDictionary().get(i).getName());
         }
-        String queryString = textInput.getText().toLowerCase().trim();
+        queryString = textInput.getText().toLowerCase().trim();
         ObservableList<String> filteredList = FXCollections.observableArrayList();
 
         for(String wordName : wordNames) {

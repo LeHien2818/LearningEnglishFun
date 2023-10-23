@@ -91,6 +91,15 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
+
+    protected static AnchorPane modifyViewRoot;
+    static {
+        try {
+            modifyViewRoot = FXMLLoader.load(App.class.getResource("Views/ModifyWordView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public SceneController() throws IOException {
     }
 

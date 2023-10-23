@@ -45,6 +45,7 @@ public class Dictionary extends ArrayList<Word> {
             else if(this.get(mid).getName().compareTo(nameToFind) < 0) left = mid + 1;
             else right = mid - 1;
         }
+        if(!this.get(left).getName().equals(nameToFind)) return -1;
         return left;
     }
 

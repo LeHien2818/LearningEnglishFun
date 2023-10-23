@@ -6,23 +6,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.LookingUpController">
+<AnchorPane fx:id="searchRoot" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.LookingUpController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
          <image>
-            <Image url="@../src/image/Background.png" />
+            <Image url="@../src/image/AzurLane1.png" />
          </image>
       </ImageView>
       <Pane prefHeight="106.0" prefWidth="900.0">
          <children>
-            <ImageView fitHeight="78.0" fitWidth="82.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true">
+            <ImageView fitHeight="95.0" fitWidth="900.0" opacity="0.25" pickOnBounds="true">
+               <image>
+                  <Image url="@../src/image/MoonPurple.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="55.0" fitWidth="63.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true">
                <image>
                   <Image url="@../src/image/trans-icon.png" />
                </image>
             </ImageView>
-            <Button layoutX="182.0" layoutY="32.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Search" />
-            <Button layoutX="443.0" layoutY="32.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Game" />
-            <Button layoutX="704.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="43.0" prefWidth="146.0" styleClass="classBtn" text="Translate" />
+            <Button layoutX="169.0" layoutY="26.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Search">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font></Button>
+            <Button layoutX="414.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Game">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font></Button>
+            <Button layoutX="661.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Translate">
+               <font>
+                  <Font name="Arial" size="24.0" />
+               </font></Button>
          </children>
       </Pane>
       <Pane layoutY="120.0" prefHeight="439.0" prefWidth="183.0">
@@ -39,6 +53,6 @@
          </cursor></TextArea>
       <Button layoutX="633.0" layoutY="126.0" mnemonicParsing="false" onAction="#onAddBtn" text="Add" />
       <Button layoutX="701.0" layoutY="126.0" mnemonicParsing="false" onAction="#onDelete" text="Delete" />
-      <Button fx:id="customBtn" layoutX="783.0" layoutY="126.0" mnemonicParsing="false" text="Modify" />
+      <Button layoutX="783.0" layoutY="126.0" mnemonicParsing="false" onAction="#onCustom" text="Modify" />
    </children>
 </AnchorPane>
