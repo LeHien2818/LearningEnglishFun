@@ -93,4 +93,5 @@ public class GameViewController {
         this.setTextScore(this.toString(this.getScore()));
         SceneController.switchScene(event, SceneController.exitRoot);
     }
+    //lam nhanh len
 }
