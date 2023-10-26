@@ -7,11 +7,10 @@ module englishlearningapp.englearning {
     requires mysql.connector.java;
     requires voicerss.tts;
     requires java.desktop;
+    requires AnimateFX;
 
     opens englishlearningapp.englearning to javafx.fxml;
     exports englishlearningapp.englearning;
     exports englishlearningapp.englearning.Controller;
     opens englishlearningapp.englearning.Controller to javafx.fxml;
-    exports englishlearningapp.englearning.Animation;
-    opens englishlearningapp.englearning.Animation to javafx.fxml;
 }

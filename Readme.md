@@ -3,6 +3,14 @@
 This project was created to assist learners who are studying
 English and requiring a tool to enhance their effectiveness...
 But the main purpose is to get scores in my OOP course...
+### Features: 
+
+- Looking up words in dictionary.
+- Translate paragraphs.
+- Word can be pronounced.
+- Add new words, modify words or delete from dictionary.
+- Games assist users learning English.
+- Vivid GUI.
 
 ## Installation
 
@@ -20,9 +28,21 @@ But the main purpose is to get scores in my OOP course...
 ##### Step 1: 
 - Download this project.
 ##### Step 2:
+- Go to this link: https://github.com/Typhon0/AnimateFX and you scroll down until see this:
+![img_4.png](img_4.png)
+- Copy all of this code.
+- Go to this ![img_5.png](img_5.png) 
+- And go to tab libraries and click the "+" button on the top-left corner then click "From Maven".
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+- And it will pop up a dialog like this
+![img_8.png](img_8.png)
+- Patse all what you did copy before in the text box and click OK.
+##### Step 3:
 - When you open the project you will see the project structure similar to this: ![img.png](img.png)
 - Add two folders name "lib" to your libraries by clicking right click in jar files inside those folders and click "Add as library".
-##### Step 3:
+- Do some additional steps to install animation library.
+##### Step 4:
 - Open your SQL server first with your tool, It will look like this in XAMPP![img_2.png](img_2.png)
 - Open the tool that manage your SQL server and go to tab "SQL" and insert these codes:
 ```bash
@@ -42,7 +62,7 @@ But the main purpose is to get scores in my OOP course...
 ## Tech Stack
 **Server:** mySQl.
 
-**Dev:** Javafx, Voicerrs, Maven;
+**Dev:** Javafx, Voicerrs, Maven, AnnimateFX;
 
 ## Author
 [Lê Đức](https://www.github.com/Lee-412)

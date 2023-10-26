@@ -16,6 +16,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.voicerss</groupId>
+            <artifactId>tss</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/voicerss_tts.jar</systemPath>
+        </dependency>
+
+        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>20.0.1</version>
