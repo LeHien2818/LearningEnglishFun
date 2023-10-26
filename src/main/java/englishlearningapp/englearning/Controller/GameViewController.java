@@ -91,6 +91,6 @@ public class GameViewController {
         this.setScore(0);
         this.setQuesNumber(0);
         this.setTextScore(this.toString(this.getScore()));
-        SceneController.switchScene(event, SceneController.exitRoot);
+        SceneController.switchScene(event, SceneController.gameRoot);
     }
 }

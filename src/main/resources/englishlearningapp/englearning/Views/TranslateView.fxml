@@ -4,52 +4,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.TranslateViewController">
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
             <image>
-                <Image url="@../src/image/AzurLane1.png" />
+                <Image url="@../src/image/Translate-view.png" />
             </image>
         </ImageView>
-        <Pane prefHeight="106.0" prefWidth="900.0">
+        <Pane layoutX="21.0" layoutY="39.0" prefHeight="512.0" prefWidth="125.0">
             <children>
-            <ImageView fitHeight="95.0" fitWidth="900.0" opacity="0.25" pickOnBounds="true">
-               <image>
-                  <Image url="@../src/image/MoonPurple.png" />
-               </image>
-            </ImageView>
-                <ImageView fitHeight="55.0" fitWidth="63.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true">
-                    <image>
-                        <Image url="@../src/image/trans-icon.png" />
-                    </image>
-                </ImageView>
-                <Button layoutX="169.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Search">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font></Button>
-                <Button layoutX="414.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Game">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font></Button>
-                <Button layoutX="661.0" layoutY="26.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Translate">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font></Button>
+                <Button layoutX="19.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickGame" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
+                </Button>
+                <Button layoutX="19.0" layoutY="132.0" mnemonicParsing="false" onAction="#clickSearch" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
+                </Button>
+                <Button layoutX="21.0" layoutY="317.0" mnemonicParsing="false" opacity="0.0" prefHeight="81.0" prefWidth="81.0" styleClass="classBtn" textOverrun="LEADING_ELLIPSIS">
+                </Button>
             </children>
         </Pane>
       <Pane layoutX="151.0" layoutY="143.0" prefHeight="416.0" prefWidth="718.0">
          <children>
-            <Button layoutX="108.0" layoutY="325.0" mnemonicParsing="false" onAction="#switchLanguage" prefHeight="50.0" prefWidth="187.0" text="Switch Language" />
-            <TextArea fx:id="inputText" layoutX="14.0" layoutY="59.0" prefHeight="245.0" prefWidth="345.0" />
-            <TextArea fx:id="outputText" editable="false" layoutX="362.0" layoutY="59.0" prefHeight="245.0" prefWidth="333.0" styleClass="textBox">
+            <Button layoutX="294.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchLanguage" opacity="0.0" prefHeight="58.0" prefWidth="73.0" text="Switch Language" />
+            <TextArea fx:id="inputText" layoutX="1.0" layoutY="91.0" prefHeight="209.0" prefWidth="290.0" styleClass="textBox" />
+            <TextArea fx:id="outputText" editable="false" layoutX="371.0" layoutY="91.0" prefHeight="209.0" prefWidth="290.0" styleClass="textBox">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></TextArea>
-            <Button layoutX="415.0" layoutY="325.0" mnemonicParsing="false" onAction="#onTranslate" prefHeight="50.0" prefWidth="187.0" text="Translate" />
-            <TextArea fx:id="inputLang" editable="false" layoutX="14.0" layoutY="11.0" prefHeight="43.0" prefWidth="175.0" />
-            <TextArea fx:id="outputLang" editable="false" layoutX="362.0" layoutY="14.0" prefHeight="43.0" prefWidth="175.0" />
+            <Button layoutX="282.0" layoutY="318.0" mnemonicParsing="false" onAction="#onTranslate" opacity="0.38" prefHeight="25.0" prefWidth="103.0" text="Translate" />
+            <TextArea fx:id="inputLang" editable="false" layoutX="92.0" layoutY="24.0" prefHeight="25.0" prefWidth="88.0" />
+            <TextArea fx:id="outputLang" editable="false" layoutX="472.0" layoutY="17.0" prefHeight="19.0" prefWidth="103.0" />
          </children>
       </Pane>
     </children>
