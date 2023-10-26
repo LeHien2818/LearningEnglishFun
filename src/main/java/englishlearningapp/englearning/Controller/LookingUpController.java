@@ -32,7 +32,7 @@ public class LookingUpController {
     @FXML
     private TextArea definitionArea;
     private String queryString = "";
-    private String wordSelected = "-1";
+    private String wordSelected = "";
     public String getWordSelected() {
         return wordSelected;
     }
@@ -59,7 +59,7 @@ public class LookingUpController {
         SceneController.switchScene(event, SceneController.addViewRoot);
     }
     public void onDelete(ActionEvent event) {
-        if(wordSelected.equals("-1")) return;
+        if(wordSelected.equals("")) return;
         Word finder = new Word();
         finder.setName(wordSelected);
         App.getDictionary().remove(App.getDictionary().findWord(finder));
@@ -67,7 +67,7 @@ public class LookingUpController {
         wordSelected = "";
     }
     public void onCustom(ActionEvent event) throws IOException {
-        if(wordSelected.equals("-1")) return;
+        if(wordSelected.equals("")) return;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(App.class.getResource("Views/ModifyWordView.fxml"));
         AnchorPane modifyRoot = loader.load();
