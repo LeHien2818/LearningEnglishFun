@@ -9,33 +9,28 @@
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
             <image>
-                <Image url="@../src/image/AzurLane1.png" />
+                <Image url="@../src/image/Back.png" />
             </image>
         </ImageView>
         <Pane prefHeight="106.0" prefWidth="900.0">
             <children>
-            <ImageView fitHeight="95.0" fitWidth="900.0" opacity="0.25" pickOnBounds="true">
-               <image>
-                  <Image url="@../src/image/MoonPurple.png" />
-               </image>
-            </ImageView>
-                <ImageView fitHeight="55.0" fitWidth="63.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true">
+                <ImageView fitHeight="63.0" fitWidth="638.0" layoutX="254.0" layoutY="47.0" opacity="0.25" pickOnBounds="true">
                     <image>
-                        <Image url="@../src/image/trans-icon.png" />
+                        <Image url="@../src/image/MoonPurple.png" />
                     </image>
                 </ImageView>
-                <Button layoutX="169.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Search">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font></Button>
-                <Button layoutX="661.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Translate">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font></Button>
-                <Button layoutX="414.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Game">
-               <font>
-                  <Font name="Arial" size="24.0" />
-               </font></Button>
+                <Button fx:id="searchBtn" layoutX="254.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="63.0" prefWidth="175.0" styleClass="classBtn" text="Search" textFill="WHITE">
+                    <font>
+                        <Font name="Eras Bold ITC" size="24.0" />
+                    </font></Button>
+                <Button fx:id="gameBtn" layoutX="492.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="63.0" prefWidth="175.0" styleClass="classBtn" text="Game" textFill="WHITE">
+                    <font>
+                        <Font name="Eras Bold ITC" size="24.0" />
+                    </font></Button>
+                <Button fx:id="translateBtn" layoutX="724.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="63.0" prefWidth="166.0" styleClass="classBtn" text="Translate" textFill="WHITE">
+                    <font>
+                        <Font name="Eras Bold ITC" size="24.0" />
+                    </font></Button>
             </children>
         </Pane>
         <Button layoutX="467.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickGrammar" prefHeight="53.0" prefWidth="117.0" styleClass="classBtn" text="Grammar" />

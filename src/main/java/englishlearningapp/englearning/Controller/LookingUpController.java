@@ -1,5 +1,6 @@
 package englishlearningapp.englearning.Controller;
 
+import animatefx.animation.BounceIn;
 import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.DictionaryPackage.Dictionary;
 import englishlearningapp.englearning.DictionaryPackage.Word;
@@ -12,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -27,6 +29,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class LookingUpController {
+    public Button searchBtn;
+    public Button gameBtn;
+    public Button translateBtn;
     @FXML
     private TextField textInput;
     @FXML
@@ -46,11 +51,13 @@ public class LookingUpController {
     }
 
     public void clickGame (ActionEvent event) throws IOException {
+        new BounceIn(gameBtn).play();
         wordSelected = "";
         queryString = "";
         SceneController.switchScene(event, SceneController.gameRoot);
     }
     public void clickTranslate (ActionEvent event) throws IOException {
+        new BounceIn(translateBtn).play();
         wordSelected = "";
         queryString = "";
         SceneController.switchScene(event, SceneController.translateRoot);
@@ -115,7 +122,7 @@ public class LookingUpController {
             Pane speakerContainer = new Pane();
             speakerContainer.setPrefWidth(26);
             speakerContainer.setPrefHeight(29);
-            speakerContainer.setLayoutX(773);
+            speakerContainer.setLayoutX(828);
             speakerContainer.setLayoutY(534);
             speakerContainer.getStyleClass().add("speaker-container");
             if(event.getClickCount() == 1) {

@@ -1,5 +1,6 @@
 package englishlearningapp.englearning.Controller;
 
+import animatefx.animation.BounceIn;
 import animatefx.animation.FadeIn;
 import animatefx.animation.SlideInRight;
 import animatefx.animation.SlideInUp;
@@ -109,7 +110,9 @@ public class SceneController {
     public static void switchScene (ActionEvent event, Parent sceneSwitch) throws IOException {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = ((Node)event.getSource()).getScene();
-        new FadeIn(sceneSwitch).play();
+        FadeIn fadeEffect = new FadeIn(sceneSwitch);
+        fadeEffect.setSpeed(2);
+        fadeEffect.play();
         scene.setRoot(sceneSwitch);
         scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());
         stage.setScene(scene);

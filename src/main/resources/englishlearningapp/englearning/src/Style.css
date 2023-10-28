@@ -14,10 +14,10 @@
     -fx-border-radius: 15;
 }
 .wordListView {
-    -fx-translate-x: 45;
-    -fx-translate-y: 150;
-    -fx-pref-height: 450;
-    -fx-pref-width: 150;
+    -fx-translate-x: 55;
+    -fx-translate-y: 195;
+    -fx-pref-height: 372;
+    -fx-pref-width: 164;
 
 }
 .wordListView:hover {
@@ -28,13 +28,15 @@
     -fx-background-color: transparent;
 }
 .speaker {
-    -fx-translate-x: 773;
+    -fx-translate-x: 828;
     -fx-translate-y: 534;
     -fx-cursor: hand;
 }
 
-.speaker-container {
+.speaker-container:hover {
     -fx-cursor: hand;
+    -fx-background-color: gray;
+    -fx-opacity: 0.3;
 }
 .textBox {
     -fx-background-color: transparent;

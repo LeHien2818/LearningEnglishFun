@@ -3,11 +3,17 @@ package englishlearningapp.englearning.Controller;
 
 import java.io.IOException;
 import java.util.Random;
+
+import animatefx.animation.BounceIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 public class GameViewController {
+    public Button searchBtn;
+    public Button gameBtn;
+    public Button translateBtn;
     @FXML
     private TextArea Scoregame = new TextArea();
     private int score = 0;
@@ -16,6 +22,7 @@ public class GameViewController {
     private int randomIndex;
 
     public GameViewController() {
+
     }
 
     public int getQuesNumber() {
@@ -64,10 +71,12 @@ public class GameViewController {
     }
 
     public void clickSearch(ActionEvent event) throws IOException {
+        new BounceIn(searchBtn).play();
         SceneController.switchScene(event, SceneController.searchRoot);
     }
 
     public void clickTranslate(ActionEvent event) throws IOException {
+        new BounceIn(translateBtn).play();
         SceneController.switchScene(event, SceneController.translateRoot);
     }
 

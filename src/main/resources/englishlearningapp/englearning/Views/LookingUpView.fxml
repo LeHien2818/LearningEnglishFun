@@ -10,49 +10,44 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
          <image>
-            <Image url="@../src/image/AzurLane1.png" />
+            <Image url="@../src/image/Back.png" />
          </image>
       </ImageView>
-      <Pane prefHeight="106.0" prefWidth="900.0">
+      <Pane prefHeight="115.0" prefWidth="900.0">
          <children>
-            <ImageView fitHeight="95.0" fitWidth="900.0" opacity="0.25" pickOnBounds="true">
+            <ImageView fitHeight="63.0" fitWidth="638.0" layoutX="254.0" layoutY="47.0" opacity="0.25" pickOnBounds="true">
                <image>
                   <Image url="@../src/image/MoonPurple.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="55.0" fitWidth="63.0" layoutX="14.0" layoutY="20.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../src/image/trans-icon.png" />
-               </image>
-            </ImageView>
-            <Button layoutX="169.0" layoutY="26.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Search">
+            <Button fx:id="searchBtn" layoutX="254.0" layoutY="46.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="175.0" styleClass="classBtn" text="Search" textFill="WHITE">
                <font>
-                  <Font name="Arial" size="24.0" />
+                  <Font name="Eras Bold ITC" size="24.0" />
                </font></Button>
-            <Button layoutX="414.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Game">
+            <Button fx:id="gameBtn" layoutX="492.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="63.0" prefWidth="175.0" styleClass="classBtn" text="Game" textFill="WHITE">
                <font>
-                  <Font name="Arial" size="24.0" />
+                  <Font name="Eras Bold ITC" size="24.0" />
                </font></Button>
-            <Button layoutX="661.0" layoutY="26.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="43.0" prefWidth="239.0" styleClass="classBtn" text="Translate">
+            <Button fx:id="translateBtn" layoutX="724.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="63.0" prefWidth="166.0" styleClass="classBtn" text="Translate" textFill="WHITE">
                <font>
-                  <Font name="Arial" size="24.0" />
+                  <Font name="Eras Bold ITC" size="24.0" />
                </font></Button>
          </children>
       </Pane>
-      <Pane layoutY="120.0" prefHeight="439.0" prefWidth="183.0">
+      <Pane layoutX="37.0" layoutY="146.0" prefHeight="439.0" prefWidth="183.0">
          <children>
-            <TextField fx:id="textInput" layoutX="46.0" layoutY="2.0" onKeyReleased="#inputWordHanddle" prefHeight="25.0" prefWidth="130.0" promptText="Word" />
+            <TextField fx:id="textInput" layoutX="19.0" layoutY="13.0" onKeyReleased="#inputWordHanddle" prefHeight="33.0" prefWidth="157.0" promptText="Search" />
          </children>
       </Pane>
-      <TextArea fx:id="definitionArea" editable="false" layoutX="260.0" layoutY="158.0" prefHeight="410.0" prefWidth="575.0" styleClass="textBox">
+      <TextArea fx:id="definitionArea" editable="false" layoutX="255.0" layoutY="166.0" prefHeight="399.0" prefWidth="631.0" styleClass="textBox">
          <font>
             <Font size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></TextArea>
-      <Button layoutX="633.0" layoutY="126.0" mnemonicParsing="false" onAction="#onAddBtn" text="Add" />
-      <Button layoutX="701.0" layoutY="126.0" mnemonicParsing="false" onAction="#onDelete" text="Delete" />
-      <Button layoutX="783.0" layoutY="126.0" mnemonicParsing="false" onAction="#onCustom" text="Modify" />
+      <Button layoutX="640.0" layoutY="126.0" mnemonicParsing="false" onAction="#onAddBtn" prefHeight="26.0" prefWidth="62.0" text="Add" />
+      <Button layoutX="736.0" layoutY="126.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="26.0" prefWidth="62.0" text="Delete" />
+      <Button layoutX="823.0" layoutY="126.0" mnemonicParsing="false" onAction="#onCustom" prefHeight="26.0" prefWidth="62.0" text="Modify" />
    </children>
 </AnchorPane>
