@@ -59,7 +59,7 @@ public class TranslateViewController{
     }
 
     public void switchLanguage() {
-        new ZoomOut(switchBtn).playOnFinished(new BounceIn(switchBtn)).play();
+        //new ZoomOut(switchBtn).playOnFinished(new BounceIn(switchBtn)).play();
         if(inputLang.getText().equals("vi")) {
             inputLang.setText("en");
             outputLang.setText("vi");

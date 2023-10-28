@@ -6,10 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="searchRoot" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.LookingUpController">
+<AnchorPane fx:id="searchRoot" prefHeight="600.0" prefWidth="1035.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.LookingUpController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
+      <ImageView fitHeight="600.0" fitWidth="1035.0" pickOnBounds="true">
          <image>
+<!--<<<<<<< HEAD
             <Image url="@../src/image/Back.png" />
          </image>
       </ImageView>
@@ -40,14 +41,39 @@
          </children>
       </Pane>
       <TextArea fx:id="definitionArea" editable="false" layoutX="255.0" layoutY="166.0" prefHeight="399.0" prefWidth="631.0" styleClass="textBox">
+=======-->
+            <Image url="@../src/image/Search-view.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="22.0" layoutY="44.0" prefHeight="512.0" prefWidth="125.0">
+         <children>
+            <Button fx:id="gameBtn" layoutX="19.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickGame" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
+               </Button>
+            <Button fx:id="searchBtn" layoutX="19.0" layoutY="132.0" mnemonicParsing="false" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
+               </Button>
+            <Button fx:id="translateBtn" layoutX="21.0" layoutY="317.0" mnemonicParsing="false" onAction="#clickTranslate" opacity="0.0" prefHeight="81.0" prefWidth="81.0" styleClass="classBtn" textOverrun="LEADING_ELLIPSIS">
+               </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="175.0" layoutY="189.0" prefHeight="436.0" prefWidth="132.0">
+         <children>
+            <TextField fx:id="textInput" layoutX="20.0" layoutY="2.0" onKeyReleased="#inputWordHanddle" prefHeight="25.0" prefWidth="92.0" promptText="Word" />
+         </children>
+      </Pane>
+      <TextArea fx:id="definitionArea" editable="false" layoutX="344.0" layoutY="194.0" prefHeight="319.0" prefWidth="500.0" styleClass="textBox" wrapText="true">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></TextArea>
+<!--<<<<<<< HEAD
       <Button layoutX="640.0" layoutY="126.0" mnemonicParsing="false" onAction="#onAddBtn" prefHeight="26.0" prefWidth="62.0" text="Add" />
       <Button layoutX="736.0" layoutY="126.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="26.0" prefWidth="62.0" text="Delete" />
       <Button layoutX="823.0" layoutY="126.0" mnemonicParsing="false" onAction="#onCustom" prefHeight="26.0" prefWidth="62.0" text="Modify" />
+=======-->
+      <Button contentDisplay="CENTER" layoutX="885.0" layoutY="194.0" mnemonicParsing="false" onAction="#onAddBtn" text="Add" />
+      <Button layoutX="887.0" layoutY="300.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="25.0" prefWidth="51.0" text="Delete" />
+      <Button layoutX="877.0" layoutY="406.0" mnemonicParsing="false" onAction="#onCustom" text="Modify" />
    </children>
 </AnchorPane>
