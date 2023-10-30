@@ -42,16 +42,16 @@
       </Pane>
       <TextArea fx:id="definitionArea" editable="false" layoutX="255.0" layoutY="166.0" prefHeight="399.0" prefWidth="631.0" styleClass="textBox">
 =======-->
-            <Image url="@../src/image/Search-view.png" />
+            <Image url="@../src/image/FlatBack.png" />
          </image>
       </ImageView>
-      <Pane layoutX="22.0" layoutY="44.0" prefHeight="512.0" prefWidth="125.0">
+      <Pane prefHeight="115.0" prefWidth="1035.0">
          <children>
-            <Button fx:id="gameBtn" layoutX="19.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickGame" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
+            <Button fx:id="gameBtn" layoutX="268.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickGame" opacity="0.47" prefHeight="49.0" prefWidth="88.0" styleClass="classBtn">
                </Button>
-            <Button fx:id="searchBtn" layoutX="19.0" layoutY="132.0" mnemonicParsing="false" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
+            <Button fx:id="searchBtn" layoutX="161.0" layoutY="33.0" mnemonicParsing="false" opacity="0.73" prefHeight="49.0" prefWidth="88.0" styleClass="classBtn">
                </Button>
-            <Button fx:id="translateBtn" layoutX="21.0" layoutY="317.0" mnemonicParsing="false" onAction="#clickTranslate" opacity="0.0" prefHeight="81.0" prefWidth="81.0" styleClass="classBtn" textOverrun="LEADING_ELLIPSIS">
+            <Button fx:id="translateBtn" layoutX="379.0" layoutY="33.0" mnemonicParsing="false" onAction="#clickTranslate" opacity="0.76" prefHeight="49.0" prefWidth="81.0" styleClass="classBtn" textOverrun="LEADING_ELLIPSIS">
                </Button>
          </children>
       </Pane>

@@ -1,12 +1,22 @@
 .classBtn {
     -fx-background-color: transparent;
+    -fx-background-radius: 10;
     /*-fx-border-color: black;*/
+}
+.classSubBtn {
+    -fx-background-color: #f39b6b;
+    -fx-background-radius: 10;
+}
+.classSubBtn:hover {
+    -fx-background-color: #F38D6B;
+    -fx-cursor: hand;
+    -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
 }
 .classBtn:hover {
     -fx-border-color: #fff;
-    -fx-border-radius: 15;
-    -fx-opacity: 0.6;
     -fx-cursor: hand;
+    -fx-background-color: #4CB5E2;
+    -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
 }
 .wordListView .content{
     -fx-background-color: transparent;
