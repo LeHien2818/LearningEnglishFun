@@ -5,9 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.ModifyController">
+<AnchorPane prefHeight="563.0" prefWidth="894.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.ModifyController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../src/image/FlatBack.png" />
+         </image></ImageView>
       <HBox layoutX="-6.0" prefHeight="500.0" prefWidth="906.0">
          <children>
             <VBox prefHeight="600.0" prefWidth="300.0">

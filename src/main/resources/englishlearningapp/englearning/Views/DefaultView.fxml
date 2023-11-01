@@ -9,39 +9,13 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
          <image>
-<!--<<<<<<< HEAD
-            <Image url="@../src/image/Back.png" />
-         </image>
-      </ImageView>
-      <Pane prefHeight="106.0" prefWidth="900.0">
-         <children>
-            <ImageView fitHeight="63.0" fitWidth="638.0" layoutX="254.0" layoutY="47.0" opacity="0.25" pickOnBounds="true">
-               <image>
-                  <Image url="@../src/image/MoonPurple.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="searchBtn" layoutX="254.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="63.0" prefWidth="175.0" styleClass="classBtn" text="Search" textFill="WHITE">
-               <font>
-                  <Font name="Eras Bold ITC" size="24.0" />
-               </font></Button>
-            <Button fx:id="gameBtn" layoutX="492.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="63.0" prefWidth="175.0" styleClass="classBtn" text="Game" textFill="WHITE">
-               <font>
-                  <Font name="Eras Bold ITC" size="24.0" />
-               </font></Button>
-            <Button fx:id="translateBtn" layoutX="724.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickTranslate" prefHeight="63.0" prefWidth="166.0" styleClass="classBtn" text="Translate" textFill="WHITE">
-               <font>
-                  <Font name="Eras Bold ITC" size="24.0" />
-               </font></Button>
-         </children>
-      </Pane>
-=======-->
             <Image url="@../src/image/FlatBack.png" />
          </image>
       </ImageView>
 
          <Pane prefHeight="96.0" prefWidth="900.0">
             <children>
-            <ImageView fitHeight="120.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="120.0" fitWidth="158.0" onMouseClicked="#onIconClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../src/image/textOff.png" />
                </image>
@@ -68,7 +42,7 @@
                </font></Button>
             </children>
          </Pane>
-      <Button layoutX="365.0" layoutY="313.0" mnemonicParsing="false" opacity="0.89" prefHeight="56.0" prefWidth="188.0" style="-fx-background-radius: 15; -fx-background-color: #f39b6b;" styleClass="classBtn" text="Get Started" textFill="#ffefff">
+      <Button layoutX="365.0" layoutY="313.0" mnemonicParsing="false" onAction="#getStarted" opacity="0.89" prefHeight="56.0" prefWidth="188.0" style="-fx-background-radius: 15; -fx-background-color: #f39b6b;" styleClass="classBtn" text="Get Started" textFill="#ffefff">
          <font>
             <Font name="Trebuchet MS Bold" size="16.0" />
          </font></Button>

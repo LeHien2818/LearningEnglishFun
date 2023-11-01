@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -19,6 +20,16 @@ import java.util.Objects;
 public class SceneController {
     protected static Stage stage;
     protected static Scene scene ;
+
+    protected static AnchorPane defaultRoot;
+
+    static {
+        try {
+            defaultRoot = FXMLLoader.load(App.class.getResource("Views/DefaultView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     protected static AnchorPane searchRoot;
 
@@ -112,6 +123,17 @@ public class SceneController {
         scene = ((Node)event.getSource()).getScene();
         FadeIn fadeEffect = new FadeIn(sceneSwitch);
         fadeEffect.setSpeed(2);
+        fadeEffect.play();
+        scene.setRoot(sceneSwitch);
+        scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+    }
+    public static void switchScene (MouseEvent event, Parent sceneSwitch) throws IOException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = ((Node)event.getSource()).getScene();
+        FadeIn fadeEffect = new FadeIn(sceneSwitch);
+        fadeEffect.setSpeed(1);
         fadeEffect.play();
         scene.setRoot(sceneSwitch);
         scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());

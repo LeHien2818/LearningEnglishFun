@@ -122,8 +122,8 @@ public class LookingUpController {
             Pane speakerContainer = new Pane();
             speakerContainer.setPrefWidth(26);
             speakerContainer.setPrefHeight(29);
-            speakerContainer.setLayoutX(828);
-            speakerContainer.setLayoutY(534);
+            speakerContainer.setLayoutX(758);
+            speakerContainer.setLayoutY(494);
             speakerContainer.getStyleClass().add("speaker-container");
             if(event.getClickCount() == 1) {
                 SceneController.updateScene(e, "add", speakerIcon);
@@ -164,4 +164,7 @@ public class LookingUpController {
 
     }
 
+    public void onIconClicked(MouseEvent mouseEvent) throws IOException {
+        SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
+    }
 }

@@ -5,6 +5,7 @@ import animatefx.animation.BounceIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -31,4 +32,11 @@ public class DefaultViewController {
     }
 
 
+    public void onIconClicked(MouseEvent mouseEvent) throws IOException {
+        SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
+    }
+
+    public void getStarted(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.gameRoot);
+    }
 }

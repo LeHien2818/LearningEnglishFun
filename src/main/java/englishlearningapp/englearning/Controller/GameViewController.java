@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 
 public class GameViewController {
     public Button searchBtn;
@@ -102,5 +103,8 @@ public class GameViewController {
         this.setTextScore(this.toString(this.getScore()));
         SceneController.switchScene(event, SceneController.gameRoot);
     }
-    //lam nhanh len
+
+    public void onIconClicked(MouseEvent mouseEvent) throws IOException {
+        SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
+    }
 }
