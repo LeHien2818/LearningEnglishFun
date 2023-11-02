@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
@@ -44,6 +45,8 @@ public class TranslateViewController{
     }
 
     public void onTranslate() throws Exception {
+        inputText.setWrapText(true);
+        outputText.setWrapText(true);
         String translation = inputText.getText();
         String res = "";
         if(inputLang.getText().equals("")) {
@@ -59,7 +62,9 @@ public class TranslateViewController{
     }
 
     public void switchLanguage() {
-        //new ZoomOut(switchBtn).playOnFinished(new BounceIn(switchBtn)).play();
+        ZoomOut zoomOut = new ZoomOut(switchBtn);
+        zoomOut.setSpeed(2);
+        zoomOut.playOnFinished(new BounceIn(switchBtn)).play();
         if(inputLang.getText().equals("vi")) {
             inputLang.setText("en");
             outputLang.setText("vi");
@@ -67,5 +72,9 @@ public class TranslateViewController{
             inputLang.setText("vi");
             outputLang.setText("en");
         }
+    }
+
+    public void onIconClicked(MouseEvent mouseEvent) throws IOException {
+        SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
     }
 }

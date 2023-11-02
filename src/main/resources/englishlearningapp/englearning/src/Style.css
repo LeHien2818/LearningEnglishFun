@@ -1,35 +1,84 @@
 .classBtn {
     -fx-background-color: transparent;
-    /*-fx-border-color: black;*/
+    -fx-background-radius: 10;
+}
+.classCRUDBtn {
+    -fx-background-radius: 15;
+    -fx-background-color: #ffefff ;
+    /*#F5CC7D*/
+}
+.classCRUDBtn: hover {
+    -fx-cursor: hand;
+    -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
+}
+
+.classSubBtn {
+    -fx-background-color: #f39b6b;
+    -fx-background-radius: 10;
+}
+.classSubBtn:hover {
+    -fx-background-color: #F38D6B;
+    -fx-cursor: hand;
+    -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
 }
 .classBtn:hover {
     -fx-border-color: #fff;
-    -fx-border-radius: 15;
-    -fx-opacity: 0.6;
     -fx-cursor: hand;
-}
-.wordListView .content{
-    -fx-background-color: transparent;
-    -fx-border-color: black;
-    -fx-border-radius: 15;
+    -fx-background-color: #4CB5E2;
+    -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
 }
 .wordListView {
-    -fx-translate-x: 55;
-    -fx-translate-y: 195;
-    -fx-pref-height: 372;
-    -fx-pref-width: 164;
-
+    -fx-translate-x: 25;
+    -fx-translate-y: 178;
+    -fx-pref-height: 353;
+    -fx-pref-width: 151;
 }
 .wordListView:hover {
     -fx-cursor: hand;
 }
+.wordListView .list-cell:filled:selected:focused, .wordListView .list-cell:filled:selected {
+
+     -fx-background-color: linear-gradient(#333 0%, #777 25%, #aaa 75%, #eee 100%);/*linear-gradient(#333 0%, #777 25%, #aaa 75%, #eee 100%)*/
+     -fx-text-fill: black;
+ }
+ .wordListView .list-cell {
+    -fx-text-fill: black;
+    -fx-border-color: white;
+    -fx-font-family: Arial;
+    -fx-font-size: 13px;
+  }
+ .wordListView .list-cell:odd { -fx-background-color: white; -fx-opacity: 1; }
+ .wordListView .list-cell:even { -fx-background-color: #EAD8EA; -fx-opacity: 1; }
+ .wordListView .list-cell:filled:hover {
+     -fx-background-color: #2FF5C6;
+     -fx-text-fill: white;
+ }
+.wordListView .scroll-bar:vertical {
+     -fx-background-color:#2c365d;
+ }
+
+.wordListView .increment-button ,.list-view .decrement-button {
+     -fx-background-color:transparent;
+     -fx-border-color:transparent;
+ }
+
+.wordListView .scroll-bar:vertical .thumb {
+     -fx-background-color:#455491;
+     -fx-background-insets: 5, 5, 5;
+     -fx-background-radius: 5;
+ }
+
+.wordListView .scroll-bar:horizontal {
+     -fx-scale-x: 0;
+ }
+
 .textBox .content{
     -fx-cursor: hand;
     -fx-background-color: transparent;
 }
 .speaker {
-    -fx-translate-x: 828;
-    -fx-translate-y: 534;
+    -fx-translate-x: 758;
+    -fx-translate-y: 494;
     -fx-cursor: hand;
 }
 
@@ -42,6 +91,7 @@
     -fx-background-color: transparent;
     -fx-border-color: black;
     -fx-border-radius: 15;
+    -fx-border-width: 3;
 }
 .textBox:hover {
     -fx-border-color: #fff;
@@ -60,6 +110,90 @@
     -fx-background-color: transparent;
 }
 
+<<<<<<< HEAD
+#text-translate {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius: 15;
+    -fx-border-width: 3;
+}
+#text-translate .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+#text-translate .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+#text-translate .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+.switchBtn {
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+}
+.switchBtn:hover {
+    -fx-background-color: white;
+    -fx-text-fill: #4CB5E2;
+    -fx-opacity: 0.8;
+}
+.centeredTextArea .scroll-pane .content .text {
+    -fx-text-alignment: center;
+}
+#from-lang .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+#from-lang .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+#from-lang .scroll-pane{
+    -fx-background-color: transparent;
+}
+#from-lang {
+    -fx-background-color: #404040;
+    -fx-text-fill: #E4FFFF;
+    -fx-background-radius: 15;
+    -fx-border-radius: 10;
+    -fx-border-color: #E4FFFF;
+    -fx-border-width: 2;
+    -fx-opacity: 0.8;
+}
+#from-lang .scroll-pane .content .text{
+    -fx-text-fill: #E4FFFF ;
+}
+#to-lang .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+#to-lang .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+#to-lang .scroll-pane{
+    -fx-background-color: transparent;
+}
+#to-lang {
+    -fx-background-color: #E7FAFA;
+    -fx-text-fill: #404040;
+    -fx-background-radius: 15;
+    -fx-border-radius: 10;
+    -fx-border-color: #404040;
+    -fx-border-width: 2;
+    -fx-opacity: 0.8;
+}
+#to-lang .scroll-pane .content .text{
+    -fx-text-fill: #404040 ;
+}
+.translate-btn {
+    -fx-background-color: #E7FAFA;
+    -fx-text-fill: #404040;
+}
+
+.translate-btn:hover {
+     -fx-background-color: #16F5B1;
+     -fx-text-fill: #E7FAFA;
+     -fx-cursor: hand;
+     -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
+}
 
 .radio-button {
     -fx-padding: 12 12 12 12;

@@ -7,8 +7,11 @@ import java.util.Random;
 import animatefx.animation.BounceIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.input.MouseEvent;
+
 import javafx.scene.control.*;
 import javafx.scene.layout.Region;
+
 
 public class GameViewController {
     public Button searchBtn;
@@ -140,5 +143,8 @@ public class GameViewController {
         this.setTextScore(this.toString(this.getScore()));
         AlertController.alertSubmit(event);
     }
-    //lam nhanh len
+
+    public void onIconClicked(MouseEvent mouseEvent) throws IOException {
+        SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
+    }
 }

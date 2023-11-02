@@ -4,68 +4,71 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.TranslateViewController">
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
             <image>
-<!--<<<<<<< HEAD
-                <Image url="@../src/image/Back.png" />
-=======-->
-                <Image url="@../src/image/Translate-view.png" />
+                <Image url="@../src/image/FlatBack.png" />
             </image>
         </ImageView>
-        <Pane layoutX="21.0" layoutY="39.0" prefHeight="512.0" prefWidth="125.0">
+
+        <Pane prefHeight="96.0" prefWidth="900.0">
             <children>
-<!--<<<<<<< HEAD
-            <ImageView fitHeight="63.0" fitWidth="638.0" layoutX="253.0" layoutY="46.0" opacity="0.25" pickOnBounds="true">
-               <image>
-                  <Image url="@../src/image/MoonPurple.png" />
-               </image>
-            </ImageView>
-                <Button fx:id="searchBtn" layoutX="254.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="63.0" prefWidth="175.0" styleClass="classBtn" text="Search" textFill="WHITE">
+                <ImageView fitHeight="120.0" fitWidth="158.0" onMouseClicked="#onIconClicked" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../src/image/textOff.png" />
+                    </image>
+                </ImageView>
+                <Button layoutX="657.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="115.0" styleClass="classSubBtn" text="About Us" textFill="#fffafd">
                     <font>
-                        <Font name="Eras Bold ITC" size="24.0" />
+                        <Font name="Microsoft Sans Serif" size="14.0" />
                     </font></Button>
-                <Button fx:id="gameBtn" layoutX="492.0" layoutY="46.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="63.0" prefWidth="175.0" styleClass="classBtn" text="Game" textFill="WHITE">
+                <Button layoutX="778.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="115.0" styleClass="classSubBtn" text="Guide" textFill="#fffafd">
                     <font>
-                        <Font name="Eras Bold ITC" size="24.0" />
+                        <Font name="Microsoft Sans Serif" size="14.0" />
                     </font></Button>
-                <Button fx:id="translateBtn" layoutX="724.0" layoutY="46.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="166.0" styleClass="classBtn" text="Translate" textFill="WHITE">
+                <Button fx:id="searchBtn" layoutX="158.0" layoutY="9.0" mnemonicParsing="false" onAction="#clickSearch" prefHeight="44.0" prefWidth="115.0" styleClass="classBtn" text="Search" textFill="#fffafd">
                     <font>
-                        <Font name="Eras Bold ITC" size="24.0" />
+                        <Font name="Microsoft Sans Serif" size="14.0" />
                     </font></Button>
-=======-->
-                <Button fx:id="gameBtn" layoutX="19.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickGame" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
-                </Button>
-                <Button fx:id="searchBtn" layoutX="19.0" layoutY="132.0" mnemonicParsing="false" onAction="#clickSearch" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
-                </Button>
-                <Button fx:id="translateBtn" layoutX="21.0" layoutY="317.0" mnemonicParsing="false" opacity="0.0" prefHeight="81.0" prefWidth="81.0" styleClass="classBtn" textOverrun="LEADING_ELLIPSIS">
-                </Button>
+                <Button fx:id="gameBtn" layoutX="273.0" layoutY="9.0" mnemonicParsing="false" onAction="#clickGame" prefHeight="44.0" prefWidth="115.0" styleClass="classBtn" text="Game" textFill="#fffafd">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="14.0" />
+                    </font></Button>
+                <Button fx:id="translateBtn" layoutX="388.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="115.0" styleClass="classBtn" text="Translate" textFill="#fffafd">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="14.0" />
+                    </font></Button>
             </children>
         </Pane>
       <Pane layoutX="151.0" layoutY="145.0" prefHeight="414.0" prefWidth="739.0">
          <children>
-<!--<<<<<<< HEAD
-            <Button fx:id="switchBtn" layoutX="377.0" layoutY="79.0" mnemonicParsing="false" onAction="#switchLanguage" prefHeight="69.0" prefWidth="92.0" text="Switch Language" />
-            <TextArea fx:id="inputText" layoutX="102.0" layoutY="79.0" prefHeight="221.0" prefWidth="249.0" styleClass="textBox" />
-            <TextArea fx:id="outputText" editable="false" layoutX="486.0" layoutY="79.0" prefHeight="221.0" prefWidth="249.0" styleClass="textBox">
+            <Button fx:id="switchBtn" layoutX="270.0" layoutY="39.0" mnemonicParsing="false" onAction="#switchLanguage" prefHeight="39.0" prefWidth="115.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: white; -fx-border-width: 2;" styleClass="switchBtn" text="Switch " textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></Button>
+            <TextArea id="text-translate" fx:id="inputText" layoutX="1.0" layoutY="91.0" prefHeight="209.0" prefWidth="290.0">
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="TEXT" />
                </cursor></TextArea>
-            <Button layoutX="321.0" layoutY="336.0" mnemonicParsing="false" onAction="#onTranslate" prefHeight="50.0" prefWidth="187.0" text="Translate" />
-            <TextArea fx:id="inputLang" editable="false" layoutX="102.0" layoutY="21.0" prefHeight="43.0" prefWidth="175.0" />
-            <TextArea fx:id="outputLang" editable="false" layoutX="486.0" layoutY="21.0" prefHeight="43.0" prefWidth="175.0" />
-=======-->
-            <Button layoutX="294.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchLanguage" opacity="0.0" prefHeight="58.0" prefWidth="73.0" text="Switch Language" />
-            <TextArea fx:id="inputText" layoutX="1.0" layoutY="91.0" prefHeight="209.0" prefWidth="290.0" styleClass="textBox" />
             <TextArea fx:id="outputText" editable="false" layoutX="371.0" layoutY="91.0" prefHeight="209.0" prefWidth="290.0" styleClass="textBox">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></TextArea>
-            <Button layoutX="282.0" layoutY="318.0" mnemonicParsing="false" onAction="#onTranslate" opacity="0.38" prefHeight="25.0" prefWidth="103.0" text="Translate" />
-            <TextArea fx:id="inputLang" editable="false" layoutX="92.0" layoutY="24.0" prefHeight="25.0" prefWidth="88.0" />
-            <TextArea fx:id="outputLang" editable="false" layoutX="472.0" layoutY="17.0" prefHeight="19.0" prefWidth="103.0" />
+            <TextArea id="from-lang" fx:id="inputLang" editable="false" layoutX="93.0" layoutY="35.0" prefHeight="25.0" prefWidth="73.0" styleClass="centeredTextArea" text="en">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
+            <TextArea id="to-lang" fx:id="outputLang" editable="false" layoutX="481.0" layoutY="34.0" prefHeight="25.0" prefWidth="73.0" styleClass="centeredTextArea" text="vi">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
+            <Button layoutX="270.0" layoutY="327.0" mnemonicParsing="false" onAction="#onTranslate" prefHeight="39.0" prefWidth="115.0" styleClass="translate-btn" text="Translate">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </Pane>
     </children>
