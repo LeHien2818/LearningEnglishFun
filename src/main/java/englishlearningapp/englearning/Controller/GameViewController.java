@@ -7,9 +7,11 @@ import java.util.Random;
 import animatefx.animation.BounceIn;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+
+import javafx.scene.control.*;
+import javafx.scene.layout.Region;
+
 
 public class GameViewController {
     public Button searchBtn;
@@ -60,6 +62,42 @@ public class GameViewController {
 
     public void startGame() {
     }
+    public static boolean showConfirmationDialog() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Xác nhận");
+        alert.setHeaderText(null);
+        alert.setContentText("Bạn đã sẵn sàng?");
+
+        ButtonType buttonTypeYes = new ButtonType("YES");
+        ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(
+                AlertController.class.getResource("/css/styles.css").toExternalForm()
+        );
+        dialogPane.getStyleClass().add("myDialog");
+
+        // Hiển thị hộp thoại và xử lý phản hồi
+        alert.initOwner(null);
+        alert.setResizable(true);
+
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        alert.getDialogPane().setMinWidth(Region.USE_PREF_SIZE);
+
+        alert.getDialogPane().setPrefWidth(320.0);
+        alert.getDialogPane().setPrefHeight(Region.USE_PREF_SIZE);
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == buttonTypeYes) {
+                System.out.println("Bạn đã sẵn sàng.");
+            } else {
+                System.out.println("Bạn chưa sẵn sàng.");
+            }
+        });
+        return false;
+    }
 
     public void endGame(ActionEvent event, String s) throws IOException {
         if (s.equals("vocab") || s.equals("grammar") || s.equals("connect")) {
@@ -74,6 +112,7 @@ public class GameViewController {
     public void clickSearch(ActionEvent event) throws IOException {
         new BounceIn(searchBtn).play();
         SceneController.switchScene(event, SceneController.searchRoot);
+
     }
 
     public void clickTranslate(ActionEvent event) throws IOException {
@@ -91,6 +130,7 @@ public class GameViewController {
 
     public void clickConnect(ActionEvent event) throws IOException {
         SceneController.switchScene(event, SceneController.connectRoot);
+
     }
 
     public void clickGrammar(ActionEvent event) throws IOException {
@@ -101,7 +141,7 @@ public class GameViewController {
         this.setScore(0);
         this.setQuesNumber(0);
         this.setTextScore(this.toString(this.getScore()));
-        SceneController.switchScene(event, SceneController.gameRoot);
+        AlertController.alertSubmit(event);
     }
 
     public void onIconClicked(MouseEvent mouseEvent) throws IOException {

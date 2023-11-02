@@ -110,6 +110,7 @@
     -fx-background-color: transparent;
 }
 
+<<<<<<< HEAD
 #text-translate {
     -fx-background-color: transparent;
     -fx-border-color: white;
@@ -192,4 +193,8 @@
      -fx-text-fill: #E7FAFA;
      -fx-cursor: hand;
      -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
+}
+
+.radio-button {
+    -fx-padding: 12 12 12 12;
 }
