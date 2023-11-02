@@ -5,7 +5,7 @@
 
 package englishlearningapp.englearning.Controller;
 
-import englishlearningapp.englearning.DictionaryPackage.Question_answer;
+import englishlearningapp.englearning.DictionaryPackage.Question_answer_vocab;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,13 +22,34 @@ public class VocabViewController extends GameViewController {
 
     public VocabViewController() throws IOException {
     }
+    public void loadRandomQuestion() {
+        Question_answer_vocab questionAnswer = new Question_answer_vocab();
+        this.setRandom(10);
+        int index = this.getRandom();
+        questionVocab.setText(questionAnswer.getQuestion(index));
 
+        this.setRandom(100);
+        int countAnswer = this.getRandom();
+        String correctAnswer = questionAnswer.getAnswer(index);
+
+        if (countAnswer % 2 == 1) {
+            answerA.setText(correctAnswer);
+            answerB.setText(questionAnswer.getrandomAnswer());
+        } else {
+            answerA.setText(questionAnswer.getrandomAnswer());
+            answerB.setText(correctAnswer);
+        }
+    }
+
+    public void initialize() {
+        loadRandomQuestion();
+    }
     public void clickAnswer(ActionEvent event) throws IOException {
         this.setTextScore(this.toString(this.getScore()));
         int questionnumber = this.getQuesNumber();
         int scoretmp = this.getScore();
         if (questionnumber <= 10) {
-            Question_answer questionAnswer = new Question_answer();
+            Question_answer_vocab questionAnswer = new Question_answer_vocab();
             this.setRandom(10);
             int index = this.getRandom();
             this.questionVocab.setText(questionAnswer.getQuestion(index));

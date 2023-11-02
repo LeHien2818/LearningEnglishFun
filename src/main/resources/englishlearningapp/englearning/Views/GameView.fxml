@@ -43,7 +43,7 @@
         </ImageView>
       <Pane layoutX="21.0" layoutY="39.0" prefHeight="512.0" prefWidth="125.0">
          <children>
-                <Button fx:id="gameBtn" layoutX="19.0" layoutY="223.0" mnemonicParsing="false"  opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
+                <Button fx:id="gameBtn" layoutX="19.0" layoutY="223.0" mnemonicParsing="false" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
             </Button>
                 <Button fx:id="searchBtn" layoutX="19.0" layoutY="132.0" mnemonicParsing="false" onAction="#clickSearch" opacity="0.0" prefHeight="81.0" prefWidth="88.0" styleClass="classBtn">
             </Button>
@@ -65,7 +65,7 @@
               <Button layoutX="18.0" layoutY="174.0" mnemonicParsing="false" onAction="#clickGrammar" prefHeight="18.0" prefWidth="96.0" styleClass="classBtn" text="Grammar" textAlignment="CENTER" />
          </children>
       </Pane>
-      <Pane layoutX="546.0" layoutY="244.0" prefHeight="208.0" prefWidth="146.0">
+      <Pane layoutX="546.0" layoutY="266.0" prefHeight="186.0" prefWidth="146.0">
          <children>
               <Button layoutX="28.0" layoutY="174.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="25.0" prefWidth="88.0" styleClass="classBtn" text="Connect" />
               <Button layoutX="28.0" layoutY="174.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="25.0" prefWidth="88.0" styleClass="classBtn" text="Connect" />
@@ -74,7 +74,7 @@
       <Pane layoutX="747.0" layoutY="242.0" prefHeight="208.0" prefWidth="146.0">
          <children>
              <Button layoutX="29.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="28.0" prefWidth="88.0" styleClass="classBtn" text="Connect" />
-             <Button layoutX="29.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="28.0" prefWidth="88.0" styleClass="classBtn" text="Connect" />
+             <Button layoutX="29.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="28.0" prefWidth="88.0" styleClass="classBtn" text="Revision" />
          </children></Pane>
     </children>
 </AnchorPane>
