@@ -63,9 +63,6 @@
 
          </children>
       </Pane>
-      <Pane layoutX="747.0" layoutY="242.0" prefHeight="208.0" prefWidth="146.0">
-         <children>
-             <Button layoutX="29.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="28.0" prefWidth="88.0" styleClass="classBtn" text="Revision" />
-         </children></Pane>
+
     </children>
 </AnchorPane>

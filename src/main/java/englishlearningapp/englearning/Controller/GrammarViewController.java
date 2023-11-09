@@ -1,18 +1,11 @@
 package englishlearningapp.englearning.Controller;
 
-import englishlearningapp.englearning.DictionaryPackage.Question_answer_gramma;
-import englishlearningapp.englearning.DictionaryPackage.Question_answer_vocab;
+import englishlearningapp.englearning.questionGame.Question_answer_gramma;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 
-import java.io.IOError;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 public class GrammarViewController extends GameViewController {
