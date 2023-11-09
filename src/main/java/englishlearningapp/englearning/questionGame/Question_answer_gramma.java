@@ -1,4 +1,4 @@
-package englishlearningapp.englearning.DictionaryPackage;
+package englishlearningapp.englearning.questionGame;
 
 import englishlearningapp.englearning.Controller.GameViewController;
 

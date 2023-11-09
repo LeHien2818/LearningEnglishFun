@@ -82,7 +82,7 @@ public class SceneController {
 
     static {
         try {
-            connectRoot = FXMLLoader.load(App.class.getResource("Views/VocabView.fxml"));
+            connectRoot = FXMLLoader.load(App.class.getResource("Views/ConnectView.fxml"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

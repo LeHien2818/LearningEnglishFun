@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.ConnectController">
+    <children>
+        <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
+            <image>
+                <Image url="@../src/image/FlatBack.png" />
+            </image>
+        </ImageView>
+        <Button layoutX="402.0" layoutY="498.0" mnemonicParsing="false" onAction="#clickExit" prefHeight="26.0" prefWidth="97.0" styleClass="classBtn" text="exit" />
+      <Pane layoutX="175.0" layoutY="81.0" prefHeight="398.0" prefWidth="552.0">
+         <children>
+            <TextField fx:id="playerAnswerTextField" layoutX="149.0" layoutY="316.0" prefHeight="46.0" prefWidth="255.0" promptText="ENTER YOUR WORDS" />
+            <TextArea fx:id="answerTextArea" editable="false" layoutX="52.0" layoutY="32.0" prefHeight="257.0" prefWidth="448.0" />
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>

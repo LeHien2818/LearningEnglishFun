@@ -5,7 +5,7 @@
 
 package englishlearningapp.englearning.Controller;
 
-import englishlearningapp.englearning.DictionaryPackage.Question_answer_vocab;
+import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
