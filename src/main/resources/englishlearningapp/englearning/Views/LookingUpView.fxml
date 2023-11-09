@@ -13,6 +13,7 @@
                <Image url="@../src/image/FlatBack.png" />
            </image>
        </ImageView>
+      <Pane layoutX="289.0" layoutY="202.0" opacity="0.4" prefHeight="326.0" prefWidth="506.0" style="-fx-background-radius: 15; -fx-background-color: #96F0FA;" />
 
        <Pane prefHeight="96.0" prefWidth="900.0">
            <children>

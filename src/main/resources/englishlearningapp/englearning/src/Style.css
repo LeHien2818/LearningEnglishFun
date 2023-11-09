@@ -1,6 +1,7 @@
 .classBtn {
     -fx-background-color: transparent;
     -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 .classCRUDBtn {
     -fx-background-radius: 15;
@@ -110,7 +111,6 @@
     -fx-background-color: transparent;
 }
 
-<<<<<<< HEAD
 #text-translate {
     -fx-background-color: transparent;
     -fx-border-color: white;
