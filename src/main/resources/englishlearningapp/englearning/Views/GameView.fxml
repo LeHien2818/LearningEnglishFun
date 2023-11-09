@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1035.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.GameViewController">
+<AnchorPane prefHeight="600.0" prefWidth="899.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.GameViewController">
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
             <image>
@@ -67,17 +67,23 @@
                   <Image url="@../src/image/Game3.png" />
                </image>
             </ImageView>
-              <Button layoutX="22.0" layoutY="283.0" mnemonicParsing="false" onAction="#clickVocab" prefHeight="59.0" prefWidth="115.0" text="Vocabulary" textAlignment="CENTER" />
+              <Button layoutX="22.0" layoutY="283.0" mnemonicParsing="false" onAction="#clickVocab" prefHeight="59.0" prefWidth="115.0" styleClass="subGameBtn" text="Vocabulary" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font></Button>
          </children>
       </Pane>
-      <Pane layoutX="375.0" layoutY="151.0" prefHeight="380.0" prefWidth="158.0">
+      <Pane layoutX="385.0" layoutY="151.0" prefHeight="380.0" prefWidth="158.0">
          <children>
             <ImageView fx:id="grammarPic" fitHeight="179.0" fitWidth="158.0" layoutX="1.0" layoutY="68.0" opacity="0.8" pickOnBounds="true">
                <image>
                   <Image url="@../src/image/Game1.png" />
                </image>
             </ImageView>
-              <Button layoutX="22.0" layoutY="281.0" mnemonicParsing="false" onAction="#clickGrammar" prefHeight="59.0" prefWidth="115.0" text="Grammar" textAlignment="CENTER" />
+              <Button layoutX="22.0" layoutY="281.0" mnemonicParsing="false" onAction="#clickGrammar" prefHeight="59.0" prefWidth="115.0" styleClass="subGameBtn" text="Grammar" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font></Button>
          </children>
       </Pane>
       <Pane layoutX="640.0" layoutY="151.0" prefHeight="380.0" prefWidth="158.0">
@@ -87,7 +93,10 @@
                   <Image url="@../src/image/thumbnailGame2.png" />
                </image>
             </ImageView>
-              <Button layoutX="22.0" layoutY="279.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="59.0" prefWidth="115.0" text="Connect" />
+              <Button layoutX="22.0" layoutY="279.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="59.0" prefWidth="115.0" styleClass="subGameBtn" text="Connect">
+               <font>
+                  <Font name="Arial Bold" size="12.0" />
+               </font></Button>
          </children></Pane>
     </children>
 </AnchorPane>

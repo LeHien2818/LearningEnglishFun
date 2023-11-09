@@ -2,7 +2,6 @@ package englishlearningapp.englearning.Controller;
 
 import animatefx.animation.BounceIn;
 import animatefx.animation.ZoomOut;
-import englishlearningapp.englearning.API_Connection.TranslateAPIConnection;
 import englishlearningapp.englearning.API_Connection.TranslateTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,8 +20,6 @@ public class TranslateViewController{
     private Button gameBtn;
     @FXML
     private Button translateBtn;
-    private String inputStatus = "vi";
-    private String outputStatus = "en";
     @FXML
     private TextArea inputText;
     @FXML

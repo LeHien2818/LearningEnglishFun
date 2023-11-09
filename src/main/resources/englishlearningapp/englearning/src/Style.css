@@ -3,10 +3,21 @@
     -fx-background-radius: 10;
     -fx-border-radius: 10;
 }
+.subGameBtn {
+    -fx-background-color: #96F0FA;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+
+}
+.subGameBtn:hover {
+    -fx-background-color: #17D3FA;
+    -fx-border-color: #11F6FA;
+    -fx-cursor: hand;
+    -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
+}
 .classCRUDBtn {
     -fx-background-radius: 15;
     -fx-background-color: #ffefff ;
-    /*#F5CC7D*/
 }
 .classCRUDBtn: hover {
     -fx-cursor: hand;
@@ -198,3 +209,5 @@
 .radio-button {
     -fx-padding: 12 12 12 12;
 }
+
+
