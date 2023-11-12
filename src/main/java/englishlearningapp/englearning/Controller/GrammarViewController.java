@@ -4,9 +4,10 @@ import englishlearningapp.englearning.questionGame.Question_answer_gramma;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import java.io.IOException;
-import java.util.Random;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GrammarViewController extends GameViewController {
 
@@ -39,57 +40,143 @@ public class GrammarViewController extends GameViewController {
     @FXML
     private RadioButton submitRadioButton4;
     @FXML
-
     private RadioButton submitRadioButton5;
     @FXML
     private ProgressIndicator progressIndicator;
 
     @FXML
-    private ToggleGroup $cau1;
+    private ToggleGroup cau1;
+    @FXML
+    private ToggleGroup cau2;
+    @FXML
+    private ToggleGroup cau3;
+    @FXML
+    private ToggleGroup cau4;
+    @FXML
+    private ToggleGroup cau5;
 
+    @FXML
+    private RadioButton Answer;
+
+    @FXML
+    private RadioButton cau1A;
+    @FXML
+    private RadioButton cau1B;
+    @FXML
+    private RadioButton cau1C;
+    @FXML
+    private RadioButton cau1D;
+
+    private Map<Integer, ToggleGroup> TogglegroupS = new HashMap<>();
 
     @FXML
     public void clickSubmit(ActionEvent event) throws IOException {
-        AlertController.alertSubmit(event);
+        checkPointGrammar();
+        double Point = this.getScore();
+        AlertController.alertSubmit(event, null, Point);
     }
-
     public void initialize() {
+        this.setScore(0);
+        setTogglegroupS();
         loadquestion();
     }
 
+    public void setTogglegroupS() {
+        try {
+            for (int i = 1; i <= 5; i++) {
+                Field field = this.getClass().getDeclaredField("cau" + i);
+                field.setAccessible(true);
+                ToggleGroup toggleGroup = (ToggleGroup) field.get(this);
+                TogglegroupS.put(i, toggleGroup);
+            }
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+    private ToggleGroup getToggleGroupForQuestion(int questionNumber) {
+
+        switch (questionNumber) {
+            case 1:
+                return cau1;
+            case 2:
+                return cau2;
+            case 3:
+                return cau3;
+            case 4:
+                return cau4;
+            case 5:
+                return cau5;
+            default:
+                throw new IllegalArgumentException("Invalid question number: " + questionNumber);
+        }
+    }
+
+    public void setAnswerGrammar(String[] options, String questionNumber) {
+    }
+
+    public void checkPointGrammar() {
+        Question_answer_gramma correctAnswertmp = new Question_answer_gramma();
+        ToggleGroup[] toggleGroups = new ToggleGroup[5];
+
+        for (int i = 1; i <= 5; i++) {
+            ToggleGroup toggleGroup = getToggleGroupForQuestion(i);
+            toggleGroups[i - 1] = toggleGroup;
+        }
+
+        // Thêm sự kiện kiểm tra chỉ một lần
+        for (ToggleGroup toggleGroup : toggleGroups) {
+            toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    String RadioChoose = ((RadioButton) newValue).getId();
+                    System.out.println(RadioChoose);
+                    if (RadioChoose != null) {
+                        this.setScore(this.getScore() + 1);
+                    }
+                } else {
+                    System.out.println("No RadioButton selected");
+                }
+            });
+        }
+    }
+
+
     public void loadquestion() {
+
         Question_answer_gramma questionAnswerGramma = new Question_answer_gramma();
-//        currentQuestionIndex++; // Tăng biến đếm câu hỏi
-//        if (currentQuestionIndex < questionAnswerGramma.questions.length) {
-//
-//            String question = questionAnswerGramma.getQuestion(currentQuestionIndex);
+
         for (currentQuestionIndex = 0; currentQuestionIndex < 5; currentQuestionIndex++)
-            // Đặt câu hỏi lên TextArea tương ứng
+        // Đặt câu hỏi lên TextArea tương ứng
         {
             switch (currentQuestionIndex) {
                 case 0: {
-                     question = questionAnswerGramma.getQuestion(currentQuestionIndex);
+                    question = questionAnswerGramma.getQuestion(currentQuestionIndex);
                     question1.setText(question);
+
+                    String[] options = questionAnswerGramma.getOptions(currentQuestionIndex);
                     String correctAnswer = questionAnswerGramma.getCorrectAnswer(currentQuestionIndex);
-                    Random rd = new Random(4);
+
+                    System.out.println("Correct Answer: " + correctAnswer);
+                    cau1A.getText();
                     break;
                 }
                 case 1:
-                     question = questionAnswerGramma.getQuestion(currentQuestionIndex);
+                    question = questionAnswerGramma.getQuestion(currentQuestionIndex);
                     question2.setText(question);
+                    String[] options = questionAnswerGramma.getOptions(currentQuestionIndex);
+
                     break;
                 case 2:
-                     question = questionAnswerGramma.getQuestion(currentQuestionIndex);
+                    question = questionAnswerGramma.getQuestion(currentQuestionIndex);
 
                     question3.setText(question);
                     break;
                 case 3:
-                     question = questionAnswerGramma.getQuestion(currentQuestionIndex);
+                    question = questionAnswerGramma.getQuestion(currentQuestionIndex);
 
                     question4.setText(question);
                     break;
                 case 4:
-                     question = questionAnswerGramma.getQuestion(currentQuestionIndex);
+                    question = questionAnswerGramma.getQuestion(currentQuestionIndex);
                     question5.setText(question);
                     break;
             }
@@ -104,9 +191,6 @@ public class GrammarViewController extends GameViewController {
         if (selectedRadioButton != null) {
             String submitButtonId = selectedRadioButton.getId();
             String checkRadio = submitButtonId.substring(0, 4);
-//            String checkLogic = submitButtonId.substring(4,5);
-//            System.out.println(checkLogic);
-//            System.out.println(checkRadio);
 
             switch (checkRadio) {
                 case "cau1":
@@ -148,7 +232,6 @@ public class GrammarViewController extends GameViewController {
         RadioButton selectedRadioButton = (RadioButton) event.getSource();
         if (selectedRadioButton != null) {
             String submitButtonId = selectedRadioButton.getId();
-            // System.out.println(selectedRadioButton.getId());
 
             switch (submitButtonId) {
                 case "submitRadioButton1":
@@ -157,6 +240,7 @@ public class GrammarViewController extends GameViewController {
                     submitRadioButton1.setMouseTransparent(true);
                     countProgressIndicator = checkProgressIndicator();
                     progressIndicator.setProgress(countProgressIndicator * 0.2);
+
                     break;
 
                 case "submitRadioButton2":
@@ -195,4 +279,5 @@ public class GrammarViewController extends GameViewController {
         if (submitRadioButton5.isSelected()) count++;
         return count;
     }
+
 }

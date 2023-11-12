@@ -54,15 +54,16 @@
       </Pane>
       <Pane layoutX="351.0" layoutY="245.0" prefHeight="208.0" prefWidth="137.0">
          <children>
-              <Button layoutX="18.0" layoutY="174.0" mnemonicParsing="false" onAction="#clickGrammar" prefHeight="18.0" prefWidth="96.0" styleClass="classBtn" text="Grammar" textAlignment="CENTER" />
+              <Button layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#clickGrammar" prefHeight="18.0" prefWidth="96.0" styleClass="classBtn" text="Grammar" textAlignment="CENTER" />
          </children>
       </Pane>
       <Pane layoutX="546.0" layoutY="266.0" prefHeight="186.0" prefWidth="146.0">
          <children>
-              <Button layoutX="28.0" layoutY="174.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="25.0" prefWidth="88.0" styleClass="classBtn" text="Connect" />
+              <Button layoutX="23.0" layoutY="160.0" mnemonicParsing="false" onAction="#clickConnect" prefHeight="25.0" prefWidth="88.0" styleClass="classBtn" text="Connect" />
 
          </children>
       </Pane>
+  <Button layoutX="736.0" layoutY="427.0" mnemonicParsing="false" onAction="#clickPractice" text="PracticeTest" />
 
     </children>
 </AnchorPane>
