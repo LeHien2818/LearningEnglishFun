@@ -4,6 +4,7 @@ import animatefx.animation.BounceIn;
 import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.DictionaryPackage.Dictionary;
 import englishlearningapp.englearning.DictionaryPackage.Word;
+import englishlearningapp.englearning.JDBCConnection.DeleteTask;
 import englishlearningapp.englearning.TextToSpeech.TexttoSpeechTask;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -70,6 +71,10 @@ public class LookingUpController {
         Word finder = new Word();
         finder.setName(wordSelected);
         App.getDictionary().remove(App.getDictionary().findWord(finder));
+        DeleteTask task = new DeleteTask(new Word(wordSelected, " ", " "));
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
         definitionArea.setText("");
         wordSelected = "";
     }

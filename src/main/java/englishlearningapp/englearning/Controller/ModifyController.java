@@ -2,6 +2,7 @@ package englishlearningapp.englearning.Controller;
 
 import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.DictionaryPackage.Word;
+import englishlearningapp.englearning.JDBCConnection.ModifyTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,8 +51,15 @@ public class ModifyController {
         Word find = new Word();
         find.setName(wordSelected);
         int idSelected = App.getDictionary().findWord(find);
-        App.getDictionary().get(idSelected).setPronunciation(pronunciationArea.getText());
-        App.getDictionary().get(idSelected).setDefinition(definitionArea.getText());
+        String newPronouce = pronunciationArea.getText();
+        String newDef = definitionArea.getText();
+        Word jdbcword = new Word(wordSelected, newPronouce, newDef);
+        ModifyTask task = new ModifyTask(jdbcword);
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+        App.getDictionary().get(idSelected).setPronunciation(newPronouce);
+        App.getDictionary().get(idSelected).setDefinition(newDef);
         controller.setTextInput(wordSelected);
         controller.setDefinitionArea(pronunciationArea.getText()
                 + "\n" + definitionArea.getText());

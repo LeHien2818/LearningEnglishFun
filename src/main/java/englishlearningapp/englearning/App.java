@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import kotlin.jvm.internal.PropertyReference0Impl;
 
 import java.sql.SQLException;
 
@@ -24,6 +23,7 @@ public class App extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("src/Style.css").toExternalForm());
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
     public static void main (String[] args) {

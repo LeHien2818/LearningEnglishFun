@@ -1,19 +1,14 @@
 package englishlearningapp.englearning.Controller;
 
-import englishlearningapp.englearning.Controller.GameViewController;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
-import javafx.scene.layout.Region;
-
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.Optional;
 
-public class AlertController extends GameViewController {
-    public static void alertSubmit(javafx.event.ActionEvent event) throws IOException {
+public class AlertController {
+    public static void alertSubmit(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
@@ -45,6 +40,20 @@ public class AlertController extends GameViewController {
             alert.close();
         }
 
+    }
+
+    public static void CustomAlert (ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Từ bạn thêm vào đã tồn tại");
+        ButtonType buttonTypeYes = new ButtonType("Thử lại", ButtonBar.ButtonData.YES);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            alert.close();
+        }
     }
 
 }
