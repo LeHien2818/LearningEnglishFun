@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.AddWordController">
+<AnchorPane prefHeight="544.0" prefWidth="900.0" style="-fx-background-color: #4CB5E2;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.AddWordController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="577.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../src/image/FlatBack.png" />
          </image></ImageView>
-      <HBox prefHeight="500.0" prefWidth="900.0">
+      <HBox layoutY="14.0" prefHeight="500.0" prefWidth="900.0">
          <children>
             <VBox prefHeight="400.0" prefWidth="260.0">
                <children>
@@ -41,11 +41,11 @@
             </VBox>
          </children>
       </HBox>
-      <Button layoutX="678.0" layoutY="509.0" mnemonicParsing="false" onAction="#onAddWord" prefHeight="35.0" prefWidth="131.0" text="Add">
+      <Button layoutX="680.0" layoutY="520.0" mnemonicParsing="false" onAction="#onAddWord" prefHeight="35.0" prefWidth="131.0" text="Add">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
-      <Button layoutX="303.0" layoutY="509.0" mnemonicParsing="false" onAction="#onExit" prefHeight="35.0" prefWidth="131.0" text="Exit">
+      <Button layoutX="300.0" layoutY="520.0" mnemonicParsing="false" onAction="#onExit" prefHeight="35.0" prefWidth="131.0" text="Exit">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>

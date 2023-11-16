@@ -137,7 +137,8 @@ public class LookingUpController {
                 //set Definition area.
                 for(int i = 0; i < App.getDictionary().size(); i++){
                     if(App.getDictionary().get(i).getName().equals(wordSelected)) {
-                        definitionArea.setText(App.getDictionary().get(i).getPronunciation() + "\n" + App.getDictionary().get(i).getDefinition() + "\n");
+                        definitionArea.setText(App.getDictionary().get(i).getPronunciation()
+                                + "\n" + App.getDictionary().get(i).getDefinition() + "\n");
                         break;
                     }
                 }
