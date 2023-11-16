@@ -87,6 +87,15 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
+    protected static AnchorPane practiceRoot;
+
+    static {
+        try {
+            practiceRoot = FXMLLoader.load(App.class.getResource("Views/Practice_Test.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     protected static AnchorPane exitRoot;
 

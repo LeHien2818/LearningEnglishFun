@@ -2,9 +2,11 @@ package englishlearningapp.englearning.questionGame;
 
 import englishlearningapp.englearning.Controller.GameViewController;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class BotAnswerGenerator extends GameViewController{
+public class BotAnswerGenerator extends GameViewController {
+    private static final ArrayList<String> chosse = new ArrayList<String>();
     private static final String[] vocabulary = {
             "hello", "world", "java", "programming", "chatbot",
             "random", "example", "language", "application", "message",
@@ -38,22 +40,29 @@ public class BotAnswerGenerator extends GameViewController{
         String botAnswers = vocabulary[count];
         return botAnswers;
     }
-
+    public static boolean checkWord(ArrayList<String> array , String word) {
+        for (int i = 0; i < array.size(); i++) {
+            if(array.get(i).equals(word)) return true;
+        }
+        return false;
+    }
     public static String getWordStartingWith(char startChar) {
         String result = null;
 
         for (int i = 0; i < vocabulary.length; i++) {
             String word = vocabulary[i];
             if (word.toLowerCase().charAt(0) == Character.toLowerCase(startChar)) {
-                result = word;
-                break;
+               if(!checkWord(chosse,word)) {
+                   result = word;
+                   chosse.add(word);
+                   break;
+               }
             }
         }
-        if(result == null){
-            return "thua";
+        if (result == null) {
+            System.out.println("null");
         }
         return result;
     }
-
 }
 

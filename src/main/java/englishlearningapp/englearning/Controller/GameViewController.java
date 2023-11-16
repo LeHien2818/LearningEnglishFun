@@ -68,43 +68,6 @@ public class GameViewController {
 
     public void startGame() {
     }
-    public static boolean showConfirmationDialog() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Xác nhận");
-        alert.setHeaderText(null);
-        alert.setContentText("Bạn đã sẵn sàng?");
-
-        ButtonType buttonTypeYes = new ButtonType("YES");
-        ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(
-                AlertController.class.getResource("/css/styles.css").toExternalForm()
-        );
-        dialogPane.getStyleClass().add("myDialog");
-
-        // Hiển thị hộp thoại và xử lý phản hồi
-        alert.initOwner(null);
-        alert.setResizable(true);
-
-        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-        alert.getDialogPane().setMinWidth(Region.USE_PREF_SIZE);
-
-        alert.getDialogPane().setPrefWidth(320.0);
-        alert.getDialogPane().setPrefHeight(Region.USE_PREF_SIZE);
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == buttonTypeYes) {
-                System.out.println("Bạn đã sẵn sàng.");
-            } else {
-                System.out.println("Bạn chưa sẵn sàng.");
-            }
-        });
-        return false;
-    }
-
     public void endGame(ActionEvent event, String s) throws IOException {
         if (s.equals("vocab") || s.equals("grammar") || s.equals("connect")) {
             SceneController.switchScene(event, SceneController.gameRoot);
@@ -127,6 +90,10 @@ public class GameViewController {
     }
 
     public void clickGame(ActionEvent event) throws IOException {
+
+    }
+    public void clickPractice(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.practiceRoot);
 
     }
 
@@ -171,10 +138,11 @@ public class GameViewController {
     }
 
     public void clickExit(ActionEvent event) throws IOException {
+        double Point = this.getScore();
         this.setScore(0);
         this.setQuesNumber(0);
         this.setTextScore(this.toString(this.getScore()));
-        AlertController.alertSubmit(event);
+        AlertController.alertExit(event);
     }
 
     public void onIconClicked(MouseEvent mouseEvent) throws IOException {

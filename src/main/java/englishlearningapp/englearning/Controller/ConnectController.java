@@ -67,7 +67,7 @@ public class ConnectController extends GameViewController {
                 if (botAnswer != null && !botAnswer.isEmpty()) {
                     answerTextArea.appendText("Bot: " + botAnswer + "\n");
                     EnteredWord.add(botAnswer);
-                } else {
+                } else if(botAnswer == null){
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Thông báo");
                     alert.setHeaderText(null);
@@ -75,26 +75,11 @@ public class ConnectController extends GameViewController {
                     ButtonType buttonTypeExit = new ButtonType("EXIT");
                     alert.getButtonTypes().setAll(buttonTypeExit);
                     Optional<ButtonType> newResult = alert.showAndWait();
-                    if (newResult.isPresent() && newResult.get() == buttonTypeExit) {
-                        ActionEvent event1 = new ActionEvent();
-                        SceneController.switchScene(event1, SceneController.gameRoot);
-                    }
                 }
                 playerAnswerTextField.clear();
             } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Thông báo");
-                alert.setHeaderText(null);
-                alert.setContentText("The word was entered previously");
-                ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
-
-                alert.getButtonTypes().setAll(buttonTypeYes);
-
-                Optional<ButtonType> result = alert.showAndWait();
-
-                if (result.isPresent() && result.get() == buttonTypeYes) {
-                    alert.close();
-                }
+                ActionEvent eventAlert = new ActionEvent();
+                AlertController.alertWrong(eventAlert,"The word was entered previously");
                 playerAnswerTextField.clear();
             }
         }

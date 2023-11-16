@@ -7,10 +7,15 @@ package englishlearningapp.englearning.Controller;
 
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import java.io.IOException;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.util.Duration;
 
 public class VocabViewController extends GameViewController {
     @FXML

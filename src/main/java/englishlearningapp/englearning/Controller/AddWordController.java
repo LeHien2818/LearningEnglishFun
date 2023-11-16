@@ -36,7 +36,7 @@ public class AddWordController {
         return false;
     }
 
-    public void onAddWord(ActionEvent event) {
+    public void onAddWord(ActionEvent event) throws IOException {
         if(nameArea.getText().trim().equals("")) return;
         Word word = new Word();
         word.setName(nameArea.getText().trim().toLowerCase());

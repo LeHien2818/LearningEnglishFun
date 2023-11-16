@@ -21,23 +21,23 @@
                     <children>
 
                         <TextArea fx:id="question1" prefHeight="200.0" prefWidth="200.0"/>
-                        <RadioButton id="cau1A" mnemonicParsing="false" onAction="#clickRadio" text="RadioButton"
+                        <RadioButton fx:id="cau1A" mnemonicParsing="false" onAction="#clickRadio" text="RadioButton"
                                      toggleGroup="$cau1">
                             <toggleGroup>
                                 <ToggleGroup fx:id="cau1"/>
                             </toggleGroup>
                         </RadioButton>
 
-                        <RadioButton id="cau1B" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
+                        <RadioButton fx:id="cau1B" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
                                      onAction="#clickRadio" styleClass=".radio-button" text="RadioButton"
                                      toggleGroup="$cau1">
 
                         </RadioButton>
-                        <RadioButton id="cau1C" layoutX="10.0" layoutY="227.0" mnemonicParsing="false"
+                        <RadioButton fx:id="cau1C" layoutX="10.0" layoutY="227.0" mnemonicParsing="false"
                                      onAction="#clickRadio" text="RadioButton" toggleGroup="$cau1">
 
                         </RadioButton>
-                        <RadioButton id="cau1D" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
+                        <RadioButton fx:id="cau1D" layoutX="10.0" layoutY="10.0" mnemonicParsing="false"
                                      onAction="#clickRadio" text="RadioButton" toggleGroup="$cau1">
 
                         </RadioButton>
