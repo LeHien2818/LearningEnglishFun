@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.control.*;
-import javafx.scene.layout.Region;
 
 
 public class GameViewController {
@@ -21,12 +20,10 @@ public class GameViewController {
     private TextArea Scoregame = new TextArea();
     private int score = 0;
     private int quesnumber = 0;
+
     Random random = new Random();
     private int randomIndex;
-
-    public GameViewController() {
-
-    }
+    //ConnectController conncect = new ConnectController();
 
     public int getQuesNumber() {
         return this.quesnumber;

@@ -4,8 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public class JDBC_RetrieveData extends JDBC_Connect{
     private static TreeMap<String, Integer> dataWords = new TreeMap<>();
@@ -73,19 +72,31 @@ public class JDBC_RetrieveData extends JDBC_Connect{
         return definitons;
     }
 
+    public static String[] retrieveVocabulary() throws SQLException {
+        Connection connection = getJDBCConnection();
+        Statement statement = connection.createStatement();
+        String queryVocabulary = "SELECT word FROM dicttable";
+        ResultSet resultSetVocabulary = statement.executeQuery(queryVocabulary);
+
+        List<String> vocabularyList = new ArrayList<>();
+        while (resultSetVocabulary.next()) {
+            String word = resultSetVocabulary.getString("word").toLowerCase();
+            vocabularyList.add(word);
+        }
+        resultSetVocabulary.close();
+        statement.close();
+        connection.close();
+
+        return vocabularyList.toArray(new String[0]);
+    }
+
     public static void setDefinitons(HashMap<Integer, String> definitons) {
         JDBC_RetrieveData.definitons = definitons;
     }
 
-    /*public static void main (String[] args) throws SQLException {
+    public static void main (String[] args) throws SQLException {
         int i = 0;
-        retrieveWordData();
-        retrievePronunciation();
-        retrieveDefinition();
-        for(Map.Entry<Integer , String> entry : dataWords.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
-            i++;
-            if(i >= 5) break;
-        }
-    }*/
+        String[] vocab = retrieveVocabulary();
+        System.out.println(vocab[100]);
+    }
 }
