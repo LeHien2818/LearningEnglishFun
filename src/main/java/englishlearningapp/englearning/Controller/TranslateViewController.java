@@ -70,4 +70,12 @@ public class TranslateViewController{
     public void onIconClicked(MouseEvent mouseEvent) throws IOException {
         SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
     }
+
+    public void onClickAbout(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.aboutRoot);
+    }
+
+    public void onClickGuide(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.guideRoot);
+    }
 }

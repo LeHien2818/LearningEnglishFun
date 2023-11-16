@@ -8,6 +8,7 @@ module englishlearningapp.englearning {
     requires voicerss.tts;
     requires java.desktop;
     requires AnimateFX;
+    requires javafx.web;
 
     opens englishlearningapp.englearning to javafx.fxml;
     exports englishlearningapp.englearning;

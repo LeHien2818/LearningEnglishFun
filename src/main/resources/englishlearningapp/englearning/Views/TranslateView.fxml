@@ -21,11 +21,11 @@
                         <Image url="@../src/image/textOff.png" />
                     </image>
                 </ImageView>
-                <Button layoutX="657.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="115.0" styleClass="classSubBtn" text="About Us" textFill="#fffafd">
+                <Button layoutX="657.0" layoutY="9.0" mnemonicParsing="false" onAction="#onClickAbout" prefHeight="44.0" prefWidth="115.0" styleClass="classSubBtn" text="About Us" textFill="#fffafd">
                     <font>
                         <Font name="Microsoft Sans Serif" size="14.0" />
                     </font></Button>
-                <Button layoutX="778.0" layoutY="9.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="115.0" styleClass="classSubBtn" text="Guide" textFill="#fffafd">
+                <Button layoutX="778.0" layoutY="9.0" mnemonicParsing="false" onAction="#onClickGuide" prefHeight="44.0" prefWidth="115.0" styleClass="classSubBtn" text="Guide" textFill="#fffafd">
                     <font>
                         <Font name="Microsoft Sans Serif" size="14.0" />
                     </font></Button>
