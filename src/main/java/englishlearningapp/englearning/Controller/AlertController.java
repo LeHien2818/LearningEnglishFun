@@ -63,6 +63,15 @@ public class AlertController {
 
     }
 
+    public static void CustomAlert () throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Từ bạn thêm vào đã tồn tại");
+        ButtonType buttonTypeYes = new ButtonType("Thử lại", ButtonBar.ButtonData.YES);
+
+    }
+
     public static void alertExit(javafx.event.ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
@@ -131,17 +140,4 @@ public class AlertController {
             SceneController.switchScene(event, SceneController.gameRoot);
         }
     }
-//    public static void alertEndGame(ActionEvent event, String text) throws IOException {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Thông báo");
-//        alert.setHeaderText(null);
-//        alert.setContentText(text);
-//        Optional<ButtonType> result = alert.showAndWait();
-//        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(10), e -> {
-//            alert.close(); // Đóng cửa sổ Alert sau 10 giây
-//            // Thêm hành động khác sau khi đóng Alert (nếu cần)
-//        }));
-//        timeline.setCycleCount(1); // Chỉ chạy một lần
-//        timeline.play();
-//    }
 }
