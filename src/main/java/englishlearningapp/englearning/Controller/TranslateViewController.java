@@ -1,15 +1,12 @@
 package englishlearningapp.englearning.Controller;
 
 import animatefx.animation.BounceIn;
-import animatefx.animation.ZoomIn;
 import animatefx.animation.ZoomOut;
-import englishlearningapp.englearning.API_Connection.TranslateAPIConnection;
+import englishlearningapp.englearning.API_Connection.TranslateTask;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -23,8 +20,6 @@ public class TranslateViewController{
     private Button gameBtn;
     @FXML
     private Button translateBtn;
-    private String inputStatus = "vi";
-    private String outputStatus = "en";
     @FXML
     private TextArea inputText;
     @FXML
@@ -44,21 +39,19 @@ public class TranslateViewController{
         SceneController.switchScene(event, SceneController.searchRoot);
     }
 
+    String res = "";
     public void onTranslate() throws Exception {
         inputText.setWrapText(true);
         outputText.setWrapText(true);
         String translation = inputText.getText();
-        String res = "";
-        if(inputLang.getText().equals("")) {
-            inputLang.setText(inputStatus);
-            outputLang.setText(outputStatus);
-             res = TranslateAPIConnection.translateText("vi", "en", translation);
-        }else if (inputLang.getText().equals("vi")) {
-             res = TranslateAPIConnection.translateText("vi", "en", translation);
-        }else {
-             res = TranslateAPIConnection.translateText("en", "vi", translation);
-        }
-        outputText.setText(res);
+        TranslateTask task = new TranslateTask(inputLang, outputLang, translateBtn, translation);
+        Thread th = new Thread(task);
+        th.setDaemon(true);
+        th.start();
+        task.setOnSucceeded(event -> {
+            res = task.getValue();
+            outputText.setText(res);
+        });
     }
 
     public void switchLanguage() {
@@ -76,5 +69,13 @@ public class TranslateViewController{
 
     public void onIconClicked(MouseEvent mouseEvent) throws IOException {
         SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
+    }
+
+    public void onClickAbout(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.aboutRoot);
+    }
+
+    public void onClickGuide(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.guideRoot);
     }
 }

@@ -3,10 +3,13 @@ package englishlearningapp.englearning.Controller;
 
 import java.io.IOException;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import animatefx.animation.BounceIn;
+import englishlearningapp.englearning.CustomAnimation.FlipPageAnimation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.control.*;
@@ -16,6 +19,9 @@ public class GameViewController {
     public Button searchBtn;
     public Button gameBtn;
     public Button translateBtn;
+    public ImageView vocabPic;
+    public ImageView grammarPic;
+    public ImageView linkingPic;
     @FXML
     private TextArea Scoregame = new TextArea();
     private int score = 0;
@@ -69,27 +75,18 @@ public class GameViewController {
 
     }
 
-    public void clickSearch(ActionEvent event) throws IOException {
+    public void clickSearch(ActionEvent event) throws IOException, InterruptedException {
         new BounceIn(searchBtn).play();
         SceneController.switchScene(event, SceneController.searchRoot);
 
     }
 
-    public void clickTranslate(ActionEvent event) throws IOException {
+    public void clickTranslate(ActionEvent event) throws IOException, InterruptedException {
         new BounceIn(translateBtn).play();
         SceneController.switchScene(event, SceneController.translateRoot);
     }
 
     public void clickGame(ActionEvent event) throws IOException {
-        SceneController.switchScene(event, SceneController.gameRoot);
-    }
-
-    public void clickVocab(ActionEvent event) throws IOException {
-        SceneController.switchScene(event, SceneController.vocabRoot);
-    }
-
-    public void clickConnect(ActionEvent event) throws IOException {
-        SceneController.switchScene(event, SceneController.connectRoot);
 
     }
     public void clickPractice(ActionEvent event) throws IOException {
@@ -97,8 +94,44 @@ public class GameViewController {
 
     }
 
-    public void clickGrammar(ActionEvent event) throws IOException {
-        SceneController.switchScene(event, SceneController.grammarRoot);
+    public void clickVocab(ActionEvent event) throws IOException, InterruptedException {
+        FlipPageAnimation flp = new FlipPageAnimation(vocabPic);
+        flp.play();
+        flp.setOnFinished(() -> {
+            try {
+                SceneController.switchScene(event, SceneController.vocabRoot);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        flp.play();
+    }
+
+    public void clickConnect(ActionEvent event) throws IOException, InterruptedException {
+        FlipPageAnimation flp = new FlipPageAnimation(linkingPic);
+        flp.play();
+        flp.setOnFinished(() -> {
+            try {
+                SceneController.switchScene(event, SceneController.connectRoot);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        flp.play();
+
+    }
+
+    public void clickGrammar(ActionEvent event) throws IOException, InterruptedException {
+        FlipPageAnimation flp = new FlipPageAnimation(grammarPic);
+        flp.play();
+        flp.setOnFinished(() -> {
+            try {
+                SceneController.switchScene(event, SceneController.grammarRoot);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        flp.play();
     }
 
     public void clickExit(ActionEvent event) throws IOException {
@@ -111,5 +144,13 @@ public class GameViewController {
 
     public void onIconClicked(MouseEvent mouseEvent) throws IOException {
         SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
+    }
+
+    public void onClickAbout(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.aboutRoot);
+    }
+
+    public void onClickGuide(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.guideRoot);
     }
 }

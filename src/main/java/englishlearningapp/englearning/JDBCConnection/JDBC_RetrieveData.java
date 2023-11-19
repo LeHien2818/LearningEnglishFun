@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
-public class JDBC_RetrieveData extends JDBC_Connect{
+public class JDBC_RetrieveData {
     private static TreeMap<String, Integer> dataWords = new TreeMap<>();
     private static HashMap<Integer, String> pronuntiations = new HashMap<>();
     private static HashMap<Integer, String> definitons = new HashMap<>();
     public static void retrieveWordData() throws SQLException {
-        Connection connection = getJDBCConnection();
+        Connection connection = JDBC_Connect.getJDBCConnection();
         Statement statement = connection.createStatement();
         String queryName = "SELECT word FROM dicttable";
         ResultSet resultSetName = statement.executeQuery(queryName);
@@ -25,7 +25,7 @@ public class JDBC_RetrieveData extends JDBC_Connect{
         connection.close();
     }
     public static void retrievePronunciation () throws SQLException {
-        Connection connection = getJDBCConnection();
+        Connection connection = JDBC_Connect.getJDBCConnection();
         Statement statement = connection.createStatement();
         String queryPronunciation = "SELECT pronunciation FROM dicttable";
         ResultSet resultSetPronounce = statement.executeQuery(queryPronunciation);
@@ -39,7 +39,7 @@ public class JDBC_RetrieveData extends JDBC_Connect{
         connection.close();
     }
     public static void retrieveDefinition () throws SQLException {
-        Connection connection = getJDBCConnection();
+        Connection connection = JDBC_Connect.getJDBCConnection();
         Statement statement = connection.createStatement();
         String queryDefinition = "SELECT definition FROM dicttable";
         ResultSet resultSetDefinition = statement.executeQuery(queryDefinition);

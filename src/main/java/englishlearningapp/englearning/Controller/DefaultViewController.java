@@ -39,4 +39,12 @@ public class DefaultViewController {
     public void getStarted(ActionEvent event) throws IOException {
         SceneController.switchScene(event, SceneController.gameRoot);
     }
+
+    public void onClickAbout(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.aboutRoot);
+    }
+
+    public void onClickGuide(ActionEvent event) throws IOException {
+        SceneController.switchScene(event, SceneController.guideRoot);
+    }
 }

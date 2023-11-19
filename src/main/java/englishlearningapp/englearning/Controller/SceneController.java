@@ -124,6 +124,22 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
+    protected static AnchorPane aboutRoot;
+    static {
+        try {
+            aboutRoot = FXMLLoader.load(App.class.getResource("Views/AboutUsView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    protected static AnchorPane guideRoot;
+    static {
+        try {
+            guideRoot = FXMLLoader.load(App.class.getResource("Views/GuideView.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public SceneController() throws IOException {
     }
 

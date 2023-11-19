@@ -1,21 +1,16 @@
 package englishlearningapp.englearning.Controller;
 
-import englishlearningapp.englearning.Controller.GameViewController;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-
-import javafx.stage.WindowEvent;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class AlertController {
-    public static void alertSubmit(javafx.event.ActionEvent event, String text, double Point) throws IOException {
+
+    public static void alertSubmit(ActionEvent event, String text, double Point) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
@@ -38,15 +33,23 @@ public class AlertController {
 
     }
 
-    public static void AlertPoint(ActionEvent event, double Point) throws IOException {
-        Alert newAlert = new Alert(AlertType.INFORMATION);
+    private static void AlertPoint(ActionEvent event, double point) throws IOException {
+        Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
         newAlert.setTitle("Thông báo");
         newAlert.setHeaderText(null);
-        newAlert.setContentText("Your Score: " + Point);
+        newAlert.setContentText("Your Score: " + point);
         Optional<ButtonType> newResult = newAlert.showAndWait();
         SceneController.switchScene(event, SceneController.gameRoot);
     }
 
+    public static void CustomAlert (ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Từ bạn thêm vào đã tồn tại");
+        ButtonType buttonTypeYes = new ButtonType("Thử lại", ButtonBar.ButtonData.YES);
+
+    }
     public static void alertExit(javafx.event.ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
@@ -68,7 +71,7 @@ public class AlertController {
         }
 
     }
-    public static void alertWrong(javafx.event.ActionEvent event, String text){
+    public static void alertWrong(ActionEvent event, String text){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
@@ -76,7 +79,6 @@ public class AlertController {
         ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
 
         alert.getButtonTypes().setAll(buttonTypeYes);
-
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == buttonTypeYes) {

@@ -6,6 +6,14 @@ public class Word {
     private String pronunciation;
     private String definition;
 
+    public Word() {}
+
+    public Word(String name, String pronunciation, String definition) {
+        this.name = name;
+        this.pronunciation = pronunciation;
+        this.definition = definition;
+    }
+
     public int getId() {
         return id;
     }
