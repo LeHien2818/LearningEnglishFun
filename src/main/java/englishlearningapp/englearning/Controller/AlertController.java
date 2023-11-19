@@ -33,7 +33,7 @@ public class AlertController {
 
     }
 
-    private static void AlertPoint(ActionEvent event, double point) throws IOException {
+    public static void AlertPoint(ActionEvent event, double point) throws IOException {
         Alert newAlert = new Alert(Alert.AlertType.INFORMATION);
         newAlert.setTitle("Thông báo");
         newAlert.setHeaderText(null);
@@ -71,7 +71,7 @@ public class AlertController {
         }
 
     }
-    public static void alertWrong(ActionEvent event, String text){
+    public static void alertWrong(ActionEvent event, String text) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
@@ -82,8 +82,22 @@ public class AlertController {
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == buttonTypeYes) {
-            alert.close();
+            SceneController.switchScene(event, SceneController.gameRoot);
         }
     }
 
+    public static void alertEndGame(ActionEvent event, String text) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        ButtonType buttonTypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
+
+        alert.getButtonTypes().setAll(buttonTypeYes);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+
+        }
+    }
 }

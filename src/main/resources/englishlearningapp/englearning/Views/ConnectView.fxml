@@ -14,7 +14,7 @@
         <Button layoutX="402.0" layoutY="498.0" mnemonicParsing="false" onAction="#clickExit" prefHeight="26.0" prefWidth="97.0" styleClass="classBtn" text="exit" />
       <Pane layoutX="175.0" layoutY="81.0" prefHeight="398.0" prefWidth="552.0">
          <children>
-            <TextField fx:id="playerAnswerTextField" layoutX="151.0" layoutY="306.0" prefHeight="46.0" prefWidth="228.0" promptText="ENTER YOUR WORDS" />
+            <TextField fx:id="playerAnswerTextField" layoutX="149.0" layoutY="316.0" prefHeight="46.0" prefWidth="228.0" promptText="ENTER YOUR WORDS" />
             <TextArea fx:id="answerTextArea" editable="false" layoutX="62.0" layoutY="224.0" prefHeight="46.0" prefWidth="429.0" />
          </children>
       </Pane>

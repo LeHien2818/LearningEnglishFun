@@ -73,7 +73,8 @@ public class JDBC_RetrieveData {
     }
 
     public static String[] retrieveVocabulary() throws SQLException {
-        Connection connection = getJDBCConnection();
+        Connection connection = JDBC_Connect.getJDBCConnection();
+
         Statement statement = connection.createStatement();
         String queryVocabulary = "SELECT word FROM dicttable";
         ResultSet resultSetVocabulary = statement.executeQuery(queryVocabulary);

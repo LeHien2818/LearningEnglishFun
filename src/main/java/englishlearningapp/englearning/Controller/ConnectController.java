@@ -37,7 +37,6 @@ public class ConnectController extends GameViewController {
         String starWord = BotAnswerGenerator.generateRandomBotAnswers();
         answerTextArea.setText(starWord + "\n");
         EnteredWord.add(starWord);
-        playerAnswerTextField.setText(starWord.charAt(0) + "");
         playerAnswerTextField.setOnKeyPressed(event -> {
             try {
                 handleTextFieldEnter(event);
@@ -53,7 +52,6 @@ public class ConnectController extends GameViewController {
             if (checkEnterWord(playerAnswer)) {
                 EnteredWord.add(playerAnswer);
                 System.out.println(EnteredWord);
-              //  answerTextArea.appendText("Người chơi: " + playerAnswer + "\n");
                 char keyword = playerAnswer.charAt(playerAnswer.length() - 1);
                 String botAnswer = BotAnswerGenerator.getWordStartingWith(keyword);
                 while (!checkEnterWord(botAnswer)) {
@@ -69,13 +67,9 @@ public class ConnectController extends GameViewController {
                     EnteredWord.add(botAnswer);
 
                 } else if(botAnswer == null){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Thông báo");
-                    alert.setHeaderText(null);
-                    alert.setContentText("You Win");
-                    ButtonType buttonTypeExit = new ButtonType("EXIT");
-                    alert.getButtonTypes().setAll(buttonTypeExit);
-                    Optional<ButtonType> newResult = alert.showAndWait();
+                    ActionEvent eventAlert = new ActionEvent();
+                  //  answerTextArea.clear();
+                    AlertController.alertEndGame(eventAlert, "You Win");
                 }
                 playerAnswerTextField.clear();
             } else {
@@ -85,22 +79,4 @@ public class ConnectController extends GameViewController {
             }
         }
     }
-    public static void appendTextWithAlignment(TextArea textArea, String text, String alignment) {
-        Text textNode = new Text(text);
-
-        switch (alignment.toLowerCase()) {
-            case "left":
-                textNode.setTextAlignment(TextAlignment.LEFT);
-                break;
-            case "right":
-                textNode.setTextAlignment(TextAlignment.RIGHT);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid alignment. Use 'left' or 'right'.");
-        }
-
-        //textArea.getChildren().add(textNode);  // Add Text node directly to the TextArea children
-        textArea.appendText("\n");
-    }
 }
-
