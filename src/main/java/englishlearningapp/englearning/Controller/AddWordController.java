@@ -47,7 +47,7 @@ public class AddWordController {
             nameArea.setText("");
             pronunciationArea.setText("");
         } else {
-            AlertController.CustomAlert(event);
+            AlertController. CustomAlert(event);
         }
 
     }

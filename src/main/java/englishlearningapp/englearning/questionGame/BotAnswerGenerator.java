@@ -5,7 +5,7 @@ import englishlearningapp.englearning.Controller.GameViewController;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BotAnswerGenerator extends GameViewController {
+public class BotAnswerGenerator {
     private static final ArrayList<String> chosse = new ArrayList<String>();
     private static final String[] vocabulary = {
             "hello", "world", "java", "programming", "chatbot",

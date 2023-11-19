@@ -209,5 +209,24 @@
 .radio-button {
     -fx-padding: 12 12 12 12;
 }
+/*timerText css*/
+.timer-text {
+    -fx-background-color: transparent;
+    -fx-font-size: 14;
+    -fx-text-fill: white;
+}
+.timer-text .text {
+    -fx-text-alignment: center;
+    -fx-translate-y: 5;
 
+}
+.timer-text .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+.timer-text .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.timer-text .scroll-pane{
+    -fx-background-color: transparent;
+}
 

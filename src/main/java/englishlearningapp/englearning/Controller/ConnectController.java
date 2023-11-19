@@ -1,19 +1,29 @@
 package englishlearningapp.englearning.Controller;
 
 import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
+import englishlearningapp.englearning.questionGame.GameTimer;
+import javafx.animation.RotateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
+import java.util.TimerTask;
 
 public class ConnectController extends GameViewController {
+    @FXML
+    private Button play;
+    @FXML
+    private Circle c1;
+    @FXML
+    private TextArea timerNumber;
     @FXML
     private TextArea answerTextArea;
 
@@ -83,6 +93,44 @@ public class ConnectController extends GameViewController {
                 playerAnswerTextField.clear();
             }
         }
+    }
+
+    public TextArea getTimerNumber() {
+        return timerNumber;
+    }
+
+    public void setTimerNumber(String timerNumber) {
+        this.timerNumber.setText(timerNumber);
+    }
+
+    public void play(ActionEvent event) throws IOException {
+        GameTimer gmt = new GameTimer(5);
+        final int[] counter = {5};
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if(counter[0] >= 0) {
+                    timerNumber.setText(String.valueOf(counter[0]));
+                    counter[0]--;
+                } else {
+                    gmt.getTimer().cancel();
+                }
+            }
+        };
+        gmt.excuteTask(timerTask);
+        setRotate(c1, false, 360, 5);
+    }
+    public void setRotate(Circle c, boolean reverse, int angle, int duration) {
+        RotateTransition rt = new RotateTransition(Duration.seconds(duration), c);
+        rt.setAutoReverse(reverse);
+        rt.setByAngle(angle);
+        rt.setDelay(Duration.millis(0));
+        rt.setRate(5);
+        rt.setCycleCount(duration + 1);
+        rt.play();
+    }
+    public void playAudio() {
+
     }
 }
 
