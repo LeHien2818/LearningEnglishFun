@@ -94,7 +94,7 @@ public class ConnectController extends GameViewController {
                     playerAnswerTextField.setText(botAnswer.charAt(0) + "");
                     EnteredWord.add(botAnswer);
                    // gmt.stopAudio();
-                    playTimer();
+                    playTimer(event);
 
                 } else if (botAnswer == null) {
                     AlertController.alertEndGame(event, "You Win");
@@ -114,7 +114,7 @@ public class ConnectController extends GameViewController {
     }
 
 
-    public void playTimer() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void playTimer(KeyEvent eventKey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         gmt.stopAudio();
         final int[] counter = {5};
         gmt.playAudio();
@@ -127,11 +127,13 @@ public class ConnectController extends GameViewController {
                     counter[0]--;
 
                 } else {
-                    try {
-                        AlertController.alertEndGame(new ActionEvent(),"YOU WIN");
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    Platform.runLater(() -> {
+                        try {
+                            AlertController.alertEndGame(eventKey,"YOU WIN");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
                     gmt.getTimer().cancel();
                 }
 
