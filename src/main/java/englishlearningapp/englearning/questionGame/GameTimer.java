@@ -13,7 +13,7 @@ import java.util.TimerTask;
 public class GameTimer {
     private Timer timer = new Timer();
     private int counter;
-    private  Clip clip;
+    private Clip clip;
     public GameTimer () {
 
     }
