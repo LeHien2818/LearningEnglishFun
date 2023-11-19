@@ -1,62 +1,82 @@
 package englishlearningapp.englearning.questionGame;
 
 import englishlearningapp.englearning.Controller.GameViewController;
+import englishlearningapp.englearning.JDBCConnection.JDBC_RetrieveData;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.sql.SQLException;
+import java.util.*;
 
 public class BotAnswerGenerator {
     private static final ArrayList<String> chosse = new ArrayList<String>();
-    private static final String[] vocabulary = {
-            "hello", "world", "java", "programming", "chatbot",
-            "random", "example", "language", "application", "message",
-            "learn", "code", "developer", "project", "create",
-            "help", "computer", "internet", "android", "javascript",
-            "repository", "software", "application", "user", "interface",
-            "database", "algorithm", "machine", "learning", "artificial",
-            "intelligence", "framework", "library", "website", "game",
-            "design", "control", "statement", "variable", "object",
-            "oriented", "class", "method", "parameter", "argument",
-            "loop", "condition", "array", "list", "map",
-            "set", "collection", "data", "structure", "node",
-            "tree", "graph", "queue", "stack", "sorting",
-            "searching", "recursion", "testing", "debugging", "exception",
-            "try", "catch", "throw", "programming", "paradigm", "functional",
-            "imperative", "object-oriented", "markup", "query", "performance",
-            "optimization", "security", "authentication", "authorization", "session",
-            "token", "encryption", "decryption", "serialization", "deserialization", "serialization",
-            "asynchronous", "synchronous", "thread", "concurrency", "parallelism", "race",
-            "condition", "deadlock", "critical", "section", "binary", "semaphore",
-            "mutex", "programming", "language", "variable", "function", "parameter",
-            "argument", "return", "value", "pointer", "reference", "type",
-            "integer", "float", "double", "char", "string", "boolean",
-            "void", "public", "private", "protected", "static", "final"
-    };
+
+    public TreeMap<String, Integer> vocab = new TreeMap<>();
+    public static final String[] vocabulary;
+
+    static {
+        try {
+            vocabulary = JDBC_RetrieveData.retrieveVocabulary();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public BotAnswerGenerator() throws SQLException {
+    }
 
     private static final int vocabularySize = vocabulary.length;
     private static final Random random = new Random();
+    static Random rd = new Random();
+    public static String generateRandomBotAnswers() {
 
-    public static String generateRandomBotAnswers(int count) {
-        String botAnswers = vocabulary[count];
+        int size = 150000;
+        int index = rd.nextInt(size - 1);
+        String botAnswers = vocabulary[index];
+        while(!checkStyleWorld(botAnswers)) {
+            index = rd.nextInt(size - 1);
+            botAnswers = vocabulary[index];
+        }
         return botAnswers;
     }
-    public static boolean checkWord(ArrayList<String> array , String word) {
+
+    public static boolean checkWord(ArrayList<String> array, String word) {
+
         for (int i = 0; i < array.size(); i++) {
-            if(array.get(i).equals(word)) return true;
+            if (array.get(i).equals(word)) return true;
         }
         return false;
     }
+    public static boolean checkPlayerWord(String word) {
+        for(int i = 0; i < vocabulary.length; i++ ) {
+            if(vocabulary[i].equals(word)) return true;
+        }
+        return false;
+    }
+
+    public static boolean checkStyleWorld(String word) {
+        if (word.contains("-") || word.contains(".") || word.contains("'")
+                || word.contains(",") || word.contains(" ")
+                || word.contains("_")) {
+            System.out.println("no");
+            return false;
+        }
+        System.out.println("yes");
+        return true;
+    }
+
     public static String getWordStartingWith(char startChar) {
         String result = null;
 
         for (int i = 0; i < vocabulary.length; i++) {
-            String word = vocabulary[i];
+            String word = String.valueOf(vocabulary[i]);
             if (word.toLowerCase().charAt(0) == Character.toLowerCase(startChar)) {
-               if(!checkWord(chosse,word)) {
-                   result = word;
-                   chosse.add(word);
-                   break;
-               }
+                if (checkStyleWorld(word) && !checkWord(chosse, word)) {
+                    int lengthWord = rd.nextInt(7);
+                    if (word.length() >= 3) {
+                        result = word;
+                        chosse.add(word);
+                        break;
+                    }
+                }
             }
         }
         if (result == null) {
@@ -64,5 +84,5 @@ public class BotAnswerGenerator {
         }
         return result;
     }
-}
 
+}

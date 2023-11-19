@@ -25,8 +25,7 @@ public class VocabViewController extends GameViewController {
     @FXML
     private Button answerB;
 
-    public VocabViewController() throws IOException {
-    }
+
     public void loadRandomQuestion() {
         Question_answer_vocab questionAnswer = new Question_answer_vocab();
         this.setRandom(10);
