@@ -6,8 +6,7 @@ import englishlearningapp.englearning.JDBCConnection.JDBC_RetrieveData;
 import java.sql.SQLException;
 import java.util.*;
 
-public class BotAnswerGenerator extends GameViewController {
-
+public class BotAnswerGenerator {
     private static final ArrayList<String> chosse = new ArrayList<String>();
 
     public TreeMap<String, Integer> vocab = new TreeMap<>();
@@ -29,17 +28,26 @@ public class BotAnswerGenerator extends GameViewController {
     static Random rd = new Random();
     public static String generateRandomBotAnswers() {
 
-        int size = 200000;
+        int size = 150000;
         int index = rd.nextInt(size - 1);
         String botAnswers = vocabulary[index];
-        if (checkStyleWorld(botAnswers)) {
-            return botAnswers;
-        } else return null;
+        while(!checkStyleWorld(botAnswers)) {
+            index = rd.nextInt(size - 1);
+            botAnswers = vocabulary[index];
+        }
+        return botAnswers;
     }
 
     public static boolean checkWord(ArrayList<String> array, String word) {
+
         for (int i = 0; i < array.size(); i++) {
             if (array.get(i).equals(word)) return true;
+        }
+        return false;
+    }
+    public static boolean checkPlayerWord(String word) {
+        for(int i = 0; i < vocabulary.length; i++ ) {
+            if(vocabulary[i].equals(word)) return true;
         }
         return false;
     }

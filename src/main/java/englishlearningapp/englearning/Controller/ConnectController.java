@@ -1,27 +1,39 @@
 package englishlearningapp.englearning.Controller;
 
 import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
+import englishlearningapp.englearning.questionGame.GameTimer;
+import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
+
+import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class ConnectController extends GameViewController {
+public class ConnectController  extends  GameViewController {
     @FXML
-    private  TextArea answerTextArea;
+    private Button play;
+    @FXML
+    private Circle c1;
+    @FXML
+    private TextArea timerNumber;
+    @FXML
+    private TextArea answerTextArea;
+
 
     @FXML
-    private  TextField playerAnswerTextField;
-    private  List<String> EnteredWord = new ArrayList<>();
+    private TextField playerAnswerTextField;
+    private List<String> EnteredWord = new ArrayList<>();
+    boolean checkPlay = true;
 
     private boolean checkEnterWord(String word) {
         for (int i = 0; i < EnteredWord.size() - 1; i++) {
@@ -30,13 +42,14 @@ public class ConnectController extends GameViewController {
         return true;
     }
 
-    public void initialize() {
+    public void initialize() throws IOException {
+        answerTextArea.clear();
         playerAnswerTextField.setText("");
-        this.setRandom(197000);
-        int index = this.getRandom();
         String starWord = BotAnswerGenerator.generateRandomBotAnswers();
         answerTextArea.setText(starWord + "\n");
         EnteredWord.add(starWord);
+        checkPlay = true;
+
         playerAnswerTextField.setOnKeyPressed(event -> {
             try {
                 handleTextFieldEnter(event);
@@ -49,7 +62,7 @@ public class ConnectController extends GameViewController {
     private void handleTextFieldEnter(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ENTER) {
             String playerAnswer = playerAnswerTextField.getText();
-            if (checkEnterWord(playerAnswer)) {
+            if (checkEnterWord(playerAnswer) && BotAnswerGenerator.checkPlayerWord(playerAnswer) ) {
                 EnteredWord.add(playerAnswer);
                 System.out.println(EnteredWord);
                 char keyword = playerAnswer.charAt(playerAnswer.length() - 1);
@@ -65,18 +78,64 @@ public class ConnectController extends GameViewController {
                     answerTextArea.setText(botAnswer);
                     playerAnswerTextField.setText(botAnswer.charAt(0) + "");
                     EnteredWord.add(botAnswer);
-
-                } else if(botAnswer == null){
-                    ActionEvent eventAlert = new ActionEvent();
-                  //  answerTextArea.clear();
-                    AlertController.alertEndGame(eventAlert, "You Win");
+                    timerNumber.clear();
+                    play(15);
+                } else if (botAnswer == null) {
+                    AlertController.alertEndGame(event, "You Win");
                 }
                 playerAnswerTextField.clear();
             } else {
                 ActionEvent eventAlert = new ActionEvent();
-                AlertController.alertWrong(eventAlert,"The word was entered previously");
+                AlertController.alertWrong(eventAlert, "The word was entered previously");
                 playerAnswerTextField.clear();
             }
         }
+    }
+
+
+
+    public void setTimerNumber(String timerNumber) {
+        this.timerNumber.setText(timerNumber);
+    }
+    public void play(int time) throws IOException {
+        GameTimer gmt = new GameTimer(time);
+        final int[] counter = {time};
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (counter[0] >= 0) {
+                    timerNumber.setText(String.valueOf(counter[0]));
+                    counter[0]--;
+
+                } else {
+
+                        try {
+                            AlertController.alertSubmit(new ActionEvent(), "End Game", 5);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    gmt.getTimer().cancel();
+                }
+
+            }
+
+        };
+        gmt.excuteTask(timerTask);
+        setRotate(c1, false, 360, time);
+    }
+
+    public void setRotate(Circle c, boolean reverse, int angle, int duration) {
+        RotateTransition rt = new RotateTransition(Duration.seconds(duration), c);
+        rt.setAutoReverse(reverse);
+        rt.setByAngle(angle);
+        rt.setDelay(Duration.millis(0));
+        rt.setRate(duration);
+        rt.setCycleCount(duration + 1);
+        rt.play();
+    }
+
+    public void playAudio() {
+
     }
 }

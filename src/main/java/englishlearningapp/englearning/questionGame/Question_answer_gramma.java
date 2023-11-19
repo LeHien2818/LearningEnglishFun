@@ -2,7 +2,7 @@ package englishlearningapp.englearning.questionGame;
 
 import englishlearningapp.englearning.Controller.GameViewController;
 
-public class Question_answer_gramma extends GameViewController {
+public class Question_answer_gramma {
 
     public String[] questions = {
             "The capital of France is _________.",

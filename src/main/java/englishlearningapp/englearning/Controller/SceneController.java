@@ -165,6 +165,17 @@ public class SceneController {
         stage.setScene(scene);
         stage.show();
     }
+    public static void switchScene (KeyEvent event, Parent sceneSwitch) throws IOException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = ((Node)event.getSource()).getScene();
+        FadeIn fadeEffect = new FadeIn(sceneSwitch);
+        fadeEffect.setSpeed(1);
+        fadeEffect.play();
+        scene.setRoot(sceneSwitch);
+        scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+    }
     public static Scene getCurrentScene (ActionEvent event) {
         return ((Node)event.getSource()).getScene();
     }

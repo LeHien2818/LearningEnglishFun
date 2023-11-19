@@ -22,7 +22,6 @@ public class GuideController implements Initializable {
         webEngine = webview.getEngine();
         // Load nội dung từ file HTML vào WebView
         webEngine.load(App.class.getResource("HTMLViews/GuideText.html").toString());
-        System.out.println(webEngine);
         // Listener để xử lý lỗi khi load trang
         webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
             if (newState == Worker.State.FAILED) {
