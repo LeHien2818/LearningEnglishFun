@@ -50,6 +50,14 @@ public class AlertController {
         ButtonType buttonTypeYes = new ButtonType("Thử lại", ButtonBar.ButtonData.YES);
 
     }
+    public static void CustomAlert () throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Từ bạn thêm vào đã tồn tại");
+        ButtonType buttonTypeYes = new ButtonType("Thử lại", ButtonBar.ButtonData.YES);
+
+    }
     public static void alertExit(javafx.event.ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");

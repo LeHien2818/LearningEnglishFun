@@ -29,7 +29,6 @@ public class TTS {
 
     public static void playSpeaker() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         File music = new File("voice.wav");
-        Scanner sc = new Scanner(System.in);
         AudioInputStream ad = AudioSystem.getAudioInputStream(music);
         Clip clip = AudioSystem.getClip();
         clip.open(ad);
