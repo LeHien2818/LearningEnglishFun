@@ -1,16 +1,13 @@
 package englishlearningapp.englearning.Controller;
-
-import englishlearningapp.englearning.App;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import englishlearningapp.englearning.App;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
-
-import javax.swing.*;
-import java.awt.image.Kernel;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -78,7 +75,6 @@ public class AlertController {
         alert.setHeaderText(null);
         alert.setContentText("Do you want exit");
         ButtonType buttonTypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
-
         // Tạo nút NO
         ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.NO);
 
@@ -109,35 +105,33 @@ public class AlertController {
         }
     }
 
-    public static void alertEndGame(ActionEvent event, String text) throws IOException {
+
+    public static void alertEndGame(KeyEvent eventkey, String text) throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
         alert.setContentText(text);
         ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
-
+        alert.setOnCloseRequest(Event::consume);
         alert.getButtonTypes().setAll(buttonTypeYes);
         Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isPresent() && result.get() == buttonTypeYes) {
-            SceneController.switchScene(event, SceneController.gameRoot);
+     //   result.isPresent() &&
+        if (result.get() == buttonTypeYes) {
+            SceneController.switchScene(eventkey, SceneController.gameRoot);
         }
     }
-
-    public static void alertEndGame(KeyEvent event, String text) throws IOException {
-
+    public static void alertStartGame(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
-        alert.setContentText(text);
+        alert.setContentText("Introduction");
         ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
-
+        alert.setOnCloseRequest(Event::consume);
         alert.getButtonTypes().setAll(buttonTypeYes);
         Optional<ButtonType> result = alert.showAndWait();
-
         if (result.isPresent() && result.get() == buttonTypeYes) {
-            SceneController.switchScene(event, SceneController.gameRoot);
+
         }
     }
 

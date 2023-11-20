@@ -6,6 +6,7 @@ import animatefx.animation.SlideInRight;
 import animatefx.animation.SlideInUp;
 import englishlearningapp.englearning.App;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -142,7 +143,26 @@ public class SceneController {
     }
     public SceneController() throws IOException {
     }
+    public static void switchSceneNormal (ActionEvent event, Parent sceneSwitch) throws IOException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = ((Node)event.getSource()).getScene();
+        scene.setRoot(sceneSwitch);
+        scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+    }
 
+    public static void switchScene (Event event, Parent sceneSwitch) throws IOException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = ((Node)event.getSource()).getScene();
+        FadeIn fadeEffect = new FadeIn(sceneSwitch);
+        fadeEffect.setSpeed(2);
+        fadeEffect.play();
+        scene.setRoot(sceneSwitch);
+        scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+    }
     public static void switchScene (ActionEvent event, Parent sceneSwitch) throws IOException {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = ((Node)event.getSource()).getScene();

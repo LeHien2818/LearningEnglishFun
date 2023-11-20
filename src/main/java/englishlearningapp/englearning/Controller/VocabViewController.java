@@ -7,58 +7,44 @@ package englishlearningapp.englearning.Controller;
 
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import java.io.IOException;
+import java.util.Random;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.util.Duration;
-
-public class VocabViewController extends GameViewController {
+public class VocabViewController {
     @FXML
     private TextArea questionVocab;
     @FXML
     private Button answerA;
     @FXML
     private Button answerB;
-
-
-    public void loadRandomQuestion() {
-        Question_answer_vocab questionAnswer = new Question_answer_vocab();
-        this.setRandom(10);
-        int index = this.getRandom();
-        questionVocab.setText(questionAnswer.getQuestion(index));
-
-        this.setRandom(100);
-        int countAnswer = this.getRandom();
-        String correctAnswer = questionAnswer.getAnswer(index);
-
-        if (countAnswer % 2 == 1) {
-            answerA.setText(correctAnswer);
-            answerB.setText(questionAnswer.getrandomAnswer());
-        } else {
-            answerA.setText(questionAnswer.getrandomAnswer());
-            answerB.setText(correctAnswer);
-        }
+    private int score = 0;
+    @FXML
+    private TextArea Scoregame = new TextArea();
+    private VocabGame vocabGame = new VocabGame();
+    public void setTextScore(String s) {
+        this.Scoregame.setText(s);
     }
 
+    public int getScore() {
+        return this.score;
+    }
     public void initialize() {
-        loadRandomQuestion();
+        vocabGame.loadRandomQuestion(questionVocab, answerA, answerB);
     }
     public void clickAnswer(ActionEvent event) throws IOException {
-        this.setTextScore(this.toString(this.getScore()));
-        int questionnumber = this.getQuesNumber();
-        int scoretmp = this.getScore();
+        this.setTextScore(String.valueOf(vocabGame.getScore()));
+        int questionnumber = vocabGame.getQuesNumber();
+        int scoretmp = vocabGame.getScore();
         if (questionnumber <= 10) {
             Question_answer_vocab questionAnswer = new Question_answer_vocab();
-            this.setRandom(10);
-            int index = this.getRandom();
+            vocabGame.setRandom(10);
+            int index = vocabGame.getRandom();
             this.questionVocab.setText(questionAnswer.getQuestion(index));
-            this.setRandom(100);
-            int countAnswer = this.getRandom();
+            vocabGame.setRandom(100);
+            int countAnswer = vocabGame.getRandom();
             String correctAnswer = questionAnswer.getAnswer(index);
             String selectedAnswer = "";
             if (countAnswer %2 == 1) {
@@ -77,19 +63,24 @@ public class VocabViewController extends GameViewController {
 
             if (selectedAnswer.equals(correctAnswer)) {
                 ++scoretmp;
-                this.setScore(scoretmp);
+                vocabGame.setScore(scoretmp);
             }
 
-            SceneController.switchScene(event, SceneController.vocabRoot);
-            this.setTextScore(this.toString(scoretmp));
+            SceneController.switchSceneNormal(event, SceneController.vocabRoot);
+            this.setTextScore(String.valueOf(scoretmp));
             ++questionnumber;
-            this.setQuesNumber(questionnumber);
+            vocabGame.setQuesNumber(questionnumber);
         } else {
             String s = "vocab";
-            this.endGame(event, s);
+            vocabGame.endGame(event, s, Scoregame);
+            setTextScore("");
         }
 
     }
 
-
+    public void onExit(ActionEvent event) throws IOException {
+        String s = "vocab";
+        vocabGame.resetGame(event);
+        setTextScore("");
+    }
 }

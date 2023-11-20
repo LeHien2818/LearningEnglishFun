@@ -73,7 +73,6 @@ public class GameViewController {
             this.setQuesNumber(0);
             this.setTextScore(this.toString(this.getScore()));
         }
-
     }
 
     public void clickSearch(ActionEvent event) throws IOException, InterruptedException {
@@ -109,10 +108,10 @@ public class GameViewController {
 
     public void clickConnect(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(linkingPic);
-        flp.play();
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.connectRoot);
+
                 Platform.runLater(() -> {
                     try {
                         AlertController.showCustomPopUp("InstructionConnectView.fxml", "instruction-connect");
@@ -125,7 +124,10 @@ public class GameViewController {
             }
         });
 
+        flp.play();
+
     }
+
 
     public void clickGrammar(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(grammarPic);
