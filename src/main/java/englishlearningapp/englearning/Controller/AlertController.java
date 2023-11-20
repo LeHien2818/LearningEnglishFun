@@ -141,11 +141,12 @@ public class AlertController {
         }
     }
 
-    public static void showCustomPopUp(String fxmlFile) throws IOException {
+    public static void showCustomPopUp(String fxmlFile, String styleClass) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(App.class.getResource("Views/" + fxmlFile));
         DialogPane customDialog = loader.load();
-
+        customDialog.getStylesheets().add(App.class.getResource("src/Style.css").toString());
+        customDialog.getStyleClass().add(styleClass);
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(customDialog);
         Optional<ButtonType> clickedButton = dialog.showAndWait();

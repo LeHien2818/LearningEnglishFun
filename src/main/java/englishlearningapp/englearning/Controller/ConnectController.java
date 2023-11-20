@@ -85,7 +85,7 @@ public class ConnectController extends GameViewController {
                 }
                 if (botAnswer != null && !botAnswer.isEmpty()) {
                     answerTextArea.setText(botAnswer);
-                    playerAnswerTextField.setText(botAnswer.charAt(0) + "");
+                    //playerAnswerTextField.setText(botAnswer.charAt(0) + "");
                     EnteredWord.add(botAnswer);
                    // gmt.stopAudio();
                     playTimer(event);

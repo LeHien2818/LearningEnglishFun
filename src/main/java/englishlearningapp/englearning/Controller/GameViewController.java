@@ -115,7 +115,7 @@ public class GameViewController {
                 SceneController.switchScene(event, SceneController.connectRoot);
                 Platform.runLater(() -> {
                     try {
-                        AlertController.showCustomPopUp("InstructionConnectView.fxml");
+                        AlertController.showCustomPopUp("InstructionConnectView.fxml", "instruction-connect");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
