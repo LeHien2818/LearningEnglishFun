@@ -145,7 +145,7 @@
 
         </Pane>
         <Button layoutX="821.0" layoutY="524.0" mnemonicParsing="false" onAction="#clickSubmit" text="Submit"/>
-        <Button layoutX="265.0" layoutY="28.0" mnemonicParsing="false" onAction="#clickExit" prefHeight="26.0"
-                prefWidth="97.0" text="exit"/>
+<!--        <Button layoutX="265.0" layoutY="28.0" mnemonicParsing="false" onAction="#clickExit" prefHeight="26.0"-->
+<!--                prefWidth="97.0" text="exit"/>-->
     </children>
 </AnchorPane>

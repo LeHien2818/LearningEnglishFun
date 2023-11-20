@@ -1,6 +1,5 @@
 package englishlearningapp.englearning.Controller;
 
-import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
 import englishlearningapp.englearning.questionGame.GameTimer;
 import javafx.animation.RotateTransition;
@@ -15,44 +14,43 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import javax.sound.sampled.*;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.net.URL;
+import java.util.*;
 
-public class ConnectController extends GameViewController {
-    @FXML
-    private Button play;
-    @FXML
-    private Circle c1;
-    @FXML
-    private TextArea timerNumber;
-    @FXML
-    private TextArea answerTextArea;
+public class ConnectController extends Game {
 
+    @FXML
+    private  Circle c1;
+    @FXML
+    private  TextArea timerNumber;
+    @FXML
+    private  TextArea answerTextArea;
+
+    private final GameTimer gmt;
+    {
+        try {
+            gmt = new GameTimer(8);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private TimerTask currentTask;
 
     @FXML
     private TextField playerAnswerTextField;
-    private List<String> EnteredWord = new ArrayList<>();
-
-    private GameTimer gmt = new GameTimer(5);
-    private TimerTask currentTask;
-
-    public ConnectController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-    }
-
-
-    private boolean checkEnterWord(String word) {
+    private static final List<String> EnteredWord = new ArrayList<>();
+    private static boolean checkEnterWord(String word) {
         for (int i = 0; i < EnteredWord.size() - 1; i++) {
             if (EnteredWord.get(i).equals(word)) return false;
         }
         return true;
     }
 
-    public void initialize() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        answerTextArea.clear();
+    @Override
+    public  void startGame()  {
+
         playerAnswerTextField.setText("");
         String starWord = BotAnswerGenerator.generateRandomBotAnswers();
         answerTextArea.setText(starWord + "\n");
@@ -60,21 +58,18 @@ public class ConnectController extends GameViewController {
 
         playerAnswerTextField.setOnKeyPressed(event -> {
             try {
-                handleTextFieldEnter(event);
+                handleGame(event);
                 if (event.getCode() == KeyCode.ENTER) {
-
+                    playTimer(event);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (UnsupportedAudioFileException e) {
-                throw new RuntimeException(e);
-            } catch (LineUnavailableException e) {
+            } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
                 throw new RuntimeException(e);
             }
         });
     }
 
-    private void handleTextFieldEnter(KeyEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    @Override
+    public void handleGame(KeyEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         if (event.getCode() == KeyCode.ENTER) {
             String playerAnswer = playerAnswerTextField.getText();
             if (checkEnterWord(playerAnswer) && BotAnswerGenerator.checkPlayerWord(playerAnswer)) {
@@ -91,12 +86,12 @@ public class ConnectController extends GameViewController {
                 }
                 if (botAnswer != null && !botAnswer.isEmpty()) {
                     answerTextArea.setText(botAnswer);
-                    playerAnswerTextField.setText(botAnswer.charAt(0) + "");
                     EnteredWord.add(botAnswer);
-                   // gmt.stopAudio();
-                    playTimer();
+                    // gmt.stopAudio();
+                    playTimer(event);
 
                 } else if (botAnswer == null) {
+                    resetGame();
                     AlertController.alertEndGame(event, "You Win");
                 }
                 playerAnswerTextField.clear();
@@ -107,16 +102,10 @@ public class ConnectController extends GameViewController {
             }
         }
     }
-
-
-    public void setTimerNumber(String timerNumber) {
-        this.timerNumber.setText(timerNumber);
-    }
-
-
-    public void playTimer() throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    @Override
+    public void playTimer(KeyEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         gmt.stopAudio();
-        final int[] counter = {5};
+        final int[] counter = {8};
         gmt.playAudio();
 
         TimerTask timerTask = new TimerTask() {
@@ -127,11 +116,15 @@ public class ConnectController extends GameViewController {
                     counter[0]--;
 
                 } else {
-                    try {
-                        AlertController.alertEndGame(new ActionEvent(),"YOU WIN");
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+                    Platform.runLater(() -> {
+                        try {
+                            resetGame();
+                            AlertController.alertEndGame(eventkey, "YOU WIN");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+
                     gmt.getTimer().cancel();
                 }
 
@@ -144,11 +137,10 @@ public class ConnectController extends GameViewController {
         }
         currentTask = timerTask;
         gmt.excuteTask(currentTask);
-        setRotate(c1, false, 360, 5);
+        setRotate(c1, false, 360, 8);
 
     }
-
-    public void setRotate(Circle c, boolean reverse, int angle, int duration) {
+    public static void setRotate(Circle c, boolean reverse, int angle, int duration) {
         RotateTransition rt = new RotateTransition(Duration.seconds(duration), c);
         rt.setAutoReverse(reverse);
         rt.setByAngle(angle);
@@ -157,5 +149,36 @@ public class ConnectController extends GameViewController {
         rt.setCycleCount(duration + 1);
         rt.play();
     }
+    @Override
+    public void resetGame() {
+        answerTextArea.clear();
+        playerAnswerTextField.clear();
+        EnteredWord.clear();
+        timerNumber.clear();
+        gmt.stopAudio();
+    }
+    public void clickExitConnect(ActionEvent event) throws IOException {
+        resetGame();
+        AlertController.alertExit(event);
+    }
 
+    public void alertStartGame() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Introduction");
+        ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
+        alert.getButtonTypes().setAll(buttonTypeYes);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            alert.close(); startGame();
+        }
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        startGame();
+    }
 }

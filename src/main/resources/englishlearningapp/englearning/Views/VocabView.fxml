@@ -20,7 +20,7 @@
                 <Button fx:id="answerB" layoutX="198.0" layoutY="217.0" mnemonicParsing="false" onAction="#clickAnswer" prefHeight="42.0" prefWidth="105.0" styleClass="classBtn" text="Answer B" />
             </children>
         </Pane>
-        <Button layoutX="459.0" layoutY="432.0" mnemonicParsing="false" onAction="#clickExit" prefHeight="26.0" prefWidth="97.0" styleClass="classBtn" text="exit" />
+<!--        <Button layoutX="459.0" layoutY="432.0" mnemonicParsing="false" onAction="#clickExit" prefHeight="26.0" prefWidth="97.0" styleClass="classBtn" text="exit" />-->
         <TextArea fx:id="Scoregame" editable="false" layoutX="785.0" layoutY="121.0" prefHeight="26.0" prefWidth="16.0" style="-fx-background-color: black;" wrapText="true">
             <font>
                 <Font name="System Bold" size="12.0" />

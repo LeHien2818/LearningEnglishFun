@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import animatefx.animation.BounceIn;
 import englishlearningapp.englearning.CustomAnimation.FlipPageAnimation;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -72,7 +73,6 @@ public class GameViewController {
             this.setQuesNumber(0);
             this.setTextScore(this.toString(this.getScore()));
         }
-
     }
 
     public void clickSearch(ActionEvent event) throws IOException, InterruptedException {
@@ -109,17 +109,24 @@ public class GameViewController {
 
     public void clickConnect(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(linkingPic);
-        flp.play();
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.connectRoot);
+                ConnectController controller = new ConnectController();
+                Platform.runLater(() -> {
+                    try {
+                        controller.alertStartGame();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
         flp.play();
-
     }
+
 
     public void clickGrammar(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(grammarPic);
