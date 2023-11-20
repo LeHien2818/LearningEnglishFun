@@ -18,14 +18,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+
 public class ConnectController extends Game {
 
+
     @FXML
-    private  Circle c1;
+    private Circle c1;
     @FXML
-    private  TextArea timerNumber;
+    private TextArea timerNumber;
     @FXML
-    private  TextArea answerTextArea;
+    private TextArea answerTextArea;
 
     private final GameTimer gmt;
     {
@@ -58,11 +60,13 @@ public class ConnectController extends Game {
 
         playerAnswerTextField.setOnKeyPressed(event -> {
             try {
+
                 handleGame(event);
                 if (event.getCode() == KeyCode.ENTER) {
                     playTimer(event);
                 }
             } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
+
                 throw new RuntimeException(e);
             }
         });
@@ -87,7 +91,6 @@ public class ConnectController extends Game {
                 if (botAnswer != null && !botAnswer.isEmpty()) {
                     answerTextArea.setText(botAnswer);
                     EnteredWord.add(botAnswer);
-                    // gmt.stopAudio();
                     playTimer(event);
 
                 } else if (botAnswer == null) {
@@ -102,8 +105,14 @@ public class ConnectController extends Game {
             }
         }
     }
+
+
+    public void setTimerNumber(String timerNumber) {
+        this.timerNumber.setText(timerNumber);
+    }
     @Override
     public void playTimer(KeyEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
         gmt.stopAudio();
         final int[] counter = {8};
         gmt.playAudio();
@@ -118,13 +127,15 @@ public class ConnectController extends Game {
                 } else {
                     Platform.runLater(() -> {
                         try {
+
                             resetGame();
-                            AlertController.alertEndGame(eventkey, "YOU WIN");
+
+
+                            AlertController.alertEndGame(eventkey,"YOU LOSE");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     });
-
                     gmt.getTimer().cancel();
                 }
 
@@ -162,20 +173,20 @@ public class ConnectController extends Game {
         AlertController.alertExit(event);
     }
 
-    public void alertStartGame() throws IOException {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText(null);
-        alert.setContentText("Introduction");
-        ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
-        alert.getButtonTypes().setAll(buttonTypeYes);
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.isPresent() && result.get() == buttonTypeYes) {
-            alert.close(); startGame();
-        }
-
-    }
+//    public void alertStartGame() throws IOException {
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Thông báo");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Introduction");
+//        ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
+//        alert.getButtonTypes().setAll(buttonTypeYes);
+//        Optional<ButtonType> result = alert.showAndWait();
+//
+//        if (result.isPresent() && result.get() == buttonTypeYes) {
+//            alert.close(); startGame();
+//        }
+//
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

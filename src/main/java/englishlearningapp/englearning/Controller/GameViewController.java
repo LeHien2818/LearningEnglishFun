@@ -104,7 +104,6 @@ public class GameViewController {
                 e.printStackTrace();
             }
         });
-        flp.play();
     }
 
     public void clickConnect(ActionEvent event) throws IOException, InterruptedException {
@@ -112,19 +111,21 @@ public class GameViewController {
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.connectRoot);
-                ConnectController controller = new ConnectController();
+
                 Platform.runLater(() -> {
                     try {
-                        controller.alertStartGame();
+                        AlertController.showCustomPopUp("InstructionConnectView.fxml");
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
                 });
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+
         flp.play();
+
     }
 
 
@@ -138,7 +139,6 @@ public class GameViewController {
                 e.printStackTrace();
             }
         });
-        flp.play();
     }
 
     public void clickExit(ActionEvent event) throws IOException {

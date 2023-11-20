@@ -1,12 +1,13 @@
 package englishlearningapp.englearning.Controller;
-
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import englishlearningapp.englearning.App;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-
 import java.io.IOException;
 import java.util.Optional;
 
@@ -132,5 +133,15 @@ public class AlertController {
         if (result.isPresent() && result.get() == buttonTypeYes) {
 
         }
+    }
+
+    public static void showCustomPopUp(String fxmlFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(App.class.getResource("Views/" + fxmlFile));
+        DialogPane customDialog = loader.load();
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(customDialog);
+        Optional<ButtonType> clickedButton = dialog.showAndWait();
     }
 }
