@@ -15,7 +15,6 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 import javax.sound.sampled.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +22,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class ConnectController extends GameViewController {
-    @FXML
-    private Button play;
     @FXML
     private Circle c1;
     @FXML
@@ -61,9 +58,6 @@ public class ConnectController extends GameViewController {
         playerAnswerTextField.setOnKeyPressed(event -> {
             try {
                 handleTextFieldEnter(event);
-                if (event.getCode() == KeyCode.ENTER) {
-
-                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (UnsupportedAudioFileException e) {
@@ -129,7 +123,7 @@ public class ConnectController extends GameViewController {
                 } else {
                     Platform.runLater(() -> {
                         try {
-                            AlertController.alertEndGame(eventKey,"YOU WIN");
+                            AlertController.alertEndGame(eventKey,"YOU LOSE");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }

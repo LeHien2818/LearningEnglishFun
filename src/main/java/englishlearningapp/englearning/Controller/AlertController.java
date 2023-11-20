@@ -1,11 +1,11 @@
 package englishlearningapp.englearning.Controller;
 
+import englishlearningapp.englearning.App;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 
@@ -139,5 +139,15 @@ public class AlertController {
         if (result.isPresent() && result.get() == buttonTypeYes) {
             SceneController.switchScene(event, SceneController.gameRoot);
         }
+    }
+
+    public static void showCustomPopUp(String fxmlFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(App.class.getResource("Views/" + fxmlFile));
+        DialogPane customDialog = loader.load();
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.setDialogPane(customDialog);
+        Optional<ButtonType> clickedButton = dialog.showAndWait();
     }
 }

@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import animatefx.animation.BounceIn;
 import englishlearningapp.englearning.CustomAnimation.FlipPageAnimation;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -104,7 +105,6 @@ public class GameViewController {
                 e.printStackTrace();
             }
         });
-        flp.play();
     }
 
     public void clickConnect(ActionEvent event) throws IOException, InterruptedException {
@@ -113,11 +113,17 @@ public class GameViewController {
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.connectRoot);
+                Platform.runLater(() -> {
+                    try {
+                        AlertController.showCustomPopUp("InstructionConnectView.fxml");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-        flp.play();
 
     }
 
@@ -131,7 +137,6 @@ public class GameViewController {
                 e.printStackTrace();
             }
         });
-        flp.play();
     }
 
     public void clickExit(ActionEvent event) throws IOException {
