@@ -59,14 +59,25 @@ public class ConnectGame extends Game {
     public void resetGame(Event event) throws IOException {
 
     }
+
+    @Override
+    public void resetGame(Event event, Button answerA, Button answerB, TextArea questionvocab) throws IOException {
+
+    }
+
     @Override
     public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber) {
+
+    }
+
+    @Override
+    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score) {
         answerTextArea.setText("");
         playerAnswerTextField.clear();
         EnteredWord.clear();
         gmt.stopAudio();
         timerNumber.clear();
-
+        score.clear();
     }
     public void stopTimer() {
         if (currentTask != null) {
@@ -95,6 +106,16 @@ public class ConnectGame extends Game {
     }
 
     @Override
+    public void playTimer(KeyEvent event, TextArea textArea, TextArea score) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+    @Override
+    public void playTimer(ActionEvent event, TextArea textArea, TextArea score) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+    @Override
     public void playTimer(ActionEvent event, TextArea textArea) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
     }
@@ -106,6 +127,11 @@ public class ConnectGame extends Game {
 
     @Override
     public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+    @Override
+    public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1, TextField score) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
         gmt.stopAudio();
         final int[] counter = {8};
@@ -121,13 +147,15 @@ public class ConnectGame extends Game {
                 } else {
                     Platform.runLater(() -> {
                         try {
-                            resetGame();
-                            AlertController.alertEndGame(eventkey,"YOU LOSE");
+                            String point =  score.getText();
+                            AlertController.alertEndGame(eventkey,"YOU LOSE", point);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     });
-                    gmt.getTimer().cancel();
+                   // gmt.getTimer().cancel();
+                    currentTask.cancel();
+                    resetGame();
                 }
 
             }
@@ -142,6 +170,12 @@ public class ConnectGame extends Game {
         setRotate(c1, false, 360,8);
 
     }
+
+    @Override
+    public void playTimer(java.awt.event.KeyEvent event, TextArea timerbox, TextArea scoregame) {
+
+    }
+
     public static void setRotate( Circle c1, boolean reverse, int angle, int duration) {
         RotateTransition rt = new RotateTransition(Duration.seconds(8), c1);
         rt.setAutoReverse(reverse);

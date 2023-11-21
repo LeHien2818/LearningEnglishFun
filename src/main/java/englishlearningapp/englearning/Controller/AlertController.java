@@ -103,12 +103,12 @@ public class AlertController {
     }
 
 
-    public static void alertEndGame(KeyEvent eventkey, String text) throws IOException {
+    public static void alertEndGame(KeyEvent eventkey, String text, String point) throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
-        alert.setContentText(text);
+        alert.setContentText(text + " \n" + "Your Score: " + point);
         ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
         alert.getButtonTypes().setAll(buttonTypeYes);
         Optional<ButtonType> result = alert.showAndWait();
@@ -117,7 +117,7 @@ public class AlertController {
             SceneController.switchScene(eventkey, SceneController.gameRoot);
         }
     }
-    public static void alertEndGame(ActionEvent eventkey, String text) throws IOException {
+    public static void alertEndGame(ActionEvent eventkey, String text,String point) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);

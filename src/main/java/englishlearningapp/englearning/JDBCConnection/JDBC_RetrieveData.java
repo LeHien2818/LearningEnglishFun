@@ -10,6 +10,48 @@ public class JDBC_RetrieveData {
     private static TreeMap<String, Integer> dataWords = new TreeMap<>();
     private static HashMap<Integer, String> pronuntiations = new HashMap<>();
     private static HashMap<Integer, String> definitons = new HashMap<>();
+    private static List<String> questionWords = new ArrayList<>();
+    private static List<String> questionIPA = new ArrayList<>();
+    private static List<String> questionMeaning = new ArrayList<>();
+    public static void retrieveQuestionWords() throws SQLException {
+        Connection connection = JDBC_Connect.getJDBCConnection();
+        Statement statement = connection.createStatement();
+        String queryName = "SELECT Vocabulary FROM vocab";
+        ResultSet resultSet = statement.executeQuery(queryName);
+        while (resultSet.next()) {
+            String item = resultSet.getString("Vocabulary").toLowerCase();
+            questionWords.add(item);
+        }
+        resultSet.close();
+        statement.close();
+        connection.close();
+    }
+    public static void retrieveQuestionIPA() throws SQLException {
+        Connection connection = JDBC_Connect.getJDBCConnection();
+        Statement statement = connection.createStatement();
+        String queryName = "SELECT Pronunciation FROM vocab";
+        ResultSet resultSet = statement.executeQuery(queryName);
+        while (resultSet.next()) {
+            String item = resultSet.getString("Pronunciation").toLowerCase();
+            questionIPA.add(item);
+        }
+        resultSet.close();
+        statement.close();
+        connection.close();
+    }
+    public static void retrieveQuestionMeaning() throws SQLException {
+        Connection connection = JDBC_Connect.getJDBCConnection();
+        Statement statement = connection.createStatement();
+        String queryName = "SELECT Meaning FROM vocab";
+        ResultSet resultSet = statement.executeQuery(queryName);
+        while (resultSet.next()) {
+            String item = resultSet.getString("Meaning");
+            questionMeaning.add(item);
+        }
+        resultSet.close();
+        statement.close();
+        connection.close();
+    }
     public static void retrieveWordData() throws SQLException {
         Connection connection = JDBC_Connect.getJDBCConnection();
         Statement statement = connection.createStatement();
@@ -52,6 +94,19 @@ public class JDBC_RetrieveData {
         statement.close();
         connection.close();
     }
+
+    public static List<String> getQuestionWords() {
+        return questionWords;
+    }
+
+    public static List<String> getQuestionIPA() {
+        return questionIPA;
+    }
+
+    public static List<String> getQuestionMeaning() {
+        return questionMeaning;
+    }
+
     public static TreeMap<String, Integer> getDataWords() {
         return dataWords;
     }
@@ -71,7 +126,9 @@ public class JDBC_RetrieveData {
     public static HashMap<Integer, String> getDefinitons() {
         return definitons;
     }
-
+    public static void setDefinitons(HashMap<Integer, String> definitons) {
+        JDBC_RetrieveData.definitons = definitons;
+    }
     public static String[] retrieveVocabulary() throws SQLException {
         Connection connection = JDBC_Connect.getJDBCConnection();
 
@@ -91,13 +148,18 @@ public class JDBC_RetrieveData {
         return vocabularyList.toArray(new String[0]);
     }
 
-    public static void setDefinitons(HashMap<Integer, String> definitons) {
-        JDBC_RetrieveData.definitons = definitons;
-    }
+
 
     public static void main (String[] args) throws SQLException {
         int i = 0;
-        String[] vocab = retrieveVocabulary();
-        System.out.println(vocab[100]);
+        JDBC_RetrieveData.retrieveQuestionWords();
+        for (int j = 0; j < 10; j++) {
+            System.out.println(questionWords.get(j));
+        }
+        /*for (Map.Entry<String, Integer> entry : dataWords.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+            if(i == 9) break;
+            i++;
+        }*/
     }
 }

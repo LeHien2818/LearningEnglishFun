@@ -128,12 +128,12 @@ public class GrammarViewController extends GameViewController {
             toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
                     String RadioChoose = ((RadioButton) newValue).getId();
-                    System.out.println(RadioChoose);
+                  //  System.out.println(RadioChoose);
                     if (RadioChoose != null) {
                         this.setScore(this.getScore() + 1);
                     }
                 } else {
-                    System.out.println("No RadioButton selected");
+                 //   System.out.println("No RadioButton selected");
                 }
             });
         }
@@ -155,7 +155,7 @@ public class GrammarViewController extends GameViewController {
                     String[] options = questionAnswerGramma.getOptions(currentQuestionIndex);
                     String correctAnswer = questionAnswerGramma.getCorrectAnswer(currentQuestionIndex);
 
-                    System.out.println("Correct Answer: " + correctAnswer);
+                 //   System.out.println("Correct Answer: " + correctAnswer);
                     cau1A.getText();
                     break;
                 }

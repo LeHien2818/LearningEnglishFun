@@ -7,6 +7,7 @@ import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
 import englishlearningapp.englearning.questionGame.GameTimer;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.util.Duration;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 
 public class ConnectController   {
@@ -69,14 +71,15 @@ public class ConnectController   {
                     Score ++;
                     score.setText(String.valueOf(Score));
                     connectGame.EnteredWord.add(botAnswer);
-                    connectGame.playTimer(event, timerNumber,c1);
+                    connectGame.playTimer(event, timerNumber,c1, score);
                     String s = "Back.png";
                     Image image = new Image(App.class.getResource("src/image/" + s).toString());
                     imageWay.setImage(image);
                 } else if (botAnswer == null) {
-                    connectGame.resetGame(playerAnswerTextField, answerTextArea, timerNumber);
+                    connectGame.resetGame(playerAnswerTextField, answerTextArea, timerNumber, score);
                     connectGame.stopTimer();
-                    AlertController.alertEndGame(event, "You Win");
+                    String point = score.getText();
+                    AlertController.alertEndGame(event, "You Win", point);
                 }
                 playerAnswerTextField.clear();
             } else {
@@ -87,14 +90,21 @@ public class ConnectController   {
         }
     }
 
-
     public void clickExitConnect(ActionEvent event) throws IOException {
         connectGame.resetGame();
         connectGame.stopTimer();
         AlertController.alertExit(event);
     }
 
-    public void initialize( ) {
-        startGame();
+    public void initialize() throws SQLException {
+        Thread th = new Thread(new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+               startGame();
+                return null;
+            }
+        });
+        th.setDaemon(true);
+        th.start();
     }
 }

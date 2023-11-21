@@ -8,8 +8,10 @@ package englishlearningapp.englearning.Controller;
 import englishlearningapp.englearning.Game.VocabGame;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
-
+import java.sql.SQLException;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +19,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -35,75 +36,91 @@ public class VocabViewController {
     private Button answerA;
     @FXML
     private Button answerB;
-    private int score = 0;
+
     @FXML
     private TextArea Scoregame = new TextArea();
     private VocabGame vocabGame = new VocabGame();
+    Question_answer_vocab questionAnswer = new Question_answer_vocab();
 
-    public VocabViewController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public VocabViewController() throws UnsupportedAudioFileException, LineUnavailableException, IOException, SQLException {
     }
 
-    public void setTextScore(String s) {
-        this.Scoregame.setText(s);
+    @FXML
+    public void handleAnswerA(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
+        System.out.println("answerA");
+        if(  vocabGame.checkCorrect(questionVocab, answerA)) {
+            int scoretmp = vocabGame.getScore();
+            vocabGame.setScore(scoretmp + 1);
+            Scoregame.setText(String.valueOf(vocabGame.getScore()));
+        }
+        handleInformation(event);
+
+    }
+    @FXML
+    public void handleAnswerB(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
+        System.out.println("answerB");
+        if(  vocabGame.checkCorrect(questionVocab, answerB)) {
+            int scoretmp = vocabGame.getScore();
+            vocabGame.setScore(scoretmp + 1);
+            Scoregame.setText(String.valueOf(vocabGame.getScore()));
+        }
+
+        handleInformation(event);
     }
 
-    public int getScore() {
-        return this.score;
+    public void initialize() throws SQLException {
+        Thread th = new Thread(new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB,Scoregame);
+                return null;
+            }
+        });
+        th.setDaemon(true);
+        th.start();
     }
-
-    public void initialize() {
-        vocabGame.loadRandomQuestion(questionVocab, answerA, answerB);
-    }
-
-    public void clickAnswer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        vocabGame.playTimer(event, timerbox);
-        this.setTextScore(String.valueOf(vocabGame.getScore()));
+    public void handleInformation(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
+        vocabGame.playTimer(event,timerbox,Scoregame);
+        Scoregame.setText(String.valueOf(vocabGame.getScore()));
         int questionnumber = vocabGame.getQuesNumber();
-        int scoretmp = vocabGame.getScore();
-        if (questionnumber <= 10) {
-            Question_answer_vocab questionAnswer = new Question_answer_vocab();
-            vocabGame.setRandom(10);
+        if (questionnumber <= 15) {
+
+            vocabGame.setRandom(950);
             int index = vocabGame.getRandom();
-            this.questionVocab.setText(questionAnswer.getQuestion(index));
-            vocabGame.setRandom(100);
-            int countAnswer = vocabGame.getRandom();
+            String question = questionAnswer.getQuestion(index);
+            questionVocab.setText(question);
             String correctAnswer = questionAnswer.getAnswer(index);
-            String selectedAnswer = "";
+
+            vocabGame.setRandom(950);
+            int countAnswer = vocabGame.getRandom();
+            String answerRandom = questionAnswer.getrandomAnswer(index);
+
             if (countAnswer % 2 == 1) {
-                this.answerA.setText(correctAnswer);
-                this.answerB.setText(questionAnswer.getrandomAnswer());
+                answerA.setText(correctAnswer);
+                answerB.setText(answerRandom);
             } else {
-                this.answerA.setText(questionAnswer.getrandomAnswer());
-                this.answerB.setText(correctAnswer);
+                answerA.setText(answerRandom);
+                answerB.setText(correctAnswer);
             }
 
-            if (event.getSource() == this.answerA) {
-                selectedAnswer = this.answerA.getText();
-            } else if (event.getSource() == this.answerB) {
-                selectedAnswer = this.answerB.getText();
-            }
-
-            if (selectedAnswer.equals(correctAnswer)) {
-                ++scoretmp;
-                vocabGame.setScore(scoretmp);
-            }
-
-            SceneController.switchSceneNormal(event, SceneController.vocabRoot);
-            this.setTextScore(String.valueOf(scoretmp));
-            ++questionnumber;
+            questionnumber++;
             vocabGame.setQuesNumber(questionnumber);
+
         } else {
-            String s = "vocab";
-            vocabGame.endGame(event, s, Scoregame);
-            setTextScore("");
+            vocabGame.endGame(event, Scoregame);
+            Scoregame.setText(String.valueOf(0));
         }
 
     }
 
     public void onExit(ActionEvent event) throws IOException {
         String s = "vocab";
-        vocabGame.resetGame(event);
-        setTextScore("");
+        vocabGame.resetGame(event, answerA, answerB,questionVocab );
+        Scoregame.setText(String.valueOf(0));
+        vocabGame.setScore(0);
+        answerA.setText("");
+        answerB.setText("");
+        questionVocab.clear();
         timerbox.clear();
     }
 }
