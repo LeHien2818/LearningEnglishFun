@@ -15,6 +15,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.TimerTask;
@@ -63,7 +64,7 @@ public class VocabGame extends Game {
         return this.score;
     }
 
-    public void loadRandomQuestion(TextArea questionVocab, Button answerA, Button answerB) {
+    public void loadRandomQuestion(TextArea questionVocab, Button answerA, Button answerB) throws SQLException {
         Question_answer_vocab questionAnswer = new Question_answer_vocab();
         this.setRandom(10);
         int index = this.getRandom();

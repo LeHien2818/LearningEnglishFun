@@ -8,6 +8,9 @@ package englishlearningapp.englearning.Controller;
 import englishlearningapp.englearning.Game.VocabGame;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -48,10 +51,19 @@ public class VocabViewController {
     public int getScore() {
         return this.score;
     }
-    public void initialize() {
-        vocabGame.loadRandomQuestion(questionVocab, answerA, answerB);
+    public void initialize() throws SQLException {
+        Thread th = new Thread(new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB);
+                return null;
+            }
+        });
+        th.setDaemon(true);
+        th.start();
+
     }
-    public void clickAnswer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void clickAnswer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
         vocabGame.playTimer(event, timerbox);
         this.setTextScore(String.valueOf(vocabGame.getScore()));
         int questionnumber = vocabGame.getQuesNumber();
