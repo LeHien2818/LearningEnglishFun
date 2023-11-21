@@ -1,4 +1,4 @@
-package englishlearningapp.englearning.Controller;
+package englishlearningapp.englearning.Game;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.Initializable;

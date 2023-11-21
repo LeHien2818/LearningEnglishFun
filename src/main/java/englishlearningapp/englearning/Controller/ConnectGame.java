@@ -1,5 +1,6 @@
 package englishlearningapp.englearning.Controller;
 
+import englishlearningapp.englearning.Game.Game;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.input.KeyEvent;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ConnectGame extends Game{
+public class ConnectGame extends Game {
     @Override
     public void startGame() throws IOException {
 

@@ -14,4 +14,6 @@ module englishlearningapp.englearning {
     exports englishlearningapp.englearning;
     exports englishlearningapp.englearning.Controller;
     opens englishlearningapp.englearning.Controller to javafx.fxml;
+    exports englishlearningapp.englearning.Game;
+    opens englishlearningapp.englearning.Game to javafx.fxml;
 }

@@ -1,5 +1,6 @@
 package englishlearningapp.englearning.Controller;
 
+import englishlearningapp.englearning.Game.Game;
 import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
 import englishlearningapp.englearning.questionGame.GameTimer;
 import javafx.animation.RotateTransition;

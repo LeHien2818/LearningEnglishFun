@@ -100,6 +100,13 @@ public class GameViewController {
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.vocabRoot);
+                Platform.runLater(() -> {
+                    try {
+                        AlertController.showCustomPopUp("IntrucstionVocab.fxml", "pane-instruction");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -108,6 +115,7 @@ public class GameViewController {
 
     public void clickConnect(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(linkingPic);
+        flp.play();
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.connectRoot);
@@ -124,7 +132,6 @@ public class GameViewController {
             }
         });
 
-        flp.play();
 
     }
 

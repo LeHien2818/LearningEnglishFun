@@ -5,10 +5,9 @@
 
 package englishlearningapp.englearning.Controller;
 
+import englishlearningapp.englearning.Game.VocabGame;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import java.io.IOException;
-import java.util.Random;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,5 +1,7 @@
-package englishlearningapp.englearning.Controller;
+package englishlearningapp.englearning.Game;
 
+import englishlearningapp.englearning.Controller.SceneController;
+import englishlearningapp.englearning.questionGame.GameTimer;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -14,7 +16,8 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class VocabGame extends Game{
+public class VocabGame extends Game {
+    private GameTimer gameTimer = new GameTimer();
     private int score = 0;
     private int quesnumber = 0;
     private Random random = new Random();
@@ -77,7 +80,6 @@ public class VocabGame extends Game{
 
     @Override
     public void resetGame() {
-
     }
 
     @Override
@@ -89,26 +91,21 @@ public class VocabGame extends Game{
 
     @Override
     public void handleGame() {
-
     }
 
     @Override
     public void handleGame(KeyEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
     }
 
     @Override
     public void playTimer(KeyEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
     }
 
     @Override
     public void playTimer(ActionEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }
