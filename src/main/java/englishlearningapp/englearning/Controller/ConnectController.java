@@ -1,10 +1,12 @@
 package englishlearningapp.englearning.Controller;
 
+import englishlearningapp.englearning.Game.Game;
 import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
 import englishlearningapp.englearning.questionGame.GameTimer;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -23,6 +25,9 @@ public class ConnectController   {
 
     private TimerTask currentTask;
 
+    private ConnectGame connectGame = new ConnectGame();
+
+
     final GameTimer gmt;
     {
         try {
@@ -37,8 +42,6 @@ public class ConnectController   {
     static TextArea timerNumber;
     @FXML
       static TextArea answerTextArea;
-    ConnectGame connectGame  = new ConnectGame();
-
 
 
 
@@ -83,7 +86,11 @@ public class ConnectController   {
                 }
                 if (botAnswer != null && !botAnswer.isEmpty()) {
                     answerTextArea.setText(botAnswer);
+
                     ConnectGame.EnteredWord.add(botAnswer);
+
+                    //playerAnswerTextField.setText(botAnswer.charAt(0) + "");
+
                     playTimer(event);
 
                 } else if (botAnswer == null) {
@@ -98,6 +105,7 @@ public class ConnectController   {
             }
         }
     }
+
 
 
     public void setTimerNumber(String timerNumber) {
@@ -132,10 +140,7 @@ public class ConnectController   {
                 } else {
                     Platform.runLater(() -> {
                         try {
-
                             resetGame();
-
-
                             AlertController.alertEndGame(eventkey,"YOU LOSE");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -156,8 +161,23 @@ public class ConnectController   {
         setRotate(ConnectController.c1, false, 360, 8);
 
     }
-    public void resetGame() {
 
+
+
+    public void playTimer(ActionEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+
+
+
+
+    public void resetGame() {
+        answerTextArea.clear();
+        playerAnswerTextField.clear();
+        ConnectGame.EnteredWord.clear();
+        timerNumber.clear();
+        gmt.stopAudio();
     }
     public void initialize( )   {
         startGame();

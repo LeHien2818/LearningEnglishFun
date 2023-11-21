@@ -229,4 +229,7 @@
 .timer-text .scroll-pane{
     -fx-background-color: transparent;
 }
-
+/*webview intruct*/
+.instruction-connect {
+    -fx-background-color: linear-gradient(to right, yellow, magenta);
+}

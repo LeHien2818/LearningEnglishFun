@@ -84,6 +84,10 @@ public class GameViewController {
         new BounceIn(translateBtn).play();
         SceneController.switchScene(event, SceneController.translateRoot);
     }
+    public void clickGame(ActionEvent event) throws IOException, InterruptedException {
+        new BounceIn(translateBtn).play();
+        SceneController.switchScene(event, SceneController.gameRoot);
+    }
 
 
     public void clickVocab(ActionEvent event) throws IOException, InterruptedException {
@@ -92,6 +96,13 @@ public class GameViewController {
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.vocabRoot);
+                Platform.runLater(() -> {
+                    try {
+                        AlertController.showCustomPopUp("IntrucstionVocab.fxml", "pane-instruction");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -100,13 +111,14 @@ public class GameViewController {
 
     public void clickConnect(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(linkingPic);
+        flp.play();
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.connectRoot);
 
                 Platform.runLater(() -> {
                     try {
-                        AlertController.showCustomPopUp("InstructionConnectView.fxml");
+                        AlertController.showCustomPopUp("InstructionConnectView.fxml", "instruction-connect");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -116,7 +128,6 @@ public class GameViewController {
             }
         });
 
-        flp.play();
 
     }
 

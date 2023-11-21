@@ -6,6 +6,7 @@ import animatefx.animation.SlideInRight;
 import animatefx.animation.SlideInUp;
 import englishlearningapp.englearning.App;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -21,7 +22,7 @@ public class SceneController {
     protected static Stage stage;
     protected static Scene scene ;
 
-    protected static AnchorPane defaultRoot;
+    public static AnchorPane defaultRoot;
 
     static {
         try {
@@ -31,7 +32,7 @@ public class SceneController {
         }
     }
 
-    protected static AnchorPane searchRoot;
+    public static AnchorPane searchRoot;
 
     static {
         try {
@@ -41,7 +42,7 @@ public class SceneController {
         }
     }
 
-    protected static AnchorPane gameRoot;
+    public static AnchorPane gameRoot;
 
     static {
         try {
@@ -51,7 +52,7 @@ public class SceneController {
         }
     }
 
-    protected static AnchorPane translateRoot;
+    public static AnchorPane translateRoot;
 
     static {
         try {
@@ -60,7 +61,7 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
-    protected static AnchorPane vocabRoot;
+    public static AnchorPane vocabRoot;
 
     static {
         try {
@@ -69,7 +70,7 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
-    protected static AnchorPane grammarRoot;
+    public static AnchorPane grammarRoot;
 
     static {
         try {
@@ -78,7 +79,7 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
-    protected static AnchorPane connectRoot;
+    public static AnchorPane connectRoot;
 
     static {
         try {
@@ -87,7 +88,7 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
-    protected static AnchorPane practiceRoot;
+    public static AnchorPane practiceRoot;
 
     static {
         try {
@@ -97,7 +98,7 @@ public class SceneController {
         }
     }
 
-    protected static AnchorPane exitRoot;
+    public static AnchorPane exitRoot;
 
     static {
         try {
@@ -107,7 +108,7 @@ public class SceneController {
         }
     }
 
-    protected static AnchorPane addViewRoot;
+    public static AnchorPane addViewRoot;
     static {
         try {
             addViewRoot = FXMLLoader.load(App.class.getResource("Views/AddwordView.fxml"));
@@ -116,7 +117,7 @@ public class SceneController {
         }
     }
 
-    protected static AnchorPane modifyViewRoot;
+    public static AnchorPane modifyViewRoot;
     static {
         try {
             modifyViewRoot = FXMLLoader.load(App.class.getResource("Views/ModifyWordView.fxml"));
@@ -124,7 +125,7 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
-    protected static AnchorPane aboutRoot;
+    public static AnchorPane aboutRoot;
     static {
         try {
             aboutRoot = FXMLLoader.load(App.class.getResource("Views/AboutUsView.fxml"));
@@ -132,7 +133,7 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
-    protected static AnchorPane guideRoot;
+    public static AnchorPane guideRoot;
     static {
         try {
             guideRoot = FXMLLoader.load(App.class.getResource("Views/GuideView.fxml"));
@@ -142,7 +143,26 @@ public class SceneController {
     }
     public SceneController() throws IOException {
     }
+    public static void switchSceneNormal (ActionEvent event, Parent sceneSwitch) throws IOException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = ((Node)event.getSource()).getScene();
+        scene.setRoot(sceneSwitch);
+        scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+    }
 
+    public static void switchScene (Event event, Parent sceneSwitch) throws IOException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = ((Node)event.getSource()).getScene();
+        FadeIn fadeEffect = new FadeIn(sceneSwitch);
+        fadeEffect.setSpeed(2);
+        fadeEffect.play();
+        scene.setRoot(sceneSwitch);
+        scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+    }
     public static void switchScene (ActionEvent event, Parent sceneSwitch) throws IOException {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = ((Node)event.getSource()).getScene();
