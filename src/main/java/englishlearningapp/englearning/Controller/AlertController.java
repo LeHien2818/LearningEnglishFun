@@ -77,11 +77,8 @@ public class AlertController {
         ButtonType buttonTypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
         // Tạo nút NO
         ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.NO);
-
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
-
         Optional<ButtonType> result = alert.showAndWait();
-
         if (result.isPresent() && result.get() == buttonTypeYes) {
             SceneController.switchScene(event, SceneController.gameRoot);
         } else {
@@ -139,7 +136,6 @@ public class AlertController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(App.class.getResource("Views/" + fxmlFile));
         DialogPane customDialog = loader.load();
-
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(customDialog);
         Optional<ButtonType> clickedButton = dialog.showAndWait();

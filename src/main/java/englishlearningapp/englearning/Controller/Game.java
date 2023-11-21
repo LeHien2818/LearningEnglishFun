@@ -5,7 +5,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
-public abstract class Game implements Initializable {
+public abstract class Game   {
 
     public Game() {
     }

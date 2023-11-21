@@ -64,8 +64,7 @@ public class GameViewController {
         this.randomIndex = this.random.nextInt(size - 1) + 1;
     }
 
-    public void startGame() {
-    }
+
     public void endGame(ActionEvent event, String s) throws IOException {
         if (s.equals("vocab") || s.equals("grammar") || s.equals("connect")) {
             SceneController.switchScene(event, SceneController.gameRoot);
@@ -86,13 +85,6 @@ public class GameViewController {
         SceneController.switchScene(event, SceneController.translateRoot);
     }
 
-    public void clickGame(ActionEvent event) throws IOException {
-
-    }
-    public void clickPractice(ActionEvent event) throws IOException {
-        SceneController.switchScene(event, SceneController.practiceRoot);
-
-    }
 
     public void clickVocab(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(vocabPic);
