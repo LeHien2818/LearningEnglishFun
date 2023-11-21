@@ -222,6 +222,7 @@
 }
 .timer-text .scroll-pane .content {
     -fx-background-color: transparent;
+
 }
 .timer-text .scroll-pane .viewport{
     -fx-background-color: transparent;
@@ -232,4 +233,57 @@
 /*webview intruct*/
 .instruction-connect {
     -fx-background-color: linear-gradient(to right, yellow, magenta);
+}
+
+
+
+/*CSS connect game*/
+.buttonConnect {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 16px;
+}
+
+.buttonConnect:hover {
+    -fx-background-color: yellow;
+    -fx-text-fill: white;
+}
+
+.scoreConnect {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 32px;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+}
+.buttonHome {
+
+/*
+     -fx-background-image : url("../src/image/iconhome.png");
+*/
+    -fx-background-color: transparent;
+    -fx-background-radius: 5;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 3vw;*/
+    -fx-padding: 1vw 2vw;
+
+    -fx-alignment: center;
+    -fx-font-size: 32px;
+
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-border-style: solid;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s;
+}
+
+.buttonHome:hover {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-border-color: #3498db;
 }

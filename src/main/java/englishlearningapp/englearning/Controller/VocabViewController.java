@@ -7,7 +7,9 @@ package englishlearningapp.englearning.Controller;
 
 import englishlearningapp.englearning.Game.VocabGame;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
+
 import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -48,9 +50,11 @@ public class VocabViewController {
     public int getScore() {
         return this.score;
     }
+
     public void initialize() {
         vocabGame.loadRandomQuestion(questionVocab, answerA, answerB);
     }
+
     public void clickAnswer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         vocabGame.playTimer(event, timerbox);
         this.setTextScore(String.valueOf(vocabGame.getScore()));
@@ -65,7 +69,7 @@ public class VocabViewController {
             int countAnswer = vocabGame.getRandom();
             String correctAnswer = questionAnswer.getAnswer(index);
             String selectedAnswer = "";
-            if (countAnswer %2 == 1) {
+            if (countAnswer % 2 == 1) {
                 this.answerA.setText(correctAnswer);
                 this.answerB.setText(questionAnswer.getrandomAnswer());
             } else {

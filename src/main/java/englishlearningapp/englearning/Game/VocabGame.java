@@ -9,7 +9,9 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Circle;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -106,6 +108,11 @@ public class VocabGame extends Game {
     }
 
     @Override
+    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber) {
+
+    }
+
+    @Override
     public void handleGame() {
     }
 
@@ -134,6 +141,7 @@ public class VocabGame extends Game {
                     Platform.runLater(() -> {
                         try {
                             AlertController.alertEndGame(event,"YOU LOSE");
+
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -148,6 +156,16 @@ public class VocabGame extends Game {
         }
         currentTask = timerTask;
         gameTimer.excuteTask(currentTask);
+    }
+
+    @Override
+    public void playTimer(KeyEvent event, TextArea textArea) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+    @Override
+    public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
     }
 
 

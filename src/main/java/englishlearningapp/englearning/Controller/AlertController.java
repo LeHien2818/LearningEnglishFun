@@ -75,10 +75,10 @@ public class AlertController {
         alert.setHeaderText(null);
         alert.setContentText("Do you want exit");
         ButtonType buttonTypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
-        // Tạo nút NO
         ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.NO);
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
         Optional<ButtonType> result = alert.showAndWait();
+
         if (result.isPresent() && result.get() == buttonTypeYes) {
             SceneController.switchScene(event, SceneController.gameRoot);
         } else {
@@ -110,42 +110,32 @@ public class AlertController {
         alert.setHeaderText(null);
         alert.setContentText(text);
         ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
-        alert.setOnCloseRequest(Event::consume);
         alert.getButtonTypes().setAll(buttonTypeYes);
         Optional<ButtonType> result = alert.showAndWait();
-     //   result.isPresent() &&
-        if (result.get() == buttonTypeYes) {
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            alert.close();
             SceneController.switchScene(eventkey, SceneController.gameRoot);
         }
     }
     public static void alertEndGame(ActionEvent eventkey, String text) throws IOException {
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
         alert.setContentText(text);
-        Optional<ButtonType> result = alert.showAndWait();
-        SceneController.switchScene(eventkey, SceneController.gameRoot);
-    }
-    public static void alertStartGame(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText(null);
-        alert.setContentText("Introduction");
         ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
-        alert.setOnCloseRequest(Event::consume);
         alert.getButtonTypes().setAll(buttonTypeYes);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == buttonTypeYes) {
-
+            alert.close();
+            SceneController.switchScene(eventkey, SceneController.gameRoot);
         }
+
     }
 
     public static void showCustomPopUp(String fxmlFile, String styleClass) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(App.class.getResource("Views/" + fxmlFile));
         DialogPane customDialog = loader.load();
-
         customDialog.getStylesheets().add(App.class.getResource("src/Style.css").toString());
         customDialog.getStyleClass().add(styleClass);
         Dialog<ButtonType> dialog = new Dialog<>();

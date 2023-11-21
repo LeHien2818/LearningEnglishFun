@@ -115,7 +115,6 @@ public class GameViewController {
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.connectRoot);
-
                 Platform.runLater(() -> {
                     try {
                         AlertController.showCustomPopUp("InstructionConnectView.fxml", "instruction-connect");
