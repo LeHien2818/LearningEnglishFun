@@ -132,10 +132,7 @@ public class ConnectController extends Game {
                 } else {
                     Platform.runLater(() -> {
                         try {
-
                             resetGame();
-
-
                             AlertController.alertEndGame(eventkey,"YOU LOSE");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -159,6 +156,11 @@ public class ConnectController extends Game {
 
     @Override
     public void playTimer(ActionEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+    @Override
+    public void playTimer(ActionEvent event, TextArea textArea) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
     }
 

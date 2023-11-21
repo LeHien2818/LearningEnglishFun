@@ -1,8 +1,10 @@
 package englishlearningapp.englearning.Game;
 
+import englishlearningapp.englearning.Controller.AlertController;
 import englishlearningapp.englearning.Controller.SceneController;
 import englishlearningapp.englearning.questionGame.GameTimer;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.Button;
@@ -15,13 +17,26 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
 
 public class VocabGame extends Game {
-    private GameTimer gameTimer = new GameTimer();
+    private GameTimer gameTimer = new GameTimer(10);
     private int score = 0;
     private int quesnumber = 0;
     private Random random = new Random();
     private int randomIndex;
+    private TimerTask currentTask;
+
+    public GameTimer getGameTimer() {
+        return gameTimer;
+    }
+
+    public void setGameTimer(GameTimer gameTimer) {
+        this.gameTimer = gameTimer;
+    }
+
+    public VocabGame() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    }
 
     public int getRandom() {
         return this.randomIndex;
@@ -87,6 +102,7 @@ public class VocabGame extends Game {
         SceneController.switchScene(event, SceneController.gameRoot);
         this.setScore(0);
         this.setQuesNumber(0);
+        currentTask.cancel();
     }
 
     @Override
@@ -102,7 +118,41 @@ public class VocabGame extends Game {
     }
 
     @Override
-    public void playTimer(ActionEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void playTimer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    }
+
+    @Override
+    public void playTimer(ActionEvent event, TextArea textArea) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        final int[] counter = {gameTimer.getCounter()};
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if(counter[0] >= 0) {
+                    textArea.setText(String.valueOf(counter[0]));
+                    counter[0]--;
+                } else {
+                    Platform.runLater(() -> {
+                        try {
+                            AlertController.alertEndGame(event,"YOU LOSE");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        resetGame();
+                    });
+                    gameTimer.getTimer().cancel();
+                }
+            }
+        };
+        if(currentTask != null) {
+            currentTask.cancel();
+        }
+        currentTask = timerTask;
+        gameTimer.excuteTask(currentTask);
+    }
+
+
+    public void stop() {
+
     }
 
     @Override

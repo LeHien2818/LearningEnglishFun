@@ -12,7 +12,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 public class VocabViewController {
+
+    @FXML
+    private MediaView leftMedia, rightMedia;
+    private Media media;
+    private MediaPlayer mediaPlayer;
+    @FXML
+    private TextArea timerbox;
     @FXML
     private TextArea questionVocab;
     @FXML
@@ -23,6 +37,10 @@ public class VocabViewController {
     @FXML
     private TextArea Scoregame = new TextArea();
     private VocabGame vocabGame = new VocabGame();
+
+    public VocabViewController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    }
+
     public void setTextScore(String s) {
         this.Scoregame.setText(s);
     }
@@ -33,7 +51,8 @@ public class VocabViewController {
     public void initialize() {
         vocabGame.loadRandomQuestion(questionVocab, answerA, answerB);
     }
-    public void clickAnswer(ActionEvent event) throws IOException {
+    public void clickAnswer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        vocabGame.playTimer(event, timerbox);
         this.setTextScore(String.valueOf(vocabGame.getScore()));
         int questionnumber = vocabGame.getQuesNumber();
         int scoretmp = vocabGame.getScore();
@@ -81,5 +100,6 @@ public class VocabViewController {
         String s = "vocab";
         vocabGame.resetGame(event);
         setTextScore("");
+        timerbox.clear();
     }
 }

@@ -2,9 +2,11 @@ package englishlearningapp.englearning.Game;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import java.awt.*;
 import java.io.IOException;
 
 public abstract class Game implements Initializable {
@@ -19,6 +21,7 @@ public abstract class Game implements Initializable {
     public abstract void handleGame(KeyEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException ;
 
     public abstract void playTimer(KeyEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException;
-    public abstract void playTimer(ActionEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException;
+    public abstract void playTimer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException;
+    public abstract void playTimer(ActionEvent event, TextArea textArea) throws IOException, UnsupportedAudioFileException, LineUnavailableException;
 
 }

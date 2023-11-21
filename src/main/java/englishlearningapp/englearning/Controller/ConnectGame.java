@@ -3,6 +3,7 @@ package englishlearningapp.englearning.Controller;
 import englishlearningapp.englearning.Game.Game;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -45,6 +46,11 @@ public class ConnectGame extends Game {
 
     @Override
     public void playTimer(ActionEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+    @Override
+    public void playTimer(ActionEvent event, TextArea textArea) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
     }
 

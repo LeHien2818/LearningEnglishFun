@@ -9,6 +9,8 @@ module englishlearningapp.englearning {
     requires java.desktop;
     requires AnimateFX;
     requires javafx.web;
+    requires javafx.base;
+    requires javafx.media;
 
     opens englishlearningapp.englearning to javafx.fxml;
     exports englishlearningapp.englearning;

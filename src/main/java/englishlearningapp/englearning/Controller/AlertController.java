@@ -121,6 +121,15 @@ public class AlertController {
             SceneController.switchScene(eventkey, SceneController.gameRoot);
         }
     }
+    public static void alertEndGame(ActionEvent eventkey, String text) throws IOException {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        Optional<ButtonType> result = alert.showAndWait();
+        SceneController.switchScene(eventkey, SceneController.gameRoot);
+    }
     public static void alertStartGame(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
