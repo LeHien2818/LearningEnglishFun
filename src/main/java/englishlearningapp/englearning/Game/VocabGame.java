@@ -88,6 +88,7 @@ public class VocabGame extends Game {
             SceneController.switchScene(event, SceneController.gameRoot);
             this.setScore(0);
             this.setQuesNumber(0);
+            scoreGame.clear();
         }
     }
     @Override
@@ -103,7 +104,9 @@ public class VocabGame extends Game {
         SceneController.switchScene(event, SceneController.gameRoot);
         this.setScore(0);
         this.setQuesNumber(0);
-        currentTask.cancel();
+        if(currentTask != null) {
+            currentTask.cancel();
+        }
     }
 
     @Override
@@ -138,9 +141,9 @@ public class VocabGame extends Game {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-                        resetGame();
                     });
-                    gameTimer.getTimer().cancel();
+                    currentTask.cancel();
+                    resetGame();
                 }
             }
         };

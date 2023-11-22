@@ -5,6 +5,7 @@
 
 package englishlearningapp.englearning.Controller;
 
+import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.Game.VocabGame;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class VocabViewController {
     private Button answerA;
     @FXML
     private Button answerB;
-    private int score = 0;
+   // private int score = 0;
     @FXML
     private TextArea Scoregame = new TextArea();
     private VocabGame vocabGame = new VocabGame();
@@ -49,7 +50,7 @@ public class VocabViewController {
     }
 
     public int getScore() {
-        return this.score;
+        return vocabGame.getScore();
     }
     public void initialize() throws SQLException {
         Thread th = new Thread(new Task<Void>() {
@@ -92,8 +93,13 @@ public class VocabViewController {
             }
 
             if (selectedAnswer.equals(correctAnswer)) {
+                init(App.class.getResource("src/media/congratulate.mp4").toString());
+                playMedia();
                 ++scoretmp;
                 vocabGame.setScore(scoretmp);
+            } else {
+                init(App.class.getResource("src/media/wrong.mp4").toString());
+                playMedia();
             }
 
             SceneController.switchSceneNormal(event, SceneController.vocabRoot);
@@ -111,7 +117,18 @@ public class VocabViewController {
     public void onExit(ActionEvent event) throws IOException {
         String s = "vocab";
         vocabGame.resetGame(event);
+        Scoregame.clear();
+        vocabGame.setScore(0);
         setTextScore("");
         timerbox.clear();
+    }
+
+    public void init(String file) {
+        media = new Media(file);
+        mediaPlayer = new MediaPlayer(media);
+        leftMedia.setMediaPlayer(mediaPlayer);
+    }
+    public void playMedia() {
+        mediaPlayer.play();
     }
 }
