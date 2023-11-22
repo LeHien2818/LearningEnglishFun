@@ -231,9 +231,9 @@
     -fx-background-color: transparent;
 }
 /*webview intruct*/
-.instruction-connect {
+/*.instruction-connect {
     -fx-background-color: linear-gradient(to right, yellow, magenta);
-}
+}*/
 
 /*CSS connect game*/
 .buttonConnect {

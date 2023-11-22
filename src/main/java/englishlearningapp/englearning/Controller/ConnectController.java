@@ -76,7 +76,7 @@ public class ConnectController   {
                     Image image = new Image(App.class.getResource("src/image/" + s).toString());
                     imageWay.setImage(image);
                 } else if (botAnswer == null) {
-                    connectGame.resetGame(playerAnswerTextField, answerTextArea, timerNumber, score);
+                    connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score,c1);
                     connectGame.stopTimer();
                     String point = score.getText();
                     connectGame.gmt.stopAudio();
@@ -94,13 +94,8 @@ public class ConnectController   {
         }
     }
 
-    public void clickExitConnect(ActionEvent event) throws IOException {
-        AlertController.alertExit(event);
-        connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score, c1);
-        connectGame.gmt.stopAudio();
-        score.setText(String.valueOf(0));
-        answerTextArea.setText("Word Spawn");
-        playerAnswerTextField.setText("");
+    public void clickExitConnect(ActionEvent event) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
+        AlertController.alertExit(event,playerAnswerTextField,answerTextArea,timerNumber,score, c1);
     }
 
     public void initialize() throws SQLException {

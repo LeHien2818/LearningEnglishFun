@@ -48,26 +48,6 @@ public class ConnectGame extends Game {
 
 
     @Override
-    public void startGame() throws IOException {
-
-    }
-
-    @Override
-    public void resetGame() {
-
-    }
-
-    @Override
-    public void resetGame(Event event, Button answerA, Button answerB, TextArea questionvocab) throws IOException {
-    }
-
-    @Override
-    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score) {
-
-    }
-
-
-    @Override
     public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) {
         playerAnswerTextField.clear();
         stopTimer();
@@ -85,12 +65,6 @@ public class ConnectGame extends Game {
             currentTask = null;
         }
     }
-
-    @Override
-    public void playTimer(ActionEvent event, TextArea textArea, TextArea score) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
-    }
-
 
     @Override
     public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1, TextField score, Button botAnswer, TextField playanswer) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
@@ -134,6 +108,16 @@ public class ConnectGame extends Game {
 
     }
 
+    @Override
+    public void playTimer(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+    @Override
+    public void resetGame(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) {
+
+    }
+
     public static void setRotate(Circle c1, boolean reverse, int angle, int duration) {
         RotateTransition rt = new RotateTransition(Duration.seconds(8), c1);
         rt.setAutoReverse(reverse);
@@ -158,7 +142,4 @@ public class ConnectGame extends Game {
 
     }
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 }
