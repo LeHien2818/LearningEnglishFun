@@ -83,19 +83,16 @@ public class VocabGame extends Game {
     }
 
     @Override
-    public void resetGame(Event event) throws IOException {
-
-    }
-
-    @Override
     public void resetGame(Event event, Button answerA, Button answerB, TextArea questionvocab) throws IOException {
         SceneController.switchScene(event, SceneController.gameRoot);
         this.setScore(0);
         this.setQuesNumber(0);
         currentTask.cancel();
-//        answerB.setText("");
-//        answerA.setText("");
-//        questionvocab.clear();
+    }
+
+    @Override
+    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score) {
+
     }
 
     public boolean checkCorrect(TextArea questionVocab, Button answerA){
@@ -106,62 +103,7 @@ public class VocabGame extends Game {
         }
         else return false;
     }
-    @Override
-    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber) {
 
-    }
-
-    @Override
-    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score) {
-
-    }
-
-    @Override
-    public void handleGame() {
-    }
-
-    @Override
-    public void handleGame(KeyEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-    }
-
-    @Override
-    public void playTimer(KeyEvent eventkey) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-    }
-
-    @Override
-    public void playTimer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-    }
-
-    @Override
-    public void playTimer(KeyEvent event, TextArea textArea, TextArea score) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-        final int[] counter = {gameTimer.getCounter()};
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                if (counter[0] >= 0) {
-                    textArea.setText(String.valueOf(counter[0]));
-                    counter[0]--;
-                } else {
-                    Platform.runLater(() -> {
-                        try {
-                            String point = score.getText();
-                            AlertController.alertEndGame(event, "YOU LOSE", point);
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        resetGame();
-                    });
-                    gameTimer.getTimer().cancel();
-                }
-            }
-        };
-        if (currentTask != null) {
-            currentTask.cancel();
-        }
-        currentTask = timerTask;
-        gameTimer.excuteTask(currentTask);
-    }
     public void loadRandomQuestion(TextArea questionVocab, Button answerA, Button answerB, TextArea ScoreGame) throws SQLException {
 
         ScoreGame.setText(String.valueOf(0));
@@ -205,7 +147,8 @@ public class VocabGame extends Game {
                         }
 
                     });
-                  currentTask.cancel();   resetGame();
+                  currentTask.cancel();
+                  resetGame();
                 }
             }
         };
@@ -216,29 +159,11 @@ public class VocabGame extends Game {
         gameTimer.excuteTask(currentTask);
     }
 
+
     @Override
-    public void playTimer(ActionEvent event, TextArea textArea) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1, TextField score, Button botAnswer, TextField playanswer) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
     }
 
-    @Override
-    public void playTimer(KeyEvent event, TextArea textArea) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
-    }
-
-    @Override
-    public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
-    }
-
-    @Override
-    public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1, TextField score) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
-    }
-
-    @Override
-    public void playTimer(java.awt.event.KeyEvent event, TextArea timerbox, TextArea scoregame) {
-
-    }
 
 }

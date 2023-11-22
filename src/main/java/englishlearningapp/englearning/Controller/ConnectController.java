@@ -71,7 +71,7 @@ public class ConnectController   {
                     Score ++;
                     score.setText(String.valueOf(Score));
                     connectGame.EnteredWord.add(botAnswer);
-                    connectGame.playTimer(event, timerNumber,c1, score);
+                    connectGame.playTimer(event, timerNumber,c1, score, answerTextArea,playerAnswerTextField);
                     String s = "Back.png";
                     Image image = new Image(App.class.getResource("src/image/" + s).toString());
                     imageWay.setImage(image);
@@ -79,6 +79,10 @@ public class ConnectController   {
                     connectGame.resetGame(playerAnswerTextField, answerTextArea, timerNumber, score);
                     connectGame.stopTimer();
                     String point = score.getText();
+                    connectGame.gmt.stopAudio();
+                    score.setText(String.valueOf(0));
+                    answerTextArea.setText("Word Spawn");
+                    playerAnswerTextField.setText("");
                     AlertController.alertEndGame(event, "You Win", point);
                 }
                 playerAnswerTextField.clear();
@@ -91,9 +95,13 @@ public class ConnectController   {
     }
 
     public void clickExitConnect(ActionEvent event) throws IOException {
-        connectGame.resetGame();
-        connectGame.stopTimer();
         AlertController.alertExit(event);
+
+        connectGame.resetGame();
+        connectGame.gmt.stopAudio();
+        score.setText(String.valueOf(0));
+        answerTextArea.setText("Word Spawn");
+        playerAnswerTextField.setText("");
     }
 
     public void initialize() throws SQLException {

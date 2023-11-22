@@ -11,6 +11,7 @@ import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -36,6 +38,8 @@ public class VocabViewController {
     private Button answerA;
     @FXML
     private Button answerB;
+    @FXML
+    private Button  handleGame;
 
     @FXML
     private TextArea Scoregame = new TextArea();
@@ -48,7 +52,7 @@ public class VocabViewController {
     @FXML
     public void handleAnswerA(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
         System.out.println("answerA");
-        if(  vocabGame.checkCorrect(questionVocab, answerA)) {
+        if (vocabGame.checkCorrect(questionVocab, answerA)) {
             int scoretmp = vocabGame.getScore();
             vocabGame.setScore(scoretmp + 1);
             Scoregame.setText(String.valueOf(vocabGame.getScore()));
@@ -56,10 +60,11 @@ public class VocabViewController {
         handleInformation(event);
 
     }
+
     @FXML
     public void handleAnswerB(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
         System.out.println("answerB");
-        if(  vocabGame.checkCorrect(questionVocab, answerB)) {
+        if (vocabGame.checkCorrect(questionVocab, answerB)) {
             int scoretmp = vocabGame.getScore();
             vocabGame.setScore(scoretmp + 1);
             Scoregame.setText(String.valueOf(vocabGame.getScore()));
@@ -72,55 +77,55 @@ public class VocabViewController {
         Thread th = new Thread(new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB,Scoregame);
+                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB, Scoregame);
                 return null;
             }
         });
         th.setDaemon(true);
         th.start();
     }
+
     public void handleInformation(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
-        vocabGame.playTimer(event,timerbox,Scoregame);
+        vocabGame.playTimer(event, timerbox, Scoregame);
         Scoregame.setText(String.valueOf(vocabGame.getScore()));
         int questionnumber = vocabGame.getQuesNumber();
-        if (questionnumber <= 15) {
+        vocabGame.setRandom(950);
+        int index = vocabGame.getRandom();
+        String question = questionAnswer.getQuestion(index);
+        questionVocab.setText(question);
+        String correctAnswer = questionAnswer.getAnswer(index);
+        vocabGame.setRandom(950);
+        int countAnswer = vocabGame.getRandom();
+        String answerRandom = questionAnswer.getrandomAnswer(index);
 
-            vocabGame.setRandom(950);
-            int index = vocabGame.getRandom();
-            String question = questionAnswer.getQuestion(index);
-            questionVocab.setText(question);
-            String correctAnswer = questionAnswer.getAnswer(index);
-
-            vocabGame.setRandom(950);
-            int countAnswer = vocabGame.getRandom();
-            String answerRandom = questionAnswer.getrandomAnswer(index);
-
-            if (countAnswer % 2 == 1) {
-                answerA.setText(correctAnswer);
-                answerB.setText(answerRandom);
-            } else {
-                answerA.setText(answerRandom);
-                answerB.setText(correctAnswer);
-            }
-
-            questionnumber++;
-            vocabGame.setQuesNumber(questionnumber);
-
+        if (countAnswer % 2 == 1) {
+            answerA.setText(correctAnswer);
+            answerB.setText(answerRandom);
         } else {
-            vocabGame.endGame(event, Scoregame);
-            Scoregame.setText(String.valueOf(0));
+            answerA.setText(answerRandom);
+            answerB.setText(correctAnswer);
         }
+        questionnumber++;
+        vocabGame.setQuesNumber(questionnumber);
 
     }
 
+
     public void onExit(ActionEvent event) throws IOException {
-        String s = "vocab";
-        vocabGame.resetGame(event, answerA, answerB,questionVocab );
+        vocabGame.resetGame(event, answerA, answerB, questionVocab);
         Scoregame.setText(String.valueOf(0));
         vocabGame.setScore(0);
         answerA.setText("");
         answerB.setText("");
         questionVocab.clear();
         timerbox.clear();
+        handleGame.setDisable(true);
     }
+    public void clickStart(ActionEvent event) {
+        handleGame.setOnAction(e -> {
+            handleGame.setDisable(false);
+        });
+        System.out.println("click");
+    }
+
 }
