@@ -30,11 +30,11 @@
                <font>
                   <Font size="18.0" />
                </font></TextArea>
-                <Button fx:id="answerA" layoutX="94.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleAnswerA" prefHeight="42.0" prefWidth="233.0" styleClass="vocab-btn" text="Answer A">
+                <Button fx:id="answerA" layoutX="94.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleAnswerA" prefHeight="42.0" prefWidth="233.0" styleClass="vocab-btn" disable="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font></Button>
-                <Button fx:id="answerB" layoutX="94.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleAnswerB" prefHeight="42.0" prefWidth="233.0" styleClass="vocab-btn" text="Answer B">
+                <Button fx:id="answerB" layoutX="94.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleAnswerB" prefHeight="42.0" prefWidth="233.0" styleClass="vocab-btn" disable="true">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>

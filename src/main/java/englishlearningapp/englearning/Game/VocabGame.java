@@ -30,7 +30,6 @@ public class VocabGame extends Game {
         return gameTimer;
     }
 
-    boolean checkRuner = true;
 
     public void setGameTimer(GameTimer gameTimer) {
         this.gameTimer = gameTimer;
@@ -113,7 +112,7 @@ public class VocabGame extends Game {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                if (checkRuner && counter[0] >= 0) {
+                if ( counter[0] >= 0) {
                     timerbox.setText(String.valueOf(counter[0]));
                     counter[0]--;
                 } else {
@@ -132,6 +131,7 @@ public class VocabGame extends Game {
         };
         if (currentTask != null) {
             currentTask.cancel();
+
 
         }
         currentTask = timerTask;
@@ -168,10 +168,11 @@ public class VocabGame extends Game {
         answerB.setText("");
         answerB.setDisable(true);
         questionVocab.clear();
-        scoregame.clear();
+        scoregame.setText("");
+        setScore(0);
         timerbox.clear();
         gameTimer.stopAudio();
         stopTimer();
-        checkRuner = false;
+
     }
 }

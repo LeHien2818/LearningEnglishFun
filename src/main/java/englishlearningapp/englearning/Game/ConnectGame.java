@@ -121,8 +121,9 @@ public class ConnectGame extends Game {
                             stopAudio();
                             String point = score.getText();
                             resetGame(playanswer, botAnswer, timerNumber, score,c1);
+
                             playAudio("src/sounds/explosion.wav");
-                            AlertController.alertEndGame(eventkey, "YOU LOSE", point);
+                            AlertController.alertEndGame(eventkey, "The number of bombs that you defused: ", point);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         } catch (UnsupportedAudioFileException e) {

@@ -10,12 +10,14 @@ import englishlearningapp.englearning.Game.VocabGame;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 
 import java.io.IOException;
+import java.sql.PseudoColumnUsage;
 import java.sql.SQLException;
 
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -63,6 +65,9 @@ public class VocabViewController {
             init(App.class.getResource("src/media/wrong.mp4").toString());
             playMedia();
             vocabGame.playAudio("src/sounds/incorrectSound.wav");
+            int scoretmp = vocabGame.getScore();
+            vocabGame.setScore(scoretmp - 1);
+            Scoregame.setText(String.valueOf(vocabGame.getScore()));
         }
         handleInformation(event);
 
@@ -82,23 +87,26 @@ public class VocabViewController {
             init(App.class.getResource("src/media/wrong.mp4").toString());
             playMedia();
             vocabGame.playAudio("src/sounds/incorrectSound.wav");
+            int scoretmp = vocabGame.getScore();
+            vocabGame.setScore(scoretmp - 1);
+            Scoregame.setText(String.valueOf(vocabGame.getScore()));
         }
 
         handleInformation(event);
 
     }
 
-    public void initialize() throws SQLException {
-        Thread th = new Thread(new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB, Scoregame);
-                return null;
-            }
-        });
-        th.setDaemon(true);
-        th.start();
-    }
+//    public void initialize() throws SQLException {
+//        Thread th = new Thread(new Task<Void>() {
+//            @Override
+//            protected Void call() throws Exception {
+//                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB, Scoregame);
+//                return null;
+//            }
+//        });
+//        th.setDaemon(true);
+//        th.start();
+//    }
 
     public void handleInformation(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
         vocabGame.playTimer(event, answerA, answerB,questionVocab,Scoregame,timerbox,handleGame);
@@ -127,11 +135,12 @@ public class VocabViewController {
 
 
     public void onExit(ActionEvent event) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
-        AlertController.alertExit(event,answerA,answerB,questionVocab,Scoregame,timerbox,handleGame);
+         vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
+         SceneController.switchScene(event, SceneController.gameRoot);
     }
 
-    public void clickStart(ActionEvent event) {
-
+    public void clickStart(ActionEvent event) throws SQLException {
+        vocabGame.loadRandomQuestion(questionVocab,answerA,answerB,Scoregame);
         handleGame.setDisable(true);
         answerA.setDisable(false);
         answerB.setDisable(false);
