@@ -2,6 +2,7 @@ package englishlearningapp.englearning.questionGame;
 
 import englishlearningapp.englearning.JDBCConnection.JDBC_Connect;
 import englishlearningapp.englearning.JDBCConnection.JDBC_RetrieveData;
+import javafx.concurrent.Task;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Question_answer_vocab {
     private List<String> ipa;
 
     public Question_answer_vocab() throws SQLException {
+
         JDBC_RetrieveData.retrieveQuestionWords();
         JDBC_RetrieveData.retrieveQuestionIPA();
         JDBC_RetrieveData.retrieveQuestionMeaning();
@@ -41,7 +43,7 @@ public class Question_answer_vocab {
     public void setRandom(int size) {
 
         randomIndex = random.nextInt(size - 1) + 1;
-        while(randomIndex <=0 || randomIndex >=950) {
+        while (randomIndex <= 0 || randomIndex >= 950) {
             randomIndex = random.nextInt(size - 1) + 1;
         }
     }
@@ -58,9 +60,10 @@ public class Question_answer_vocab {
     public String getAnswer(int index) {
         return answer.get(index);
     }
-public String getAnswer(String s) {
-        for(int i = 0; i < question.size(); i++) {
-            if(question.get(i).equals(s)) {
+
+    public String getAnswer(String s) {
+        for (int i = 0; i < question.size(); i++) {
+            if (question.get(i).equals(s)) {
                 return getAnswer(i);
             }
         }

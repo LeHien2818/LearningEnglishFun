@@ -23,6 +23,9 @@ public class GameViewController {
     public ImageView vocabPic;
     public ImageView grammarPic;
     public ImageView linkingPic;
+    public Button vocabBtn;
+    public Button grammarBtn;
+    public Button connectBtn;
     @FXML
     private TextArea Scoregame = new TextArea();
     private int score = 0;
@@ -93,9 +96,11 @@ public class GameViewController {
     public void clickVocab(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(vocabPic);
         flp.play();
+        vocabBtn.setDisable(true);
         flp.setOnFinished(() -> {
             try {
                 SceneController.switchScene(event, SceneController.vocabRoot);
+                vocabBtn.setDisable(false);
                 Platform.runLater(() -> {
                     try {
                         AlertController.showCustomPopUp("IntrucstionVocab.fxml", "pane-instruction");
@@ -112,8 +117,10 @@ public class GameViewController {
     public void clickConnect(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(linkingPic);
         flp.play();
+        connectBtn.setDisable(true);
         flp.setOnFinished(() -> {
             try {
+                connectBtn.setDisable(false);
                 SceneController.switchScene(event, SceneController.connectRoot);
                 Platform.runLater(() -> {
                     try {
@@ -134,8 +141,10 @@ public class GameViewController {
     public void clickGrammar(ActionEvent event) throws IOException, InterruptedException {
         FlipPageAnimation flp = new FlipPageAnimation(grammarPic);
         flp.play();
+        grammarBtn.setDisable(true);
         flp.setOnFinished(() -> {
             try {
+                grammarBtn.setDisable(false);
                 SceneController.switchScene(event, SceneController.grammarRoot);
             } catch (IOException e) {
                 e.printStackTrace();

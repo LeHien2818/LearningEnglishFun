@@ -61,15 +61,22 @@ public class ConnectGame extends Game {
     public void resetGame(Event event, Button answerA, Button answerB, TextArea questionvocab) throws IOException {
     }
 
-
     @Override
     public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score) {
+
+    }
+
+
+    @Override
+    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) {
         playerAnswerTextField.clear();
+        stopTimer();
         answerTextArea.setText("Word Spwan");
         timerNumber.clear();
         score.setText(String.valueOf(0));
         EnteredWord.clear();
         gmt.stopAudio();
+        setRotate(c1,false,360,0);
     }
 
     public void stopTimer() {
@@ -103,7 +110,7 @@ public class ConnectGame extends Game {
                     Platform.runLater(() -> {
                         try {
                             String point = score.getText();
-                            resetGame(playanswer, botAnswer, timerNumber, score);
+                            resetGame(playanswer, botAnswer, timerNumber, score,c1);
                             AlertController.alertEndGame(eventkey, "YOU LOSE", point);
                         } catch (IOException e) {
                             throw new RuntimeException(e);

@@ -39,7 +39,6 @@ public class GameTimer {
         timer.scheduleAtFixedRate(timerTask, 0, 1000);
     }
     public void playAudio() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        //File music = new File();
         AudioInputStream ad = AudioSystem.getAudioInputStream(App.class.getResource("src/sounds/mixkit-alarm-clock-beep-988.wav"));
         clip = AudioSystem.getClip();
         clip.open(ad);

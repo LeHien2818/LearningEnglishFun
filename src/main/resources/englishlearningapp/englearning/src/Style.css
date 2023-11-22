@@ -235,8 +235,6 @@
     -fx-background-color: linear-gradient(to right, yellow, magenta);
 }
 
-
-
 /*CSS connect game*/
 .buttonConnect {
     -fx-background-color: transparent;
@@ -269,7 +267,7 @@
     -fx-background-radius: 5;
     -fx-border-color: transparent;
     -fx-text-fill: white;
-    -fx-font-size: 3vw;*/
+    -fx-font-size: 3vw;
     -fx-padding: 1vw 2vw;
 
     -fx-alignment: center;
@@ -287,3 +285,82 @@
     -fx-text-fill: white;
     -fx-border-color: #3498db;
 }
+
+/*vocabview*/
+.timer-rectagle .text {
+    -fx-text-alignment: center;
+    -fx-translate-y: 5;
+}
+.timer-rectagle {
+    -fx-background-color: transparent;
+    -fx-text-fill: maroon;
+}
+.timer-rectagle .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+.timer-rectagle .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+.timer-rectagle .scroll-pane{
+    -fx-background-color: transparent;
+}
+
+.question-box .text {
+    -fx-text-alignment: center;
+}
+.question-box {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+}
+.question-box .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+.question-box .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+.question-box .scroll-pane{
+    -fx-background-color: transparent;
+}
+
+.score-box .text{
+    -fx-text-alignment: center;
+}
+.score-box {
+    -fx-background-color: transparent;
+}
+.score-box .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+.score-box .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+.score-box .scroll-pane{
+    -fx-background-color: transparent;
+}
+
+.vocab-btn {
+    -fx-background-color: #4CB5E2;
+    -fx-background-radius: 20;
+    -fx-opacity: 0.8;
+    -fx-text-fill: white;
+}
+.vocab-btn:hover {
+    -fx-background-color: white;
+    -fx-opacity: 0.8;
+    -fx-text-fill: #4CB5E2;
+    -fx-cursor: hand;
+}
+
+.vocab-exit {
+    -fx-background-radius: 10;
+    -fx-background-color: maroon;
+    -fx-text-fill: white;
+}
+.vocab-exit:hover{
+    -fx-cursor: hand;
+    -fx-effect:dropshadow(one-pass-box,white,8,0.0,2,0);
+}
+

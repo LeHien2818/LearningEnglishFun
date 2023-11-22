@@ -1,5 +1,6 @@
 package englishlearningapp.englearning.Game;
 
+import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.Controller.AlertController;
 import englishlearningapp.englearning.Controller.SceneController;
 import englishlearningapp.englearning.questionGame.GameTimer;
@@ -13,14 +14,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.TimerTask;
 
 public class VocabGame extends Game {
+    private Clip clip;
     private GameTimer gameTimer = new GameTimer(10);
     private int score = 0;
     private int quesnumber = 0;
@@ -67,12 +68,15 @@ public class VocabGame extends Game {
     Question_answer_vocab questionAnswer = new Question_answer_vocab();
 
 
-    public void endGame(ActionEvent event,  TextArea scoreGame) throws IOException {
-            setScore(0);
-            setQuesNumber(0);
-            scoreGame.setText(String.valueOf(0));
-            SceneController.switchScene(event, SceneController.gameRoot);
+    public void endGame(ActionEvent event, TextArea scoreGame) throws IOException {
+
+        scoreGame.setText(String.valueOf(0));
+        SceneController.switchScene(event, SceneController.gameRoot);
+        this.setScore(0);
+        this.setQuesNumber(0);
+        scoreGame.clear();
     }
+
 
     @Override
     public void startGame() throws IOException {
@@ -87,7 +91,9 @@ public class VocabGame extends Game {
         SceneController.switchScene(event, SceneController.gameRoot);
         this.setScore(0);
         this.setQuesNumber(0);
-        currentTask.cancel();
+        if (currentTask != null) {
+            currentTask.cancel();
+        }
     }
 
     @Override
@@ -95,13 +101,17 @@ public class VocabGame extends Game {
 
     }
 
-    public boolean checkCorrect(TextArea questionVocab, Button answerA){
+    @Override
+    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) {
+
+    }
+
+    public boolean checkCorrect(TextArea questionVocab, Button answerA) {
         String question = questionVocab.getText();
         String correctAnswer = questionAnswer.getAnswer(question);
-        if(answerA.getText().equals(correctAnswer)) {
-           return true;
-        }
-        else return false;
+        if (answerA.getText().equals(correctAnswer)) {
+            return true;
+        } else return false;
     }
 
     public void loadRandomQuestion(TextArea questionVocab, Button answerA, Button answerB, TextArea ScoreGame) throws SQLException {
@@ -145,10 +155,9 @@ public class VocabGame extends Game {
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
-
                     });
-                  currentTask.cancel();
-                  resetGame();
+                    currentTask.cancel();
+                    resetGame();
                 }
             }
         };
@@ -159,11 +168,24 @@ public class VocabGame extends Game {
         gameTimer.excuteTask(currentTask);
     }
 
-
     @Override
     public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1, TextField score, Button botAnswer, TextField playanswer) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
     }
 
+    public void playAudio(String relativeUrl) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        AudioInputStream audioInputStream
+                = AudioSystem.getAudioInputStream(App.class.getResource(relativeUrl));
+        clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
+    }
+
+    public void stopAudio() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+            clip.close();
+        }
+    }
 
 }

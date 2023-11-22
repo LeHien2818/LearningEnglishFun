@@ -96,8 +96,7 @@ public class ConnectController   {
 
     public void clickExitConnect(ActionEvent event) throws IOException {
         AlertController.alertExit(event);
-
-        connectGame.resetGame();
+        connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score, c1);
         connectGame.gmt.stopAudio();
         score.setText(String.valueOf(0));
         answerTextArea.setText("Word Spawn");
