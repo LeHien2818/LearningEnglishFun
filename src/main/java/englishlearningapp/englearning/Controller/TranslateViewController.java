@@ -2,7 +2,9 @@ package englishlearningapp.englearning.Controller;
 
 import animatefx.animation.BounceIn;
 import animatefx.animation.ZoomOut;
+import englishlearningapp.englearning.API_Connection.TranslateAPIConnection;
 import englishlearningapp.englearning.API_Connection.TranslateTask;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -43,15 +45,21 @@ public class TranslateViewController{
     public void onTranslate() throws Exception {
         inputText.setWrapText(true);
         outputText.setWrapText(true);
-        String translation = inputText.getText();
-        TranslateTask task = new TranslateTask(inputLang, outputLang, translateBtn, translation);
-        Thread th = new Thread(task);
-        th.setDaemon(true);
-        th.start();
-        task.setOnSucceeded(event -> {
-            res = task.getValue();
-            outputText.setText(res);
-        });
+        if(!TranslateAPIConnection.isIsConnected()) {
+            Platform.runLater(() -> {
+                AlertController.showNotConnectInternet();
+            });
+        } else {
+            String translation = inputText.getText();
+            TranslateTask task = new TranslateTask(inputLang, outputLang, translateBtn, translation);
+            Thread th = new Thread(task);
+            th.setDaemon(true);
+            th.start();
+            task.setOnSucceeded(event -> {
+                res = task.getValue();
+                outputText.setText(res);
+            });
+        }
     }
 
     public void switchLanguage() {

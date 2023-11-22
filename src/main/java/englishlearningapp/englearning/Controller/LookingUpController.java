@@ -5,7 +5,9 @@ import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.DictionaryPackage.Dictionary;
 import englishlearningapp.englearning.DictionaryPackage.Word;
 import englishlearningapp.englearning.JDBCConnection.DeleteTask;
+import englishlearningapp.englearning.TextToSpeech.TTS;
 import englishlearningapp.englearning.TextToSpeech.TexttoSpeechTask;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +28,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.Timer;
 
 public class LookingUpController {
     public Button searchBtn;
@@ -155,20 +158,27 @@ public class LookingUpController {
             }
             try {
                 speakerContainer.setOnMouseClicked((MouseEvent mevent) -> {
-                    if (mevent.getClickCount() == 1) {
-                        TexttoSpeechTask task = new TexttoSpeechTask(wordSelected);
-                        Thread th = new Thread(task);
-                        th.setDaemon(true);
-                        speakerIcon.setDisable(true);
-                        /*task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                            @Override
-                            public void handle(WorkerStateEvent workerStateEvent) {
-                                speakerIcon.setDisable(false);
+                        if (mevent.getClickCount() == 1) {
+                            if(TTS.isIsConnected()) {
+                                TexttoSpeechTask task = new TexttoSpeechTask(wordSelected);
+                                Thread th = new Thread(task);
+                                th.setDaemon(true);
+                                speakerIcon.setDisable(true);
+                            /*task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                                @Override
+                                public void handle(WorkerStateEvent workerStateEvent) {
+                                    speakerIcon.setDisable(false);
+                                }
+                            });*/
+                                th.start();
+                            } else {
+                                Platform.runLater(() -> {
+                                    AlertController.showNotConnectInternet();
+                                });
                             }
-                        });*/
-                        th.start();
 
                     }
+
                 });
             } catch (Exception ex) {
                 throw new RuntimeException(ex);
