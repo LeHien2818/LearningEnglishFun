@@ -1,29 +1,23 @@
 package englishlearningapp.englearning.Controller;
 
 
-import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.Game.ConnectGame;
+import englishlearningapp.englearning.Game.GameTimer;
 import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
-import englishlearningapp.englearning.questionGame.GameTimer;
-import javafx.animation.RotateTransition;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import javafx.scene.shape.Circle;
-import javafx.util.Duration;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.*;
 
 public class ConnectController   {
 
@@ -44,9 +38,8 @@ public class ConnectController   {
     private TextField score;
     @FXML
     private ImageView imageWay;
-    private int Score = 0;
     public  void startGame()  {
-        score.setText(String.valueOf(Score));
+        score.setText(String.valueOf(connectGame.getScore()));
         answerTextArea.setText("Word Spawn");
         playerAnswerTextField.setOnKeyPressed(event -> {
             try {
@@ -68,22 +61,19 @@ public class ConnectController   {
                 String botAnswer = connectGame.checkBotAnswer(playerAnswer);
                 if (botAnswer != null && !botAnswer.isEmpty()) {
                     answerTextArea.setText(botAnswer);
-                    Score ++;
-                    score.setText(String.valueOf(Score));
+                    connectGame.playAudio("src/sounds/defuse.wav");
+                    connectGame.setScore(connectGame.getScore() + 1);
+                    score.setText(String.valueOf(connectGame.getScore()));
                     connectGame.EnteredWord.add(botAnswer);
                     connectGame.playTimer(event, timerNumber,c1, score, answerTextArea,playerAnswerTextField);
-                    String s = "Back.png";
-                    Image image = new Image(App.class.getResource("src/image/" + s).toString());
-                    imageWay.setImage(image);
+//                    String s = "Back.png";
+//                    Image image = new Image(App.class.getResource("src/image/" + s).toString());
+//                    imageWay.setImage(image);
+
                 } else if (botAnswer == null) {
-                    connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score,c1);
-                    connectGame.stopTimer();
                     String point = score.getText();
-                    connectGame.gmt.stopAudio();
-                    score.setText(String.valueOf(0));
-                    answerTextArea.setText("Word Spawn");
-                    playerAnswerTextField.setText("");
                     AlertController.alertEndGame(event, "You Win", point);
+                    connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score,c1);
                 }
                 playerAnswerTextField.clear();
             } else {
@@ -95,7 +85,11 @@ public class ConnectController   {
     }
 
     public void clickExitConnect(ActionEvent event) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
-        AlertController.alertExit(event,playerAnswerTextField,answerTextArea,timerNumber,score, c1);
+
+        connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score,c1);
+        ConnectGame.rt.stop();
+        SceneController.switchScene(event, SceneController.gameRoot);
+
     }
 
     public void initialize() throws SQLException {

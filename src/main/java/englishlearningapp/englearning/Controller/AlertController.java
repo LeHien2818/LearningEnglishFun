@@ -1,7 +1,6 @@
 package englishlearningapp.englearning.Controller;
 import englishlearningapp.englearning.Game.VocabGame;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -75,17 +74,20 @@ public class AlertController {
 
     }
 
-    public static void alertExit(javafx.event.ActionEvent event) throws IOException {
+    public static void alertExit(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
         alert.setContentText("Do you want exit");
         ButtonType buttonTypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
-        ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.NO);
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        alert.getButtonTypes().setAll(buttonTypeYes);
         Optional<ButtonType> result = alert.showAndWait();
 
         if (result.isPresent() && result.get() == buttonTypeYes) {
+
+            VocabGame vocabGame = new VocabGame();
+            vocabGame.resetGame(event,answerA,answerB,questionVocab,scoregame,timerbox,handleGame);
             SceneController.switchScene(event, SceneController.gameRoot);
         } else {
             alert.close();
@@ -133,7 +135,6 @@ public class AlertController {
         alert.getButtonTypes().setAll(buttonTypeYes);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == buttonTypeYes) {
-            alert.close();
             SceneController.switchScene(eventkey, SceneController.gameRoot);
         }
 
@@ -160,7 +161,21 @@ public class AlertController {
         alert.getButtonTypes().setAll(buttonTypeCancel);
         Optional<ButtonType> result = alert.showAndWait();
     }
-        public static void alertExit (ActionEvent event, TextField playerAnswerTextField, Button
+    public static void alertExit(ActionEvent event, TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Do you want exit");
+        ButtonType buttonTypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
+        alert.getButtonTypes().setAll(buttonTypeYes);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+
+            SceneController.switchScene(event, SceneController.gameRoot);
+        }
+    }
+       /* public static void alertExit (ActionEvent event, TextField playerAnswerTextField, Button
         answerTextArea, TextArea timerNumber, TextField score, Circle c1) throws
         IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -179,5 +194,5 @@ public class AlertController {
             } else {
                 alert.close();
             }
-        }
+        }*/
     }

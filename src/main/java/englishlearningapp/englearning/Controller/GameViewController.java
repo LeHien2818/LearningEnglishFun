@@ -3,9 +3,9 @@ package englishlearningapp.englearning.Controller;
 
 import java.io.IOException;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import animatefx.animation.BounceIn;
+import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.CustomAnimation.FlipPageAnimation;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.control.*;
+
+import javax.sound.sampled.*;
 
 
 public class GameViewController {
@@ -124,8 +126,17 @@ public class GameViewController {
                 SceneController.switchScene(event, SceneController.connectRoot);
                 Platform.runLater(() -> {
                     try {
+                        AudioInputStream audioInputStream
+                                = AudioSystem.getAudioInputStream(App.class.getResource("src/sounds/bombplanted.wav"));
+                        Clip clip = AudioSystem.getClip();
+                        clip.open(audioInputStream);
+                        clip.start();
                         AlertController.showCustomPopUp("InstructionConnectView.fxml", "instruction-connect");
                     } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (UnsupportedAudioFileException e) {
+                        throw new RuntimeException(e);
+                    } catch (LineUnavailableException e) {
                         throw new RuntimeException(e);
                     }
                 });
@@ -157,7 +168,7 @@ public class GameViewController {
         this.setScore(0);
         this.setQuesNumber(0);
         this.setTextScore(this.toString(this.getScore()));
-        AlertController.alertExit(event);
+       // AlertController.alertExit(event, answerA, answerB, questionVocab, Scoregame, timerbox, handleGame);
     }
 
     public void onIconClicked(MouseEvent mouseEvent) throws IOException {

@@ -37,7 +37,8 @@ public class AboutUsController implements Initializable {
         SceneController.switchScene(event, SceneController.searchRoot);
     }
 
-    public void onIconClicked(MouseEvent mouseEvent) {
+    public void onIconClicked(MouseEvent mouseEvent) throws IOException {
+        SceneController.switchScene(mouseEvent, SceneController.defaultRoot);
     }
 
     public void clickGame(ActionEvent event) throws IOException {

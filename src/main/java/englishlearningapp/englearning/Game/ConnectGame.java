@@ -1,8 +1,9 @@
 package englishlearningapp.englearning.Game;
 
+import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.Controller.AlertController;
 import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
-import englishlearningapp.englearning.questionGame.GameTimer;
+
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -14,8 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +24,16 @@ import java.util.ResourceBundle;
 import java.util.TimerTask;
 
 public class ConnectGame extends Game {
+
+    private int Score;
+
+    public int getScore() {
+        return Score;
+    }
+
+    public void setScore(int score) {
+        Score = score;
+    }
 
     public final List<String> EnteredWord = new ArrayList<>();
 
@@ -44,25 +54,50 @@ public class ConnectGame extends Game {
         }
     }
 
+    public GameTimer getTimer() {
+        return gmt;
+    }
     private TimerTask currentTask;
 
+    public void setCurrentTask(TimerTask currentTask) {
+        this.currentTask = currentTask;
+    }
 
     @Override
     public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) {
         playerAnswerTextField.clear();
-        stopTimer();
         answerTextArea.setText("Word Spwan");
         timerNumber.clear();
         score.setText(String.valueOf(0));
         EnteredWord.clear();
         gmt.stopAudio();
-        setRotate(c1,false,360,0);
+        stopAudio();
+        stopTimer();
+        setScore(0);
+        System.out.println("oke");
     }
 
     public void stopTimer() {
         if (currentTask != null) {
             currentTask.cancel();
             currentTask = null;
+        }
+    }
+
+    private Clip clip;
+    public void playAudio(String relativeUrl) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        AudioInputStream audioInputStream
+                = AudioSystem.getAudioInputStream(App.class.getResource(relativeUrl));
+        clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
+
+    }
+
+    public void stopAudio() {
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+            clip.close();
         }
     }
 
@@ -83,10 +118,16 @@ public class ConnectGame extends Game {
                 } else {
                     Platform.runLater(() -> {
                         try {
+                            stopAudio();
                             String point = score.getText();
                             resetGame(playanswer, botAnswer, timerNumber, score,c1);
+                            playAudio("src/sounds/explosion.wav");
                             AlertController.alertEndGame(eventkey, "YOU LOSE", point);
                         } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        } catch (UnsupportedAudioFileException e) {
+                            throw new RuntimeException(e);
+                        } catch (LineUnavailableException e) {
                             throw new RuntimeException(e);
                         }
                     });
@@ -117,15 +158,16 @@ public class ConnectGame extends Game {
     public void resetGame(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) {
 
     }
-
+public static RotateTransition rt;
     public static void setRotate(Circle c1, boolean reverse, int angle, int duration) {
-        RotateTransition rt = new RotateTransition(Duration.seconds(8), c1);
+         rt = new RotateTransition(Duration.seconds(8), c1);
         rt.setAutoReverse(reverse);
         rt.setByAngle(angle);
         rt.setDelay(Duration.millis(0));
         rt.setRate(duration);
         rt.setCycleCount(duration + 1);
         rt.play();
+
     }
 
     public String checkBotAnswer(String playerAnswer) {
@@ -141,5 +183,4 @@ public class ConnectGame extends Game {
         return botAnswer;
 
     }
-
 }

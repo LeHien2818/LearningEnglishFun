@@ -18,14 +18,14 @@
 
          <children>
 <!--            <TextArea fx:id="answerTextArea" accessibleRole="BUTTON" editable="false" layoutX="196.0" layoutY="199.0" prefHeight="46.0" prefWidth="161.0" styleClass="textConnect" />-->
-            
-             <TextField fx:id="playerAnswerTextField" layoutX="302.0" layoutY="300.0" prefHeight="46.0" prefWidth="228.0" promptText="ENTER YOUR WORDS" />
-            <TextField fx:id="score" alignment="CENTER" editable="false" layoutX="238.0" layoutY="14.0" prefHeight="45.0" prefWidth="79.0" styleClass="scoreConnect">
+
+             <TextField fx:id="playerAnswerTextField" layoutX="293.0" layoutY="296.0" prefHeight="46.0" prefWidth="228.0" promptText="ENTER YOUR WORDS" />
+            <TextField fx:id="score" alignment="CENTER" editable="false" layoutX="223.0" layoutY="14.0" prefHeight="45.0" prefWidth="106.0" styleClass="scoreConnect">
                <font>
                   <Font name="Verdana Pro Bold" size="12.0" />
                </font></TextField>
             <Button fx:id="answerTextArea" layoutX="48.0" layoutY="292.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="228.0" styleClass="buttonConnect" />
-            <ImageView fx:id="imageWay" fitHeight="150.0" fitWidth="423.0" layoutX="74.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imageWay" fitHeight="150.0" fitWidth="423.0" layoutX="74.0" layoutY="124.0" pickOnBounds="true" />
          </children>
       </Pane>
       <Pane layoutX="777.0" layoutY="41.0" prefHeight="94.0" prefWidth="94.0" style="-fx-background-color: black; -fx-background-radius: 50%;">

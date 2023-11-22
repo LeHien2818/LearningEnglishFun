@@ -2,12 +2,9 @@ package englishlearningapp.englearning.Game;
 
 import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.Controller.AlertController;
-import englishlearningapp.englearning.Controller.SceneController;
-import englishlearningapp.englearning.questionGame.GameTimer;
 import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -32,6 +29,8 @@ public class VocabGame extends Game {
     public GameTimer getGameTimer() {
         return gameTimer;
     }
+
+    boolean checkRuner = true;
 
     public void setGameTimer(GameTimer gameTimer) {
         this.gameTimer = gameTimer;
@@ -109,32 +108,31 @@ public class VocabGame extends Game {
 
     @Override
     public void playTimer(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
         final int[] counter = {gameTimer.getCounter()};
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
-                if (counter[0] >= 0) {
+                if (checkRuner && counter[0] >= 0) {
                     timerbox.setText(String.valueOf(counter[0]));
                     counter[0]--;
                 } else {
                     Platform.runLater(() -> {
                         try {
                             String point = scoregame.getText();
-                            scoregame.setText(String.valueOf(0));
-                            setScore(0);
+                            resetGame(event,answerA,answerB,questionVocab,scoregame,timerbox,handleGame);
                             AlertController.alertEndGame(event, "YOU LOSE", point);
-
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                     });
                     currentTask.cancel();
-                    resetGame(event,answerA,answerB,questionVocab,scoregame,timerbox,handleGame);
                 }
             }
         };
         if (currentTask != null) {
             currentTask.cancel();
+
         }
         currentTask = timerTask;
         gameTimer.excuteTask(currentTask);
@@ -155,6 +153,12 @@ public class VocabGame extends Game {
             clip.close();
         }
     }
+    public void stopTimer() {
+        if (currentTask != null) {
+            currentTask.cancel();
+            currentTask = null;
+        }
+    }
 
     @Override
     public void resetGame(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) {
@@ -166,6 +170,8 @@ public class VocabGame extends Game {
         questionVocab.clear();
         scoregame.clear();
         timerbox.clear();
-        stopAudio();
+        gameTimer.stopAudio();
+        stopTimer();
+        checkRuner = false;
     }
 }

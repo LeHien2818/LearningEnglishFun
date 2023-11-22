@@ -126,15 +126,8 @@ public class VocabViewController {
     }
 
 
-    public void onExit(ActionEvent event) throws IOException {
-        vocabGame.resetGame(event, answerA, answerB, questionVocab, Scoregame, timerbox, handleGame);
-        Scoregame.setText(String.valueOf(0));
-        vocabGame.setScore(0);
-        answerA.setText("");
-        answerB.setText("");
-        questionVocab.clear();
-        timerbox.clear();
-        setButtonDisable();
+    public void onExit(ActionEvent event) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
+        AlertController.alertExit(event,answerA,answerB,questionVocab,Scoregame,timerbox,handleGame);
     }
 
     public void clickStart(ActionEvent event) {
