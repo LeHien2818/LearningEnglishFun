@@ -1,4 +1,5 @@
 package englishlearningapp.englearning.Controller;
+import englishlearningapp.englearning.Game.VocabGame;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.Alert;
@@ -8,7 +9,12 @@ import englishlearningapp.englearning.App;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Circle;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class AlertController {
@@ -141,5 +147,24 @@ public class AlertController {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.setDialogPane(customDialog);
         Optional<ButtonType> clickedButton = dialog.showAndWait();
+    }
+
+    public static void alertExit(ActionEvent event, TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo");
+        alert.setHeaderText(null);
+        alert.setContentText("Do you want exit");
+        ButtonType buttonTypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeNo = new ButtonType("NO", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeYes) {
+            SceneController.switchScene(event, SceneController.gameRoot);
+            VocabGame vocabGame = new VocabGame();
+            vocabGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score,c1);
+        } else {
+            alert.close();
+        }
     }
 }

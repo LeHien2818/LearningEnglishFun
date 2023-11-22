@@ -40,6 +40,16 @@ public class VocabGame extends Game {
     public VocabGame() throws UnsupportedAudioFileException, LineUnavailableException, IOException, SQLException {
     }
 
+    @Override
+    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) {
+
+    }
+
+    @Override
+    public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1, TextField score, Button botAnswer, TextField playanswer) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
     public int getRandom() {
         return this.randomIndex;
     }
@@ -67,45 +77,6 @@ public class VocabGame extends Game {
 
     Question_answer_vocab questionAnswer = new Question_answer_vocab();
 
-
-    public void endGame(ActionEvent event, TextArea scoreGame) throws IOException {
-
-        scoreGame.setText(String.valueOf(0));
-        SceneController.switchScene(event, SceneController.gameRoot);
-        this.setScore(0);
-        this.setQuesNumber(0);
-        scoreGame.clear();
-    }
-
-
-    @Override
-    public void startGame() throws IOException {
-    }
-
-    @Override
-    public void resetGame() {
-    }
-
-    @Override
-    public void resetGame(Event event, Button answerA, Button answerB, TextArea questionvocab) throws IOException {
-        SceneController.switchScene(event, SceneController.gameRoot);
-        this.setScore(0);
-        this.setQuesNumber(0);
-        if (currentTask != null) {
-            currentTask.cancel();
-        }
-    }
-
-    @Override
-    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score) {
-
-    }
-
-    @Override
-    public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) {
-
-    }
-
     public boolean checkCorrect(TextArea questionVocab, Button answerA) {
         String question = questionVocab.getText();
         String correctAnswer = questionAnswer.getAnswer(question);
@@ -122,7 +93,8 @@ public class VocabGame extends Game {
         questionVocab.setText(questionAnswer.getQuestion(index));
         String correctAnswer = questionAnswer.getAnswer(index);
         String answerRandom = questionAnswer.getrandomAnswer(index);
-
+        answerB.setDisable(true);
+        answerA.setDisable(true);
         this.setRandom(950);
         int countAnswer = this.getRandom();
 
@@ -136,19 +108,19 @@ public class VocabGame extends Game {
     }
 
     @Override
-    public void playTimer(ActionEvent event, TextArea textArea, TextArea score) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+    public void playTimer(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         final int[] counter = {gameTimer.getCounter()};
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 if (counter[0] >= 0) {
-                    textArea.setText(String.valueOf(counter[0]));
+                    timerbox.setText(String.valueOf(counter[0]));
                     counter[0]--;
                 } else {
                     Platform.runLater(() -> {
                         try {
-                            String point = score.getText();
-                            score.setText(String.valueOf(0));
+                            String point = scoregame.getText();
+                            scoregame.setText(String.valueOf(0));
                             setScore(0);
                             AlertController.alertEndGame(event, "YOU LOSE", point);
 
@@ -157,7 +129,7 @@ public class VocabGame extends Game {
                         }
                     });
                     currentTask.cancel();
-                    resetGame();
+                    resetGame(event,answerA,answerB,questionVocab,scoregame,timerbox,handleGame);
                 }
             }
         };
@@ -168,10 +140,6 @@ public class VocabGame extends Game {
         gameTimer.excuteTask(currentTask);
     }
 
-    @Override
-    public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1, TextField score, Button botAnswer, TextField playanswer) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
-
-    }
 
     public void playAudio(String relativeUrl) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
         AudioInputStream audioInputStream
@@ -188,4 +156,16 @@ public class VocabGame extends Game {
         }
     }
 
+    @Override
+    public void resetGame(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) {
+        handleGame.setDisable(false);
+        answerA.setText("");
+        answerA.setDisable(true);
+        answerB.setText("");
+        answerB.setDisable(true);
+        questionVocab.clear();
+        scoregame.clear();
+        timerbox.clear();
+        stopAudio();
+    }
 }
