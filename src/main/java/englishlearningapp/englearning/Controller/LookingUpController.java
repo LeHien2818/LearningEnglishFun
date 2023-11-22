@@ -14,10 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -28,6 +25,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class LookingUpController {
     public Button searchBtn;
@@ -70,11 +68,20 @@ public class LookingUpController {
         if(wordSelected.equals("")) return;
         Word finder = new Word();
         finder.setName(wordSelected);
-        App.getDictionary().remove(App.getDictionary().findWord(finder));
-        DeleteTask task = new DeleteTask(new Word(wordSelected, " ", " "));
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setContentText("Are you sure to delete this word ?");
+        ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == buttonTypeYes) {
+            App.getDictionary().remove(App.getDictionary().findWord(finder));
+            DeleteTask task = new DeleteTask(new Word(wordSelected, " ", " "));
+            Thread thread = new Thread(task);
+            thread.setDaemon(true);
+            thread.start();
+        }
         definitionArea.setText("");
         wordSelected = "";
     }

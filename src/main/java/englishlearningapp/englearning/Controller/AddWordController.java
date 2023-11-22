@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class AddWordController {
     @FXML
@@ -43,11 +44,21 @@ public class AddWordController {
         word.setPronunciation(pronunciationArea.getText().trim());
         word.setDefinition(definitionArea.getText().trim());
         if(!validate(word)) {
-            addWord(App.getDictionary(), word);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setContentText("Are you sure to add this word ?");
+            ButtonType buttonTypeYes = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+            ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == buttonTypeYes) {
+                addWord(App.getDictionary(), word);
+            }
             nameArea.setText("");
             pronunciationArea.setText("");
+            definitionArea.setText("");
         } else {
-            AlertController. CustomAlert(event);
+            AlertController.CustomAlert(event);
         }
 
     }
