@@ -1,4 +1,4 @@
-package englishlearningapp.englearning.questionGame;
+package englishlearningapp.englearning.Game;
 
 import englishlearningapp.englearning.App;
 

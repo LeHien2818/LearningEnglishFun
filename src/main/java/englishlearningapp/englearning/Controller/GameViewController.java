@@ -3,7 +3,6 @@ package englishlearningapp.englearning.Controller;
 
 import java.io.IOException;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import animatefx.animation.BounceIn;
 import englishlearningapp.englearning.CustomAnimation.FlipPageAnimation;
@@ -157,7 +156,7 @@ public class GameViewController {
         this.setScore(0);
         this.setQuesNumber(0);
         this.setTextScore(this.toString(this.getScore()));
-        AlertController.alertExit(event);
+       // AlertController.alertExit(event, answerA, answerB, questionVocab, Scoregame, timerbox, handleGame);
     }
 
     public void onIconClicked(MouseEvent mouseEvent) throws IOException {

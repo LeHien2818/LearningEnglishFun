@@ -2,7 +2,7 @@ package englishlearningapp.englearning.Game;
 
 import englishlearningapp.englearning.Controller.AlertController;
 import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
-import englishlearningapp.englearning.questionGame.GameTimer;
+
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -24,6 +24,16 @@ import java.util.ResourceBundle;
 import java.util.TimerTask;
 
 public class ConnectGame extends Game {
+
+    private int Score;
+
+    public int getScore() {
+        return Score;
+    }
+
+    public void setScore(int score) {
+        Score = score;
+    }
 
     public final List<String> EnteredWord = new ArrayList<>();
 
@@ -47,16 +57,19 @@ public class ConnectGame extends Game {
     private TimerTask currentTask;
 
 
+
+
     @Override
     public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) {
         playerAnswerTextField.clear();
-        stopTimer();
         answerTextArea.setText("Word Spwan");
         timerNumber.clear();
         score.setText(String.valueOf(0));
         EnteredWord.clear();
         gmt.stopAudio();
-        setRotate(c1,false,360,0);
+        stopTimer();
+        setScore(0);
+        System.out.println("oke");
     }
 
     public void stopTimer() {
@@ -65,6 +78,8 @@ public class ConnectGame extends Game {
             currentTask = null;
         }
     }
+
+
 
     @Override
     public void playTimer(KeyEvent eventkey, TextArea timerNumber, Circle c1, TextField score, Button botAnswer, TextField playanswer) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
@@ -117,15 +132,16 @@ public class ConnectGame extends Game {
     public void resetGame(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) {
 
     }
-
+public static RotateTransition rt;
     public static void setRotate(Circle c1, boolean reverse, int angle, int duration) {
-        RotateTransition rt = new RotateTransition(Duration.seconds(8), c1);
+         rt = new RotateTransition(Duration.seconds(8), c1);
         rt.setAutoReverse(reverse);
         rt.setByAngle(angle);
         rt.setDelay(Duration.millis(0));
         rt.setRate(duration);
         rt.setCycleCount(duration + 1);
         rt.play();
+
     }
 
     public String checkBotAnswer(String playerAnswer) {
@@ -141,5 +157,4 @@ public class ConnectGame extends Game {
         return botAnswer;
 
     }
-
 }
