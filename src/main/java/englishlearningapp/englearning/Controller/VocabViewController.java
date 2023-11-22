@@ -37,104 +37,147 @@ public class VocabViewController {
     private Button answerA;
     @FXML
     private Button answerB;
-   // private int score = 0;
+    @FXML
+    private Button handleGame;
+
     @FXML
     private TextArea Scoregame = new TextArea();
     private VocabGame vocabGame = new VocabGame();
+    Question_answer_vocab questionAnswer = new Question_answer_vocab();
 
-    public VocabViewController() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+    public VocabViewController() throws UnsupportedAudioFileException, LineUnavailableException, IOException, SQLException {
     }
 
-    public void setTextScore(String s) {
-        this.Scoregame.setText(s);
-    }
-
-    public int getScore() {
-        return vocabGame.getScore();
-    }
-    public void initialize() throws SQLException {
-        Thread th = new Thread(new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB);
-                return null;
-            }
-        });
-        th.setDaemon(true);
-        th.start();
-
-    }
-    public void clickAnswer(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
-        vocabGame.playTimer(event, timerbox);
-        this.setTextScore(String.valueOf(vocabGame.getScore()));
-        int questionnumber = vocabGame.getQuesNumber();
-        int scoretmp = vocabGame.getScore();
-        if (questionnumber <= 10) {
-            Question_answer_vocab questionAnswer = new Question_answer_vocab();
-            vocabGame.setRandom(10);
-            int index = vocabGame.getRandom();
-            this.questionVocab.setText(questionAnswer.getQuestion(index));
-            vocabGame.setRandom(100);
-            int countAnswer = vocabGame.getRandom();
-            String correctAnswer = questionAnswer.getAnswer(index);
-            String selectedAnswer = "";
-            if (countAnswer %2 == 1) {
-                this.answerA.setText(correctAnswer);
-                this.answerB.setText(questionAnswer.getrandomAnswer());
-            } else {
-                this.answerA.setText(questionAnswer.getrandomAnswer());
-                this.answerB.setText(correctAnswer);
-            }
-
-            if (event.getSource() == this.answerA) {
-                selectedAnswer = this.answerA.getText();
-            } else if (event.getSource() == this.answerB) {
-                selectedAnswer = this.answerB.getText();
-            }
-
-            if (selectedAnswer.equals(correctAnswer)) {
-                init(App.class.getResource("src/media/congratulate.mp4").toString());
-                playMedia();
-                vocabGame.playAudio("src/sounds/correctSound.wav");
-                ++scoretmp;
-                vocabGame.setScore(scoretmp);
-            } else {
-                init(App.class.getResource("src/media/wrong.mp4").toString());
-                playMedia();
-                vocabGame.playAudio("src/sounds/incorrectSound.wav");
-            }
-
-            SceneController.switchSceneNormal(event, SceneController.vocabRoot);
-            this.setTextScore(String.valueOf(scoretmp));
-            ++questionnumber;
-            vocabGame.setQuesNumber(questionnumber);
+    @FXML
+    public void handleAnswerA(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
+        System.out.println("answerA");
+        if (vocabGame.checkCorrect(questionVocab, answerA)) {
+            init(App.class.getResource("src/media/congratulate.mp4").toString());
+            playMedia();
+            vocabGame.playAudio("src/sounds/correctSound.wav");
+            int scoretmp = vocabGame.getScore();
+            vocabGame.setScore(scoretmp + 1);
+            Scoregame.setText(String.valueOf(vocabGame.getScore()));
         } else {
-            String s = "vocab";
-            vocabGame.endGame(event, s, Scoregame);
-            setTextScore("");
+            init(App.class.getResource("src/media/wrong.mp4").toString());
+            playMedia();
+            vocabGame.playAudio("src/sounds/incorrectSound.wav");
+        }
+        handleInformation(event);
+
+    }
+
+    @FXML
+    public void handleAnswerB(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
+        System.out.println("answerB");
+        if (vocabGame.checkCorrect(questionVocab, answerB)) {
+            init(App.class.getResource("src/media/congratulate.mp4").toString());
+            playMedia();
+            vocabGame.playAudio("src/sounds/correctSound.wav");
+            int scoretmp = vocabGame.getScore();
+            vocabGame.setScore(scoretmp + 1);
+            Scoregame.setText(String.valueOf(vocabGame.getScore()));
+        } else {
+            init(App.class.getResource("src/media/wrong.mp4").toString());
+            playMedia();
+            vocabGame.playAudio("src/sounds/incorrectSound.wav");
         }
 
-    }
+        handleInformation(event);
 
-    public void onExit(ActionEvent event) throws IOException {
-        String s = "vocab";
-        vocabGame.resetGame(event);
-        Scoregame.clear();
-        vocabGame.setScore(0);
-        setTextScore("");
-        timerbox.clear();
-    }
+        }
 
-    public void init(String file) {
-        media = new Media(file);
-        mediaPlayer = new MediaPlayer(media);
-        leftMedia.setMediaPlayer(mediaPlayer);
+        public void initialize () throws SQLException {
+            Thread th = new Thread(new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    vocabGame.loadRandomQuestion(questionVocab, answerA, answerB, Scoregame);
+                    return null;
+                }
+            });
+            th.setDaemon(true);
+            th.start();
+        }
+
+        public void handleInformation (ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
+            vocabGame.playTimer(event, timerbox, Scoregame);
+            Scoregame.setText(String.valueOf(vocabGame.getScore()));
+            int questionnumber = vocabGame.getQuesNumber();
+            vocabGame.setRandom(950);
+            int index = vocabGame.getRandom();
+            String question = questionAnswer.getQuestion(index);
+            questionVocab.setText(question);
+            String correctAnswer = questionAnswer.getAnswer(index);
+            vocabGame.setRandom(950);
+            int countAnswer = vocabGame.getRandom();
+            String answerRandom = questionAnswer.getrandomAnswer(index);
+
+
+            if (countAnswer % 2 == 1) {
+                answerA.setText(correctAnswer);
+                answerB.setText(answerRandom);
+
+//                if (event.getSource() == this.answerA) {
+//                    selectedAnswer = this.answerA.getText();
+//                } else if (event.getSource() == this.answerB) {
+//                    selectedAnswer = this.answerB.getText();
+//                }
+//
+//                if (selectedAnswer.equals(correctAnswer)) {
+//                    init(App.class.getResource("src/media/congratulate.mp4").toString());
+//                    playMedia();
+//                    vocabGame.playAudio("src/sounds/correctSound.wav");
+//                    ++scoretmp;
+//                    vocabGame.setScore(scoretmp);
+//                } else {
+//                    init(App.class.getResource("src/media/wrong.mp4").toString());
+//                    playMedia();
+//                    vocabGame.playAudio("src/sounds/incorrectSound.wav");
+//                }
+//
+//                SceneController.switchSceneNormal(event, SceneController.vocabRoot);
+//                this.setTextScore(String.valueOf(scoretmp));
+//                ++questionnumber;
+//                vocabGame.setQuesNumber(questionnumber);
+//>>>>>>>0b f815f33c6aa8e78e47b25ef1ba8898c1e26e11
+            } else {
+                answerA.setText(answerRandom);
+                answerB.setText(correctAnswer);
+            }
+            questionnumber++;
+            vocabGame.setQuesNumber(questionnumber);
+
+        }
+
+
+        public void onExit (ActionEvent event) throws IOException {
+            vocabGame.resetGame(event, answerA, answerB, questionVocab);
+            Scoregame.setText(String.valueOf(0));
+            vocabGame.setScore(0);
+            answerA.setText("");
+            answerB.setText("");
+            questionVocab.clear();
+            timerbox.clear();
+            handleGame.setDisable(true);
+        }
+        public void clickStart (ActionEvent event){
+            handleGame.setOnAction(e -> {
+                handleGame.setDisable(false);
+            });
+            System.out.println("click");
+        }
+
+
+        public void init (String file){
+            media = new Media(file);
+            mediaPlayer = new MediaPlayer(media);
+            leftMedia.setMediaPlayer(mediaPlayer);
+        }
+        public void playMedia () {
+            mediaPlayer.play();
+        }
+        public void stopMedia () {
+            mediaPlayer.pause();
+            mediaPlayer.stop();
+        }
     }
-    public void playMedia() {
-        mediaPlayer.play();
-    }
-    public void stopMedia() {
-        mediaPlayer.pause();
-        mediaPlayer.stop();
-    }
-}

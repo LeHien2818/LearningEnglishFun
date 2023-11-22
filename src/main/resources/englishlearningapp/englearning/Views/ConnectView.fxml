@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0"
             stylesheets="../src/connect-style.css"
@@ -18,15 +15,22 @@
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
             <image>
-                <Image url="@../src/image/FlatBack.png" />
+                <Image url="@../src/image/backgroundConnect.jpg" />
             </image>
         </ImageView>
-        <Button layoutX="78.0" layoutY="68.0" mnemonicParsing="false" onAction="#clickExitConnect" prefHeight="26.0" prefWidth="97.0" styleClass="classBtn" text="exit" />
+        <Button layoutX="61.0" layoutY="68.0" mnemonicParsing="false" onAction="#clickExitConnect" prefHeight="46.0" prefWidth="65.0" styleClass="buttonHome" text="home" />
       <Pane layoutX="175.0" layoutY="81.0" prefHeight="398.0" prefWidth="552.0">
 
          <children>
-            <TextArea fx:id="answerTextArea" editable="false" layoutX="62.0" layoutY="176.0" prefHeight="46.0" prefWidth="429.0" />
-            <TextField fx:id="playerAnswerTextField" layoutX="162.0" layoutY="300.0" prefHeight="46.0" prefWidth="228.0" promptText="ENTER YOUR WORDS" />
+<!--            <TextArea fx:id="answerTextArea" accessibleRole="BUTTON" editable="false" layoutX="196.0" layoutY="199.0" prefHeight="46.0" prefWidth="161.0" styleClass="textConnect" />-->
+            
+             <TextField fx:id="playerAnswerTextField" layoutX="162.0" layoutY="300.0" prefHeight="46.0" prefWidth="228.0" promptText="ENTER YOUR WORDS" />
+            <TextField fx:id="score" alignment="CENTER" editable="false" layoutX="238.0" layoutY="14.0" prefHeight="45.0" prefWidth="79.0" styleClass="scoreConnect">
+               <font>
+                  <Font name="Verdana Pro Bold" size="12.0" />
+               </font></TextField>
+            <Button fx:id="answerTextArea" layoutX="163.0" layoutY="229.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="228.0" styleClass="buttonConnect" />
+            <ImageView fx:id="imageWay" fitHeight="150.0" fitWidth="405.0" layoutX="75.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
       <Pane layoutX="777.0" layoutY="41.0" prefHeight="94.0" prefWidth="94.0" style="-fx-background-color: black; -fx-background-radius: 50%;">
@@ -39,6 +43,5 @@
             </TextArea>
          </children>
       </Pane>
-      <TextField layoutX="386.0" layoutY="109.0" />
     </children>
 </AnchorPane>
