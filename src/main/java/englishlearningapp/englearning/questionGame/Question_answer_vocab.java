@@ -2,6 +2,7 @@ package englishlearningapp.englearning.questionGame;
 
 import englishlearningapp.englearning.JDBCConnection.JDBC_Connect;
 import englishlearningapp.englearning.JDBCConnection.JDBC_RetrieveData;
+import javafx.concurrent.Task;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -24,10 +25,19 @@ import java.util.Random;
                 "Peach",
                 "Blueberry"
         };*/
-        private final List<String> question;
-        private final List<String> answer;
+        private List<String> question;
+        private List<String> answer;
         private List<String> ipa ;
         public Question_answer_vocab() throws SQLException {
+            /*Thread th = new Thread(new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+
+                    return null;
+                }
+            });
+            th.setDaemon(true);
+            th.start();*/
             JDBC_RetrieveData.retrieveQuestionWords();
             JDBC_RetrieveData.retrieveQuestionIPA();
             JDBC_RetrieveData.retrieveQuestionMeaning();
@@ -35,19 +45,6 @@ import java.util.Random;
             answer = JDBC_RetrieveData.getQuestionMeaning();
             ipa = JDBC_RetrieveData.getQuestionIPA();
         }
-        /*private String[] answer = {
-                "Táo",
-                "Chuối",
-                "Cam",
-                "Nho",
-                "Xoài",
-                "Dâu tây",
-                "Dứa",
-                "Dưa leo",
-                "Đào",
-                "Việt quất"
-        };*/
-
         public String getQuestion(int index) {
 
             return question.get(index);

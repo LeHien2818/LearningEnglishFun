@@ -95,11 +95,13 @@ public class VocabViewController {
             if (selectedAnswer.equals(correctAnswer)) {
                 init(App.class.getResource("src/media/congratulate.mp4").toString());
                 playMedia();
+                vocabGame.playAudio("src/sounds/correctSound.wav");
                 ++scoretmp;
                 vocabGame.setScore(scoretmp);
             } else {
                 init(App.class.getResource("src/media/wrong.mp4").toString());
                 playMedia();
+                vocabGame.playAudio("src/sounds/incorrectSound.wav");
             }
 
             SceneController.switchSceneNormal(event, SceneController.vocabRoot);
@@ -130,5 +132,9 @@ public class VocabViewController {
     }
     public void playMedia() {
         mediaPlayer.play();
+    }
+    public void stopMedia() {
+        mediaPlayer.pause();
+        mediaPlayer.stop();
     }
 }

@@ -1,5 +1,6 @@
 package englishlearningapp.englearning.Game;
 
+import englishlearningapp.englearning.App;
 import englishlearningapp.englearning.Controller.AlertController;
 import englishlearningapp.englearning.Controller.SceneController;
 import englishlearningapp.englearning.questionGame.GameTimer;
@@ -11,8 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 import java.util.TimerTask;
 
 public class VocabGame extends Game {
+    private Clip clip;
     private GameTimer gameTimer = new GameTimer(10);
     private int score = 0;
     private int quesnumber = 0;
@@ -154,11 +155,20 @@ public class VocabGame extends Game {
         gameTimer.excuteTask(currentTask);
     }
 
-
-    public void stop() {
-
+    public void playAudio(String relativeUrl) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+        AudioInputStream audioInputStream
+                = AudioSystem.getAudioInputStream(App.class.getResource(relativeUrl));
+        clip = AudioSystem.getClip();
+        clip.open(audioInputStream);
+        clip.start();
     }
 
+    public void stopAudio() {
+        if(clip != null && clip.isRunning()) {
+            clip.stop();
+            clip.close();
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }

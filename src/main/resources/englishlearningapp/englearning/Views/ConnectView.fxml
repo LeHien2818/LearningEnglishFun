@@ -10,7 +10,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="englishlearningapp.englearning.Controller.ConnectController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            stylesheets="../src/connect-style.css"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="englishlearningapp.englearning.Controller.ConnectController">
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true">
             <image>
