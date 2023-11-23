@@ -41,7 +41,7 @@ public class ConnectController {
 
     public void startGame() {
         score.setText(String.valueOf(connectGame.getScore()));
-        answerTextArea.setText("Word Spawn");
+        answerTextArea.setText("");
         playerAnswerTextField.setOnKeyPressed(event -> {
             try {
 
@@ -57,6 +57,7 @@ public class ConnectController {
     public void handlePlayer(KeyEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         if (event.getCode() == KeyCode.ENTER) {
             String playerAnswer = playerAnswerTextField.getText();
+            Character charRactor = answerTextArea.getText().charAt(answerTextArea.getText().length() - 1);
             if (connectGame.checkEnterWord(playerAnswer) && BotAnswerGenerator.checkPlayerWord(playerAnswer)) {
                 connectGame.EnteredWord.add(playerAnswer);
                 String botAnswer = connectGame.checkBotAnswer(playerAnswer);
