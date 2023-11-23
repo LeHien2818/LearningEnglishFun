@@ -40,7 +40,8 @@ public class ConnectController   {
     private ImageView imageWay;
     public  void startGame()  {
         score.setText(String.valueOf(connectGame.getScore()));
-        answerTextArea.setText("Word Spawn");
+        String spawnWord = BotAnswerGenerator.generateRandomBotAnswers();
+        answerTextArea.setText(spawnWord);
         playerAnswerTextField.setOnKeyPressed(event -> {
             try {
 
@@ -56,7 +57,10 @@ public class ConnectController   {
     public void handlePlayer(KeyEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         if (event.getCode() == KeyCode.ENTER) {
             String playerAnswer = playerAnswerTextField.getText();
-            if (connectGame.checkEnterWord(playerAnswer) && BotAnswerGenerator.checkPlayerWord(playerAnswer)) {
+            String botText = answerTextArea.getText();
+            if (connectGame.checkEnterWord(playerAnswer)
+                    && BotAnswerGenerator.checkPlayerWord(playerAnswer)
+                    && (playerAnswer.charAt(0) == botText.charAt(botText.length() - 1))) {
                 connectGame.EnteredWord.add(playerAnswer);
                 String botAnswer = connectGame.checkBotAnswer(playerAnswer);
                 if (botAnswer != null && !botAnswer.isEmpty()) {
@@ -75,7 +79,7 @@ public class ConnectController   {
                 playerAnswerTextField.clear();
             } else {
                 ActionEvent eventAlert = new ActionEvent();
-                AlertController.alertWrong(eventAlert, "The word was entered previously");
+                AlertController.alertWrong(eventAlert, "The word was entered previously or wrong");
                 playerAnswerTextField.clear();
             }
         }
