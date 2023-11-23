@@ -129,7 +129,6 @@ public class ConnectGame extends Game {
                             throw new RuntimeException(e);
                         }
                     });
-                    // gmt.getTimer().cancel();
                     currentTask.cancel();
 
                 }
@@ -147,15 +146,7 @@ public class ConnectGame extends Game {
 
     }
 
-    @Override
-    public void playTimer(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
 
-    }
-
-    @Override
-    public void resetGame(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) {
-
-    }
 public static RotateTransition rt;
     public static void setRotate(Circle c1, boolean reverse, int angle, int duration) {
          rt = new RotateTransition(Duration.seconds(8), c1);
@@ -179,6 +170,15 @@ public static RotateTransition rt;
             }
         }
         return botAnswer;
+
+    }
+    @Override
+    public void playTimer(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+
+    }
+
+    @Override
+    public void resetGame(ActionEvent event, Button answerA, Button answerB, TextArea questionVocab, TextArea scoregame, TextArea timerbox, Button handleGame) {
 
     }
 }

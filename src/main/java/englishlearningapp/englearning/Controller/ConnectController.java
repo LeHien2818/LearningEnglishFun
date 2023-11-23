@@ -84,7 +84,9 @@ public class ConnectController   {
     public void clickExitConnect(ActionEvent event) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
 
         connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score,c1);
-        ConnectGame.rt.stop();
+        if(ConnectGame.rt != null) {
+            ConnectGame.rt.stop();
+        }
         SceneController.switchScene(event, SceneController.gameRoot);
 
     }
