@@ -66,9 +66,6 @@ public class ConnectController   {
                     score.setText(String.valueOf(connectGame.getScore()));
                     connectGame.EnteredWord.add(botAnswer);
                     connectGame.playTimer(event, timerNumber,c1, score, answerTextArea,playerAnswerTextField);
-//                    String s = "Back.png";
-//                    Image image = new Image(App.class.getResource("src/image/" + s).toString());
-//                    imageWay.setImage(image);
 
                 } else if (botAnswer == null) {
                     String point = score.getText();

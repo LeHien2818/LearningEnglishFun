@@ -1,13 +1,10 @@
 package englishlearningapp.englearning.questionGame;
 
-import englishlearningapp.englearning.JDBCConnection.JDBC_Connect;
 import englishlearningapp.englearning.JDBCConnection.JDBC_RetrieveData;
-import javafx.concurrent.Task;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Random;
 
 public class Question_answer_vocab {

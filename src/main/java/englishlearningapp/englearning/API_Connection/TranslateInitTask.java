@@ -32,7 +32,6 @@ public class TranslateInitTask extends Task<HttpURLConnection> {
         try {
             connection =(HttpURLConnection)url.openConnection();
         } catch (IOException e) {
-            //throw new RuntimeException(e);
             System.out.println("no internet");
         }
         connection.setRequestProperty("User-Agent", "Mozilla/5.0");

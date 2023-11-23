@@ -31,10 +31,6 @@ public class GameViewController {
     private int score = 0;
     private int quesnumber = 0;
 
-    Random random = new Random();
-    private int randomIndex;
-    //ConnectController conncect = new ConnectController();
-
     public int getQuesNumber() {
         return this.quesnumber;
     }
@@ -57,14 +53,6 @@ public class GameViewController {
 
     public void setTextScore(String s) {
         this.Scoregame.setText(s);
-    }
-
-    public int getRandom() {
-        return this.randomIndex;
-    }
-
-    public void setRandom(int size) {
-        this.randomIndex = this.random.nextInt(size - 1) + 1;
     }
 
 
@@ -130,11 +118,7 @@ public class GameViewController {
                         clip.open(audioInputStream);
                         clip.start();
                         AlertController.showCustomPopUp("InstructionConnectView.fxml", "instruction-connect");
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (UnsupportedAudioFileException e) {
-                        throw new RuntimeException(e);
-                    } catch (LineUnavailableException e) {
+                    } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
                         throw new RuntimeException(e);
                     }
                 });
@@ -144,14 +128,6 @@ public class GameViewController {
         });
 
 
-    }
-
-    public void clickExit(ActionEvent event) throws IOException {
-        double Point = this.getScore();
-        this.setScore(0);
-        this.setQuesNumber(0);
-        this.setTextScore(this.toString(this.getScore()));
-       // AlertController.alertExit(event, answerA, answerB, questionVocab, Scoregame, timerbox, handleGame);
     }
 
     public void onIconClicked(MouseEvent mouseEvent) throws IOException {

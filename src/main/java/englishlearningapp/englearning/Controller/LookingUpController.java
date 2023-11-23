@@ -40,9 +40,6 @@ public class LookingUpController {
     private TextArea definitionArea;
     private String queryString = "";
     private String wordSelected = "";
-    public String getWordSelected() {
-        return wordSelected;
-    }
     public void setTextInput(String input){ textInput.setText(input);}
 
     public void setDefinitionArea(String newdef) {
@@ -164,12 +161,6 @@ public class LookingUpController {
                                 Thread th = new Thread(task);
                                 th.setDaemon(true);
                                 speakerIcon.setDisable(true);
-                            /*task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                                @Override
-                                public void handle(WorkerStateEvent workerStateEvent) {
-                                    speakerIcon.setDisable(false);
-                                }
-                            });*/
                                 th.start();
                             } else {
                                 Platform.runLater(() -> {

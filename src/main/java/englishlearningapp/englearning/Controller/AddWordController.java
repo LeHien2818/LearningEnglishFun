@@ -6,9 +6,7 @@ import englishlearningapp.englearning.DictionaryPackage.Word;
 import englishlearningapp.englearning.JDBCConnection.InsertTask;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.*;
-
 import java.io.IOException;
 import java.util.Optional;
 

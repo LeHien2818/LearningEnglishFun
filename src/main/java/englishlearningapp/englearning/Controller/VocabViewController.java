@@ -84,6 +84,7 @@ public class VocabViewController {
                 }
             });
                 vocabGame.stopTimer();
+                stopMedia();
                 vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
                 return;
             }
@@ -127,6 +128,7 @@ public class VocabViewController {
 
                 vocabGame.stopTimer();
                 vocabGame.stopAudio();
+                stopMedia();
                 vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
                 return;
             }
@@ -175,6 +177,7 @@ public class VocabViewController {
 
     public void onExit(ActionEvent event) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
          vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
+         stopMedia();
          SceneController.switchScene(event, SceneController.gameRoot);
     }
 
@@ -201,11 +204,8 @@ public class VocabViewController {
     public void stopMedia() {
         mediaPlayer.pause();
         mediaPlayer.stop();
+        mediaPlayer.dispose();
     }
 
-    public void setButtonDisable() {
-        answerA.setDisable(true);
-        answerB.setDisable(true);
-        handleGame.setDisable(false);
-    }
+
 }

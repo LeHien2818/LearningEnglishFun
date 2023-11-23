@@ -8,7 +8,6 @@ class englishlearningapp.englearning.Controller.SceneController {
 + {static} AnchorPane translateRoot
 + {static} AnchorPane vocabRoot
 + {static} AnchorPane connectRoot
-+ {static} AnchorPane practiceRoot
 + {static} AnchorPane exitRoot
 + {static} AnchorPane addViewRoot
 + {static} AnchorPane modifyViewRoot
@@ -19,11 +18,6 @@ class englishlearningapp.englearning.Controller.SceneController {
 + {static} void switchScene(ActionEvent,Parent)
 + {static} void switchScene(MouseEvent,Parent)
 + {static} void switchScene(KeyEvent,Parent)
-+ {static} Scene getCurrentScene(ActionEvent)
-+ {static} Scene getCurrentScene(KeyEvent)
-+ {static} Stage getCurrentStage(ActionEvent)
-+ {static} Stage getCurrentStage(KeyEvent)
-+ {static} AnchorPane getCurrentPane(ActionEvent)
 + {static} AnchorPane getCurrentPane(KeyEvent)
 + {static} void updateScene(KeyEvent,String,Node)
 }
@@ -48,7 +42,6 @@ class englishlearningapp.englearning.Controller.LookingUpController {
 - TextArea definitionArea
 - String queryString
 - String wordSelected
-+ String getWordSelected()
 + void setTextInput(String)
 + void setDefinitionArea(String)
 + void clickGame(ActionEvent)
@@ -265,17 +258,12 @@ class englishlearningapp.englearning.Game.ConnectGame {
 + String checkBotAnswer(String)
 }
 class englishlearningapp.englearning.Controller.AlertController {
-+ {static} void alertSubmit(ActionEvent,String,double)
-+ {static} void AlertPoint(ActionEvent,double)
 + {static} void CustomAlert(ActionEvent)
-+ {static} void CustomAlert()
-+ {static} void alertExit(ActionEvent,Button,Button,TextArea,TextArea,TextArea,Button)
 + {static} void alertWrong(ActionEvent,String)
 + {static} void alertEndGame(KeyEvent,String,String)
 + {static} void alertEndGame(ActionEvent,String,String)
 + {static} void showCustomPopUp(String,String)
 + {static} void showNotConnectInternet()
-+ {static} void alertExit(ActionEvent,TextField,Button,TextArea,TextField,Circle)
 }
 class englishlearningapp.englearning.DictionaryPackage.WordComparator {
 + int compare(Word,Word)
@@ -290,8 +278,6 @@ abstract class englishlearningapp.englearning.Game.Game {
 + {abstract}void playTimer(ActionEvent,Button,Button,TextArea,TextArea,TextArea,Button)
 + {abstract}void resetGame(ActionEvent,Button,Button,TextArea,TextArea,TextArea,Button)
 }
-class englishlearningapp.englearning.Controller.PracticeController {
-}
 class englishlearningapp.englearning.App {
 - {static} Dictionary dictionary
 + {static} Dictionary getDictionary()
@@ -305,14 +291,6 @@ class englishlearningapp.englearning.API_Connection.TranslateInitTask {
 - String text
 - HttpURLConnection connection
 # HttpURLConnection call()
-}
-class englishlearningapp.englearning.questionGame.Question_answer_gramma {
-+ String[] questions
-- String[] correctAnswers
-- String[][] options
-+ String getQuestion(int)
-+ String getCorrectAnswer(int)
-+ String[] getOptions(int)
 }
 class englishlearningapp.englearning.API_Connection.TranslateTask {
 - TextArea inputLang
@@ -385,23 +363,18 @@ class englishlearningapp.englearning.Controller.GameViewController {
 - TextArea Scoregame
 - int score
 - int quesnumber
-~ Random random
-- int randomIndex
 + int getQuesNumber()
 + void setQuesNumber(int)
 + void setScore(int)
 + int getScore()
 + String toString(int)
 + void setTextScore(String)
-+ int getRandom()
-+ void setRandom(int)
 + void endGame(ActionEvent,String)
 + void clickSearch(ActionEvent)
 + void clickTranslate(ActionEvent)
 + void clickGame(ActionEvent)
 + void clickVocab(ActionEvent)
 + void clickConnect(ActionEvent)
-+ void clickExit(ActionEvent)
 + void onIconClicked(MouseEvent)
 + void onClickAbout(ActionEvent)
 + void onClickGuide(ActionEvent)
@@ -426,7 +399,6 @@ class englishlearningapp.englearning.Controller.VocabViewController {
 + void init(String)
 + void playMedia()
 + void stopMedia()
-+ void setButtonDisable()
 }
 class englishlearningapp.englearning.JDBCConnection.JDBC_Connect {
 # {static} Connection getJDBCConnection()
@@ -445,7 +417,6 @@ javafx.fxml.Initializable <|.. englishlearningapp.englearning.Controller.GuideCo
 englishlearningapp.englearning.Game.Game <|-- englishlearningapp.englearning.Game.ConnectGame
 englishlearningapp.englearning.DictionaryPackage.Comparator <|.. englishlearningapp.englearning.DictionaryPackage.WordComparator
 englishlearningapp.englearning.DictionaryPackage.ArrayList <|-- englishlearningapp.englearning.DictionaryPackage.Dictionary
-englishlearningapp.englearning.Controller.GameViewController <|-- englishlearningapp.englearning.Controller.PracticeController
 javafx.application.Application <|-- englishlearningapp.englearning.App
 javafx.concurrent.Task <|-- englishlearningapp.englearning.API_Connection.TranslateInitTask
 javafx.concurrent.Task <|-- englishlearningapp.englearning.API_Connection.TranslateTask

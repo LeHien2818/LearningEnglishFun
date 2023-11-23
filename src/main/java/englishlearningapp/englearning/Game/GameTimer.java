@@ -50,29 +50,29 @@ public class GameTimer {
             clip.close();
         }
     }
-//    public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-//
-//        System.out.println("Starting up...");
-//        GameTimer gmt = new GameTimer(10);
-//        //one-time use timer: prints stuff after 10s
-//        final int[] counter = {10};
-//        Timer myTimer = new Timer();
-//        gmt.playAudio();
-//        TimerTask task = new TimerTask() {
-//            @Override
-//            public void run() {
-//
-//                if(counter[0] > 0) {
-//                    System.out.println(counter[0]);
-//                    counter[0] --;
-//                }else {
-//                    myTimer.cancel();
-//                }
-//            }
-//        };
-//
-//        Timer myRepeatingTimer = new Timer();
-//        myRepeatingTimer.scheduleAtFixedRate(task, 0, 1000);
-//    }
+/*    public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+
+        System.out.println("Starting up...");
+        GameTimer gmt = new GameTimer(10);
+        //one-time use timer: prints stuff after 10s
+        final int[] counter = {10};
+        Timer myTimer = new Timer();
+        gmt.playAudio();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+
+                if(counter[0] > 0) {
+                    System.out.println(counter[0]);
+                    counter[0] --;
+                }else {
+                    myTimer.cancel();
+                }
+            }
+        };
+
+        Timer myRepeatingTimer = new Timer();
+        myRepeatingTimer.scheduleAtFixedRate(task, 0, 1000);
+    }*/
 
 }

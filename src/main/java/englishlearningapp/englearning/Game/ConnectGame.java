@@ -7,7 +7,6 @@ import englishlearningapp.englearning.questionGame.BotAnswerGenerator;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -17,10 +16,8 @@ import javafx.util.Duration;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 import java.util.TimerTask;
 
 public class ConnectGame extends Game {

@@ -79,15 +79,6 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
-    public static AnchorPane practiceRoot;
-
-    static {
-        try {
-            practiceRoot = FXMLLoader.load(App.class.getResource("Views/Practice_Test.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static AnchorPane exitRoot;
 
@@ -134,7 +125,7 @@ public class SceneController {
     }
     public SceneController() throws IOException {
     }
-    public static void switchSceneNormal (ActionEvent event, Parent sceneSwitch) throws IOException {
+    public static void switchSceneNormal (ActionEvent event, Parent sceneSwitch) {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = ((Node)event.getSource()).getScene();
         scene.setRoot(sceneSwitch);
@@ -186,22 +177,6 @@ public class SceneController {
         scene.getStylesheets().add(App.class.getResource("src/Style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
-    }
-    public static Scene getCurrentScene (ActionEvent event) {
-        return ((Node)event.getSource()).getScene();
-    }
-    public static Scene getCurrentScene (KeyEvent event) {
-        return ((Node)event.getSource()).getScene();
-    }
-    public static Stage getCurrentStage (ActionEvent event) {
-        return (Stage)((Node)event.getSource()).getScene().getWindow();
-    }
-    public static Stage getCurrentStage (KeyEvent event) {
-        return (Stage)((Node)event.getSource()).getScene().getWindow();
-    }
-    public static AnchorPane getCurrentPane(ActionEvent event) {
-        Scene tmpScene = ((Node)event.getSource()).getScene();
-        return  (AnchorPane)tmpScene.getRoot();
     }
     public static AnchorPane getCurrentPane(KeyEvent event) {
         Scene tmpScene = ((Node)event.getSource()).getScene();
