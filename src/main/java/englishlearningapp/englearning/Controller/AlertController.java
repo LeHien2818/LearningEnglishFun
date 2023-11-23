@@ -88,7 +88,7 @@ public class AlertController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Notification");
         alert.setHeaderText("Notification");
-        alert.setContentText("Internet is not connected, please connect to use this feature");
+        alert.setContentText("Internet is not connected, please connect and restart app to use this feature");
         ButtonType buttonTypeCancel = new ButtonType("OKE", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(buttonTypeCancel);
         Optional<ButtonType> result = alert.showAndWait();
