@@ -85,6 +85,7 @@ public class VocabViewController {
             });
                 vocabGame.stopTimer();
                 vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
+                return;
             }
         handleInformation(event);
 
@@ -123,8 +124,12 @@ public class VocabViewController {
                         throw new RuntimeException(e);
                     }
                 });
-                    vocabGame.stopTimer();
+
+                vocabGame.stopTimer();
+                vocabGame.stopAudio();
                     vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
+                SceneController.switchScene(event, SceneController.gameRoot);
+                return;
             }
 
         handleInformation(event);
