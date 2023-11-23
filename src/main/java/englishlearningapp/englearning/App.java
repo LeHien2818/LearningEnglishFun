@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
@@ -21,6 +22,8 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Views/DefaultView.fxml"));
         Scene scene = new Scene(root);
+        Image icon = new Image("E:\\OOP\\EngLearning\\src\\main\\resources\\englishlearningapp\\englearning\\src\\image\\trans-icon.png");
+        stage.getIcons().add(icon);
         scene.getStylesheets().add(getClass().getResource("src/Style.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
