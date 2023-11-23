@@ -23,10 +23,8 @@ public class GameViewController {
     public Button gameBtn;
     public Button translateBtn;
     public ImageView vocabPic;
-    public ImageView grammarPic;
     public ImageView linkingPic;
     public Button vocabBtn;
-    public Button grammarBtn;
     public Button connectBtn;
     @FXML
     private TextArea Scoregame = new TextArea();
@@ -146,21 +144,6 @@ public class GameViewController {
         });
 
 
-    }
-
-
-    public void clickGrammar(ActionEvent event) throws IOException, InterruptedException {
-        FlipPageAnimation flp = new FlipPageAnimation(grammarPic);
-        flp.play();
-        grammarBtn.setDisable(true);
-        flp.setOnFinished(() -> {
-            try {
-                grammarBtn.setDisable(false);
-                SceneController.switchScene(event, SceneController.grammarRoot);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     public void clickExit(ActionEvent event) throws IOException {

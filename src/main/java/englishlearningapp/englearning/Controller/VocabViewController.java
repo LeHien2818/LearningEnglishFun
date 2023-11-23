@@ -127,8 +127,7 @@ public class VocabViewController {
 
                 vocabGame.stopTimer();
                 vocabGame.stopAudio();
-                    vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
-                SceneController.switchScene(event, SceneController.gameRoot);
+                vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
                 return;
             }
 

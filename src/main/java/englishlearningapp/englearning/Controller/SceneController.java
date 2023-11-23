@@ -70,15 +70,6 @@ public class SceneController {
             throw new RuntimeException(e);
         }
     }
-    public static AnchorPane grammarRoot;
-
-    static {
-        try {
-            grammarRoot = FXMLLoader.load(App.class.getResource("Views/GrammarView.fxml"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public static AnchorPane connectRoot;
 
     static {
