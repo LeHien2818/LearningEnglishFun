@@ -19,8 +19,6 @@ public class AddWordController {
     private TextArea definitionArea;
 
     public void addWord(Dictionary dictionary, Word word) {
-        dictionary.add(word);
-        dictionary.sort();
         InsertTask task = new InsertTask(word);
         Thread thread = new Thread(task);
         thread.setDaemon(true);
