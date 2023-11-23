@@ -19,7 +19,7 @@ import javax.sound.sampled.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class ConnectController   {
+public class ConnectController {
 
     private final ConnectGame connectGame = new ConnectGame();
     @FXML
@@ -38,7 +38,8 @@ public class ConnectController   {
     private TextField score;
     @FXML
     private ImageView imageWay;
-    public  void startGame()  {
+
+    public void startGame() {
         score.setText(String.valueOf(connectGame.getScore()));
         answerTextArea.setText("Word Spawn");
         playerAnswerTextField.setOnKeyPressed(event -> {
@@ -65,12 +66,12 @@ public class ConnectController   {
                     connectGame.setScore(connectGame.getScore() + 1);
                     score.setText(String.valueOf(connectGame.getScore()));
                     connectGame.EnteredWord.add(botAnswer);
-                    connectGame.playTimer(event, timerNumber,c1, score, answerTextArea,playerAnswerTextField);
+                    connectGame.playTimer(event, timerNumber, c1, score, answerTextArea, playerAnswerTextField);
 
                 } else if (botAnswer == null) {
                     String point = score.getText();
                     AlertController.alertEndGame(event, "You Win", point);
-                    connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score,c1);
+                    connectGame.resetGame(playerAnswerTextField, answerTextArea, timerNumber, score, c1);
                 }
                 playerAnswerTextField.clear();
             } else {
@@ -83,8 +84,10 @@ public class ConnectController   {
 
     public void clickExitConnect(ActionEvent event) throws IOException, UnsupportedAudioFileException, SQLException, LineUnavailableException {
 
-        connectGame.resetGame(playerAnswerTextField,answerTextArea,timerNumber,score,c1);
-        ConnectGame.rt.stop();
+        connectGame.resetGame(playerAnswerTextField, answerTextArea, timerNumber, score, c1);
+        if (ConnectGame.rt != null) {
+            ConnectGame.rt.stop();
+        }
         SceneController.switchScene(event, SceneController.gameRoot);
 
     }
@@ -93,7 +96,7 @@ public class ConnectController   {
         Thread th = new Thread(new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-               startGame();
+                startGame();
                 return null;
             }
         });
