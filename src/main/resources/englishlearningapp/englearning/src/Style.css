@@ -237,7 +237,7 @@
 
 /*CSS connect game*/
 .buttonConnect {
-    -fx-background-color: transparent;
+    -fx-background-color: #f39b6b;
     -fx-background-radius: 5;
     -fx-text-fill: white;
     -fx-font-size: 32px;
@@ -246,8 +246,8 @@
 }
 
 .buttonConnect:hover {
-    -fx-background-color: yellow;
-    -fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-text-fill: black;
 }
 
 .scoreConnect {
@@ -260,9 +260,6 @@
 }
 .buttonHome {
 
-/*
-     -fx-background-image : url("../src/image/iconhome.png");
-*/
     -fx-background-color: transparent;
     -fx-background-radius: 5;
     -fx-border-color: transparent;

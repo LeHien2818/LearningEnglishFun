@@ -63,7 +63,8 @@ public class ConnectGame extends Game {
     @Override
     public void resetGame(TextField playerAnswerTextField, Button answerTextArea, TextArea timerNumber, TextField score, Circle c1) {
         playerAnswerTextField.clear();
-        answerTextArea.setText("Word Spwan");
+        String spawnWord = BotAnswerGenerator.generateRandomBotAnswers();
+        answerTextArea.setText(spawnWord);
         timerNumber.clear();
         score.setText(String.valueOf(0));
         EnteredWord.clear();
