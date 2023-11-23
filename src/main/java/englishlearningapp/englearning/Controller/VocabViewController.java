@@ -202,9 +202,11 @@ public class VocabViewController {
     }
 
     public void stopMedia() {
-        mediaPlayer.pause();
-        mediaPlayer.stop();
-        mediaPlayer.dispose();
+        if(mediaPlayer != null) {
+            mediaPlayer.pause();
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
+        }
     }
 
 
