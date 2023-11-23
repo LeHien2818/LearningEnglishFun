@@ -120,7 +120,7 @@ public class VocabGame extends Game {
                         try {
                             String point = scoregame.getText();
                             resetGame(event,answerA,answerB,questionVocab,scoregame,timerbox,handleGame);
-                            AlertController.alertEndGame(event, "YOU LOSE", point);
+                            AlertController.alertEndGame(event, "YOUR SCORE IS: ", point);
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
@@ -173,6 +173,7 @@ public class VocabGame extends Game {
         timerbox.clear();
         gameTimer.stopAudio();
         stopTimer();
+        System.out.println("done reset");
 
     }
 }

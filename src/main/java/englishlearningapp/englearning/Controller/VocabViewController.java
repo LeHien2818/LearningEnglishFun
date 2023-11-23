@@ -12,13 +12,13 @@ import englishlearningapp.englearning.questionGame.Question_answer_vocab;
 import java.io.IOException;
 import java.sql.PseudoColumnUsage;
 import java.sql.SQLException;
+import java.util.Optional;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -29,7 +29,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 public class VocabViewController {
 
     @FXML
-    private MediaView leftMedia, rightMedia;
+    private MediaView leftMedia;
     private Media media;
     private MediaPlayer mediaPlayer;
     @FXML
@@ -68,7 +68,24 @@ public class VocabViewController {
             int scoretmp = vocabGame.getScore();
             vocabGame.setScore(scoretmp - 1);
             Scoregame.setText(String.valueOf(vocabGame.getScore()));
-        }
+
+        } if(Integer.parseInt(Scoregame.getText()) < 0) {
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setHeaderText("Notification");
+                alert.setContentText("Your Score is 0. Game Over!");
+                ButtonType buttonTypeCancel = new ButtonType("OKE", ButtonBar.ButtonData.CANCEL_CLOSE);
+                alert.getButtonTypes().setAll(buttonTypeCancel);
+                Optional<ButtonType> result = alert.showAndWait();
+                try {
+                    SceneController.switchScene(event, SceneController.gameRoot);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+                vocabGame.stopTimer();
+                vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
+            }
         handleInformation(event);
 
     }
@@ -90,23 +107,41 @@ public class VocabViewController {
             int scoretmp = vocabGame.getScore();
             vocabGame.setScore(scoretmp - 1);
             Scoregame.setText(String.valueOf(vocabGame.getScore()));
+
         }
+            if(Integer.parseInt(Scoregame.getText()) < 0) {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setHeaderText("Notification");
+                    alert.setContentText("Your Score is 0. Game Over!");
+                    ButtonType buttonTypeCancel = new ButtonType("OKE", ButtonBar.ButtonData.CANCEL_CLOSE);
+                    alert.getButtonTypes().setAll(buttonTypeCancel);
+                    Optional<ButtonType> result = alert.showAndWait();
+                    try {
+                        SceneController.switchScene(event, SceneController.gameRoot);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+                    vocabGame.stopTimer();
+                    vocabGame.resetGame(event,answerA,answerB,questionVocab, Scoregame,timerbox,handleGame);
+            }
 
         handleInformation(event);
 
     }
 
-//    public void initialize() throws SQLException {
-//        Thread th = new Thread(new Task<Void>() {
-//            @Override
-//            protected Void call() throws Exception {
-//                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB, Scoregame);
-//                return null;
-//            }
-//        });
-//        th.setDaemon(true);
-//        th.start();
-//    }
+/*    public void initialize() throws SQLException {
+        Thread th = new Thread(new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                vocabGame.loadRandomQuestion(questionVocab, answerA, answerB, Scoregame);
+                return null;
+            }
+        });
+        th.setDaemon(true);
+        th.start();
+    }*/
 
     public void handleInformation(ActionEvent event) throws IOException, UnsupportedAudioFileException, LineUnavailableException, SQLException {
         vocabGame.playTimer(event, answerA, answerB,questionVocab,Scoregame,timerbox,handleGame);

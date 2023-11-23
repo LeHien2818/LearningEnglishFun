@@ -130,7 +130,7 @@ public class AlertController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Thông báo");
         alert.setHeaderText(null);
-        alert.setContentText(text);
+        alert.setContentText(text + point);
         ButtonType buttonTypeYes = new ButtonType("OKE", ButtonBar.ButtonData.YES);
         alert.getButtonTypes().setAll(buttonTypeYes);
         Optional<ButtonType> result = alert.showAndWait();
